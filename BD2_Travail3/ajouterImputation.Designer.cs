@@ -1,6 +1,6 @@
 ﻿namespace BD2_Travail3
 {
-    partial class ajouterImputation
+    partial class AjouterImputation
     {
         /// <summary>
         /// Required designer variable.
@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.grpRechercherPiece = new System.Windows.Forms.GroupBox();
-            this.lblNoPiece = new System.Windows.Forms.Label();
-            this.lblSelectionPieceDesiree = new System.Windows.Forms.Label();
-            this.txtRechercheNumeroPiece = new System.Windows.Forms.TextBox();
-            this.dgvAfficherPiece = new System.Windows.Forms.DataGridView();
             this.btnRechercher = new System.Windows.Forms.Button();
+            this.dgvAfficherPiece = new System.Windows.Forms.DataGridView();
+            this.txtRechercheNumeroPiece = new System.Windows.Forms.TextBox();
+            this.lblSelectionPieceDesiree = new System.Windows.Forms.Label();
+            this.lblNoPiece = new System.Windows.Forms.Label();
             this.grpProjet = new System.Windows.Forms.GroupBox();
-            this.lblChoisirProjet = new System.Windows.Forms.Label();
             this.cmbProjet = new System.Windows.Forms.ComboBox();
+            this.lblChoisirProjet = new System.Windows.Forms.Label();
             this.grpEmploye = new System.Windows.Forms.GroupBox();
-            this.lblEmploye = new System.Windows.Forms.Label();
-            this.cmbChoisirEmploye = new System.Windows.Forms.ComboBox();
             this.btnChoisirEmploye = new System.Windows.Forms.Button();
+            this.cmbChoisirEmploye = new System.Windows.Forms.ComboBox();
+            this.lblEmploye = new System.Windows.Forms.Label();
             this.lblQuantite = new System.Windows.Forms.Label();
             this.btnAjouterImputation = new System.Windows.Forms.Button();
             this.nudQuantite = new System.Windows.Forms.NumericUpDown();
@@ -65,14 +65,31 @@
             this.grpRechercherPiece.TabStop = false;
             this.grpRechercherPiece.Text = "Rechercher une pièce avec ou sans scanneur";
             // 
-            // lblNoPiece
+            // btnRechercher
             // 
-            this.lblNoPiece.AutoSize = true;
-            this.lblNoPiece.Location = new System.Drawing.Point(37, 42);
-            this.lblNoPiece.Name = "lblNoPiece";
-            this.lblNoPiece.Size = new System.Drawing.Size(271, 20);
-            this.lblNoPiece.TabIndex = 0;
-            this.lblNoPiece.Text = "numéro de pièce (ou partie de numéro)";
+            this.btnRechercher.Location = new System.Drawing.Point(505, 38);
+            this.btnRechercher.Name = "btnRechercher";
+            this.btnRechercher.Size = new System.Drawing.Size(176, 29);
+            this.btnRechercher.TabIndex = 3;
+            this.btnRechercher.Text = "Rechercher";
+            this.btnRechercher.UseVisualStyleBackColor = true;
+            // 
+            // dgvAfficherPiece
+            // 
+            this.dgvAfficherPiece.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAfficherPiece.Location = new System.Drawing.Point(37, 112);
+            this.dgvAfficherPiece.Name = "dgvAfficherPiece";
+            this.dgvAfficherPiece.RowHeadersWidth = 51;
+            this.dgvAfficherPiece.RowTemplate.Height = 24;
+            this.dgvAfficherPiece.Size = new System.Drawing.Size(644, 125);
+            this.dgvAfficherPiece.TabIndex = 4;
+            // 
+            // txtRechercheNumeroPiece
+            // 
+            this.txtRechercheNumeroPiece.Location = new System.Drawing.Point(314, 39);
+            this.txtRechercheNumeroPiece.Name = "txtRechercheNumeroPiece";
+            this.txtRechercheNumeroPiece.Size = new System.Drawing.Size(170, 27);
+            this.txtRechercheNumeroPiece.TabIndex = 2;
             // 
             // lblSelectionPieceDesiree
             // 
@@ -83,31 +100,14 @@
             this.lblSelectionPieceDesiree.TabIndex = 1;
             this.lblSelectionPieceDesiree.Text = "Sélectionner la pièce désirée";
             // 
-            // txtRechercheNumeroPiece
+            // lblNoPiece
             // 
-            this.txtRechercheNumeroPiece.Location = new System.Drawing.Point(314, 39);
-            this.txtRechercheNumeroPiece.Name = "txtRechercheNumeroPiece";
-            this.txtRechercheNumeroPiece.Size = new System.Drawing.Size(170, 27);
-            this.txtRechercheNumeroPiece.TabIndex = 2;
-            // 
-            // dgvAfficherPiece
-            // 
-            this.dgvAfficherPiece.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAfficherPiece.Location = new System.Drawing.Point(37, 112);
-            this.dgvAfficherPiece.Name = "dgvAfficherPiece";
-            this.dgvAfficherPiece.RowHeadersWidth = 51;
-            this.dgvAfficherPiece.RowTemplate.Height = 24;
-            this.dgvAfficherPiece.Size = new System.Drawing.Size(644, 125);
-            this.dgvAfficherPiece.TabIndex = 3;
-            // 
-            // btnRechercher
-            // 
-            this.btnRechercher.Location = new System.Drawing.Point(505, 38);
-            this.btnRechercher.Name = "btnRechercher";
-            this.btnRechercher.Size = new System.Drawing.Size(176, 29);
-            this.btnRechercher.TabIndex = 4;
-            this.btnRechercher.Text = "button1";
-            this.btnRechercher.UseVisualStyleBackColor = true;
+            this.lblNoPiece.AutoSize = true;
+            this.lblNoPiece.Location = new System.Drawing.Point(37, 42);
+            this.lblNoPiece.Name = "lblNoPiece";
+            this.lblNoPiece.Size = new System.Drawing.Size(271, 20);
+            this.lblNoPiece.TabIndex = 0;
+            this.lblNoPiece.Text = "numéro de pièce (ou partie de numéro)";
             // 
             // grpProjet
             // 
@@ -120,6 +120,14 @@
             this.grpProjet.TabStop = false;
             this.grpProjet.Text = "Projet";
             // 
+            // cmbProjet
+            // 
+            this.cmbProjet.FormattingEnabled = true;
+            this.cmbProjet.Location = new System.Drawing.Point(180, 30);
+            this.cmbProjet.Name = "cmbProjet";
+            this.cmbProjet.Size = new System.Drawing.Size(336, 28);
+            this.cmbProjet.TabIndex = 1;
+            // 
             // lblChoisirProjet
             // 
             this.lblChoisirProjet.AutoSize = true;
@@ -128,14 +136,6 @@
             this.lblChoisirProjet.Size = new System.Drawing.Size(118, 20);
             this.lblChoisirProjet.TabIndex = 0;
             this.lblChoisirProjet.Text = "Choisir un projet";
-            // 
-            // cmbProjet
-            // 
-            this.cmbProjet.FormattingEnabled = true;
-            this.cmbProjet.Location = new System.Drawing.Point(180, 30);
-            this.cmbProjet.Name = "cmbProjet";
-            this.cmbProjet.Size = new System.Drawing.Size(336, 28);
-            this.cmbProjet.TabIndex = 1;
             // 
             // grpEmploye
             // 
@@ -149,14 +149,14 @@
             this.grpEmploye.TabStop = false;
             this.grpEmploye.Text = "Employé";
             // 
-            // lblEmploye
+            // btnChoisirEmploye
             // 
-            this.lblEmploye.AutoSize = true;
-            this.lblEmploye.Location = new System.Drawing.Point(37, 33);
-            this.lblEmploye.Name = "lblEmploye";
-            this.lblEmploye.Size = new System.Drawing.Size(67, 20);
-            this.lblEmploye.TabIndex = 0;
-            this.lblEmploye.Text = "Employé";
+            this.btnChoisirEmploye.Location = new System.Drawing.Point(534, 29);
+            this.btnChoisirEmploye.Name = "btnChoisirEmploye";
+            this.btnChoisirEmploye.Size = new System.Drawing.Size(176, 29);
+            this.btnChoisirEmploye.TabIndex = 2;
+            this.btnChoisirEmploye.Text = "Choisir un employé";
+            this.btnChoisirEmploye.UseVisualStyleBackColor = true;
             // 
             // cmbChoisirEmploye
             // 
@@ -166,14 +166,14 @@
             this.cmbChoisirEmploye.Size = new System.Drawing.Size(336, 28);
             this.cmbChoisirEmploye.TabIndex = 1;
             // 
-            // btnChoisirEmploye
+            // lblEmploye
             // 
-            this.btnChoisirEmploye.Location = new System.Drawing.Point(534, 29);
-            this.btnChoisirEmploye.Name = "btnChoisirEmploye";
-            this.btnChoisirEmploye.Size = new System.Drawing.Size(176, 29);
-            this.btnChoisirEmploye.TabIndex = 2;
-            this.btnChoisirEmploye.Text = "Choisir un employé";
-            this.btnChoisirEmploye.UseVisualStyleBackColor = true;
+            this.lblEmploye.AutoSize = true;
+            this.lblEmploye.Location = new System.Drawing.Point(37, 33);
+            this.lblEmploye.Name = "lblEmploye";
+            this.lblEmploye.Size = new System.Drawing.Size(67, 20);
+            this.lblEmploye.TabIndex = 0;
+            this.lblEmploye.Text = "Employé";
             // 
             // lblQuantite
             // 
@@ -189,7 +189,7 @@
             this.btnAjouterImputation.Location = new System.Drawing.Point(67, 517);
             this.btnAjouterImputation.Name = "btnAjouterImputation";
             this.btnAjouterImputation.Size = new System.Drawing.Size(302, 29);
-            this.btnAjouterImputation.TabIndex = 5;
+            this.btnAjouterImputation.TabIndex = 7;
             this.btnAjouterImputation.Text = "Ajouter imputation";
             this.btnAjouterImputation.UseVisualStyleBackColor = true;
             // 
@@ -200,7 +200,7 @@
             this.nudQuantite.Size = new System.Drawing.Size(159, 27);
             this.nudQuantite.TabIndex = 6;
             // 
-            // ajouterImputation
+            // AjouterImputation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -213,7 +213,7 @@
             this.Controls.Add(this.grpRechercherPiece);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "ajouterImputation";
+            this.Name = "AjouterImputation";
             this.Text = "ajouterImputation";
             this.grpRechercherPiece.ResumeLayout(false);
             this.grpRechercherPiece.PerformLayout();

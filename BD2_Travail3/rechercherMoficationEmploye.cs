@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BD2_Travail3
 {
-    public partial class rechercherMoficationEmploye : Form
+    public partial class RechercherMoficationEmploye : Form
     {
-        public rechercherMoficationEmploye()
+        public RechercherMoficationEmploye()
         {
             InitializeComponent();
         }

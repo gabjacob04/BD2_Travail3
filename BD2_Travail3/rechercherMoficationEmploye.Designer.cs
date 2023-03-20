@@ -1,6 +1,6 @@
 ﻿namespace BD2_Travail3
 {
-    partial class rechercherMoficationEmploye
+    partial class RechercherMoficationEmploye
     {
         /// <summary>
         /// Required designer variable.

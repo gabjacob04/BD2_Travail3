@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BD2_Travail3
 {
-    public partial class AjouterImputation : Form
+    public partial class InformationImputationsDUnePiece : Form
     {
-        public AjouterImputation()
+        public InformationImputationsDUnePiece()
         {
             InitializeComponent();
         }
