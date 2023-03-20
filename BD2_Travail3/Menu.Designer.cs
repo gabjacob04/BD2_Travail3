@@ -1,6 +1,6 @@
 ﻿namespace BD2_Travail3
 {
-    partial class Form1
+    partial class Menu
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
