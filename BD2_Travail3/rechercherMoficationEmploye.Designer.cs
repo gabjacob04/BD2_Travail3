@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.grpRecherche = new System.Windows.Forms.GroupBox();
-            this.lblNomPrenom = new System.Windows.Forms.Label();
-            this.txtNomPrenom = new System.Windows.Forms.TextBox();
-            this.btnRechercher = new System.Windows.Forms.Button();
-            this.cmbRechercheEmploye = new System.Windows.Forms.ComboBox();
             this.lblSelectionnerEMploye = new System.Windows.Forms.Label();
+            this.cmbRechercheEmploye = new System.Windows.Forms.ComboBox();
+            this.btnRechercher = new System.Windows.Forms.Button();
+            this.txtNomPrenom = new System.Windows.Forms.TextBox();
+            this.lblNomPrenom = new System.Windows.Forms.Label();
             this.grpEmploye = new System.Windows.Forms.GroupBox();
-            this.lblPrenom = new System.Windows.Forms.Label();
-            this.lblNom = new System.Windows.Forms.Label();
-            this.lblCourriel = new System.Windows.Forms.Label();
-            this.txtPrenom = new System.Windows.Forms.TextBox();
-            this.txtNom = new System.Windows.Forms.TextBox();
-            this.txtCourriel = new System.Windows.Forms.TextBox();
             this.btnModifier = new System.Windows.Forms.Button();
+            this.txtCourriel = new System.Windows.Forms.TextBox();
+            this.txtNom = new System.Windows.Forms.TextBox();
+            this.txtPrenom = new System.Windows.Forms.TextBox();
+            this.lblCourriel = new System.Windows.Forms.Label();
+            this.lblNom = new System.Windows.Forms.Label();
+            this.lblPrenom = new System.Windows.Forms.Label();
             this.grpRecherche.SuspendLayout();
             this.grpEmploye.SuspendLayout();
             this.SuspendLayout();
@@ -63,24 +63,26 @@
             this.grpRecherche.TabStop = false;
             this.grpRecherche.Text = "Rechercher un employé";
             // 
-            // lblNomPrenom
+            // lblSelectionnerEMploye
             // 
-            this.lblNomPrenom.AutoSize = true;
-            this.lblNomPrenom.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomPrenom.Location = new System.Drawing.Point(60, 40);
-            this.lblNomPrenom.Name = "lblNomPrenom";
-            this.lblNomPrenom.Size = new System.Drawing.Size(135, 20);
-            this.lblNomPrenom.TabIndex = 0;
-            this.lblNomPrenom.Text = "nom et/ou prenom";
+            this.lblSelectionnerEMploye.AutoSize = true;
+            this.lblSelectionnerEMploye.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelectionnerEMploye.Location = new System.Drawing.Point(24, 131);
+            this.lblSelectionnerEMploye.Name = "lblSelectionnerEMploye";
+            this.lblSelectionnerEMploye.Size = new System.Drawing.Size(171, 20);
+            this.lblSelectionnerEMploye.TabIndex = 4;
+            this.lblSelectionnerEMploye.Text = "sélectionner un employé";
             // 
-            // txtNomPrenom
+            // cmbRechercheEmploye
             // 
-            this.txtNomPrenom.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtNomPrenom.Location = new System.Drawing.Point(201, 37);
-            this.txtNomPrenom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtNomPrenom.Name = "txtNomPrenom";
-            this.txtNomPrenom.Size = new System.Drawing.Size(270, 27);
-            this.txtNomPrenom.TabIndex = 1;
+            this.cmbRechercheEmploye.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbRechercheEmploye.FormattingEnabled = true;
+            this.cmbRechercheEmploye.Location = new System.Drawing.Point(201, 128);
+            this.cmbRechercheEmploye.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cmbRechercheEmploye.Name = "cmbRechercheEmploye";
+            this.cmbRechercheEmploye.Size = new System.Drawing.Size(270, 28);
+            this.cmbRechercheEmploye.TabIndex = 3;
+            this.cmbRechercheEmploye.SelectionChangeCommitted += new System.EventHandler(this.cmbRechercheEmploye_SelectionChangeCommitted);
             // 
             // btnRechercher
             // 
@@ -92,26 +94,26 @@
             this.btnRechercher.TabIndex = 2;
             this.btnRechercher.Text = "Rechercher";
             this.btnRechercher.UseVisualStyleBackColor = true;
+            this.btnRechercher.Click += new System.EventHandler(this.btnRechercher_Click);
             // 
-            // cmbRechercheEmploye
+            // txtNomPrenom
             // 
-            this.cmbRechercheEmploye.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbRechercheEmploye.FormattingEnabled = true;
-            this.cmbRechercheEmploye.Location = new System.Drawing.Point(201, 128);
-            this.cmbRechercheEmploye.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cmbRechercheEmploye.Name = "cmbRechercheEmploye";
-            this.cmbRechercheEmploye.Size = new System.Drawing.Size(270, 28);
-            this.cmbRechercheEmploye.TabIndex = 3;
+            this.txtNomPrenom.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtNomPrenom.Location = new System.Drawing.Point(201, 37);
+            this.txtNomPrenom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtNomPrenom.Name = "txtNomPrenom";
+            this.txtNomPrenom.Size = new System.Drawing.Size(270, 27);
+            this.txtNomPrenom.TabIndex = 1;
             // 
-            // lblSelectionnerEMploye
+            // lblNomPrenom
             // 
-            this.lblSelectionnerEMploye.AutoSize = true;
-            this.lblSelectionnerEMploye.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectionnerEMploye.Location = new System.Drawing.Point(24, 131);
-            this.lblSelectionnerEMploye.Name = "lblSelectionnerEMploye";
-            this.lblSelectionnerEMploye.Size = new System.Drawing.Size(171, 20);
-            this.lblSelectionnerEMploye.TabIndex = 4;
-            this.lblSelectionnerEMploye.Text = "sélectionner un employé";
+            this.lblNomPrenom.AutoSize = true;
+            this.lblNomPrenom.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomPrenom.Location = new System.Drawing.Point(60, 40);
+            this.lblNomPrenom.Name = "lblNomPrenom";
+            this.lblNomPrenom.Size = new System.Drawing.Size(135, 20);
+            this.lblNomPrenom.TabIndex = 0;
+            this.lblNomPrenom.Text = "nom et/ou prenom";
             // 
             // grpEmploye
             // 
@@ -129,24 +131,36 @@
             this.grpEmploye.TabStop = false;
             this.grpEmploye.Text = "Employé";
             // 
-            // lblPrenom
+            // btnModifier
             // 
-            this.lblPrenom.AutoSize = true;
-            this.lblPrenom.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblPrenom.Location = new System.Drawing.Point(100, 39);
-            this.lblPrenom.Name = "lblPrenom";
-            this.lblPrenom.Size = new System.Drawing.Size(60, 20);
-            this.lblPrenom.TabIndex = 0;
-            this.lblPrenom.Text = "Prenom";
+            this.btnModifier.Location = new System.Drawing.Point(201, 168);
+            this.btnModifier.Name = "btnModifier";
+            this.btnModifier.Size = new System.Drawing.Size(169, 29);
+            this.btnModifier.TabIndex = 6;
+            this.btnModifier.Text = "Modifier";
+            this.btnModifier.UseVisualStyleBackColor = true;
+            this.btnModifier.Click += new System.EventHandler(this.btnModifier_Click);
             // 
-            // lblNom
+            // txtCourriel
             // 
-            this.lblNom.AutoSize = true;
-            this.lblNom.Location = new System.Drawing.Point(100, 84);
-            this.lblNom.Name = "lblNom";
-            this.lblNom.Size = new System.Drawing.Size(42, 20);
-            this.lblNom.TabIndex = 1;
-            this.lblNom.Text = "Nom";
+            this.txtCourriel.Location = new System.Drawing.Point(201, 126);
+            this.txtCourriel.Name = "txtCourriel";
+            this.txtCourriel.Size = new System.Drawing.Size(169, 27);
+            this.txtCourriel.TabIndex = 5;
+            // 
+            // txtNom
+            // 
+            this.txtNom.Location = new System.Drawing.Point(201, 81);
+            this.txtNom.Name = "txtNom";
+            this.txtNom.Size = new System.Drawing.Size(169, 27);
+            this.txtNom.TabIndex = 4;
+            // 
+            // txtPrenom
+            // 
+            this.txtPrenom.Location = new System.Drawing.Point(201, 36);
+            this.txtPrenom.Name = "txtPrenom";
+            this.txtPrenom.Size = new System.Drawing.Size(169, 27);
+            this.txtPrenom.TabIndex = 3;
             // 
             // lblCourriel
             // 
@@ -157,37 +171,26 @@
             this.lblCourriel.TabIndex = 2;
             this.lblCourriel.Text = "Courriel";
             // 
-            // txtPrenom
+            // lblNom
             // 
-            this.txtPrenom.Location = new System.Drawing.Point(201, 36);
-            this.txtPrenom.Name = "txtPrenom";
-            this.txtPrenom.Size = new System.Drawing.Size(169, 27);
-            this.txtPrenom.TabIndex = 3;
+            this.lblNom.AutoSize = true;
+            this.lblNom.Location = new System.Drawing.Point(100, 84);
+            this.lblNom.Name = "lblNom";
+            this.lblNom.Size = new System.Drawing.Size(42, 20);
+            this.lblNom.TabIndex = 1;
+            this.lblNom.Text = "Nom";
             // 
-            // txtNom
+            // lblPrenom
             // 
-            this.txtNom.Location = new System.Drawing.Point(201, 81);
-            this.txtNom.Name = "txtNom";
-            this.txtNom.Size = new System.Drawing.Size(169, 27);
-            this.txtNom.TabIndex = 4;
+            this.lblPrenom.AutoSize = true;
+            this.lblPrenom.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblPrenom.Location = new System.Drawing.Point(100, 39);
+            this.lblPrenom.Name = "lblPrenom";
+            this.lblPrenom.Size = new System.Drawing.Size(60, 20);
+            this.lblPrenom.TabIndex = 0;
+            this.lblPrenom.Text = "Prenom";
             // 
-            // txtCourriel
-            // 
-            this.txtCourriel.Location = new System.Drawing.Point(201, 126);
-            this.txtCourriel.Name = "txtCourriel";
-            this.txtCourriel.Size = new System.Drawing.Size(169, 27);
-            this.txtCourriel.TabIndex = 5;
-            // 
-            // btnModifier
-            // 
-            this.btnModifier.Location = new System.Drawing.Point(201, 168);
-            this.btnModifier.Name = "btnModifier";
-            this.btnModifier.Size = new System.Drawing.Size(169, 29);
-            this.btnModifier.TabIndex = 6;
-            this.btnModifier.Text = "Modifier";
-            this.btnModifier.UseVisualStyleBackColor = true;
-            // 
-            // rechercherMoficationEmploye
+            // RechercherMoficationEmploye
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -196,7 +199,7 @@
             this.Controls.Add(this.grpRecherche);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "rechercherMoficationEmploye";
+            this.Name = "RechercherMoficationEmploye";
             this.Text = "rechercherMoficationEmploye";
             this.grpRecherche.ResumeLayout(false);
             this.grpRecherche.PerformLayout();
