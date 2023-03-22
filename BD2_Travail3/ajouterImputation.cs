@@ -8,13 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BD2_Travail3
-{
+namespace BD2_Travail3 {
     public partial class AjouterImputation : Form
     {
+        ManagerImputation managerImputation;
         public AjouterImputation()
         {
             InitializeComponent();
+        }
+
+        private void btnRechercher_Click(object sender, EventArgs e) {
+
         }
     }
 }

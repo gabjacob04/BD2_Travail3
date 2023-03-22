@@ -225,6 +225,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "InformationImputationsDUnePiece";
             this.Text = "informationImputationsDUnePiece";
+            this.Load += new System.EventHandler(this.InformationImputationsDUnePiece_Load);
             this.grpRechercherPiece.ResumeLayout(false);
             this.grpRechercherPiece.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAfficherPiece)).EndInit();
