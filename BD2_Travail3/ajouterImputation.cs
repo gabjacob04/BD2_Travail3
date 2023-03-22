@@ -16,15 +16,19 @@ namespace BD2_Travail3 {
         public AjouterImputation()
         {
             InitializeComponent();
+            managerInventaire = new ManagerInventaire();
         }
 
         private void btnRechercher_Click(object sender, EventArgs e) {
-            try {
+            try
+            {
+                
                 dgvAfficherPiece.DataSource = managerInventaire.listerInventaire(txtRechercheNumeroPiece.Text);
-            }catch(Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
             }
-            
         }
     }
 }
