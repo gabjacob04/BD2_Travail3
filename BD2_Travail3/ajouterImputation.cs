@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Core;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -59,12 +61,48 @@ namespace BD2_Travail3 {
         {
             cmbChoisirEmploye.ValueMember = "no_Employe";
             cmbChoisirEmploye.DisplayMember = "InfoEmploye";
-        private void cmbProjet_SelectionChangeCommitted(object sender, EventArgs e) {
-
         }
 
-        private void btnChoisirEmploye_Click(object sender, EventArgs e) {
+        private void checkForErrors()
+        {
+            if (dgvAfficherPiece.CurrentCell is null)
+            {
+                throw new Exception("Aucune pièce de sélectionné");
+            }
+            if (cmbChoisirEmploye.SelectedValue is null || cmbProjet.SelectedValue is null)
+            {
+                throw new Exception("Aucun employé et/ou projet de sélectionné");
+            }
+            if (nudQuantite.Value <= 0)
+            {
+                throw new Exception("La quantité ne peut être 0");
+            }
+        }
 
+        private void btnAjouterImputation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                checkForErrors();
+
+                tbl_Impute imputeAAjouter = new tbl_Impute();
+                imputeAAjouter.no_Piece = (int)dgvAfficherPiece[0, dgvAfficherPiece.CurrentRow.Index].Value;
+                imputeAAjouter.no_Employe = (int)cmbChoisirEmploye.SelectedValue;
+                imputeAAjouter.no_Projet = (int)cmbProjet.SelectedValue;
+                imputeAAjouter.date = DateTime.Now;
+                imputeAAjouter.quantite_Retire = (int)nudQuantite.Value;
+                int nbreLigneAffectee = managerImputation.AjouterUneImputation(imputeAAjouter);
+                if (nbreLigneAffectee > 0)
+                {
+                    MessageBox.Show("Ajout et/ou modification avec succès");
+                    return;
+                }
+                throw new Exception("Erreur, aucun ajout effectué");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

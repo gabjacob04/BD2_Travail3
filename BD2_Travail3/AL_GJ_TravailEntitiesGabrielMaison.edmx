@@ -109,6 +109,10 @@
           <Parameter Name="searchTerm" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="selectionnerTouteLesEmployes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SuppressionDobjetDeLInventaire" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="QuantiteAEnlever" Type="int" Mode="In" />
+          <Parameter Name="no_Piece" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="AL_GJ_TravailModelStoreContainer">
           <EntitySet Name="tbl_Employe" EntityType="Self.tbl_Employe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Impute" EntityType="Self.tbl_Impute" Schema="dbo" store:Type="Tables" />
@@ -268,7 +272,11 @@
           </FunctionImport>
           <FunctionImport Name="selectionnerTouteLesEmployes" ReturnType="Collection(AL_GJ_TravailModel.selectionnerTouteLesEmployes_Result)" />
           <FunctionImport Name="RecherchePieceParNoPiece" ReturnType="Collection(AL_GJ_TravailModel.RecherchePieceParNoPiece_Result)">
-            <Parameter Name="noPieceDemandé" Mode="In" Type="String" />
+          <Parameter Name="noPieceDemandé" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SuppressionDobjetDeLInventaire">
+            <Parameter Name="QuantiteAEnlever" Mode="In" Type="Int32" />
+            <Parameter Name="no_Piece" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="selectionnerEmployeSelonRecherche_Result">
@@ -377,6 +385,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SuppressionDobjetDeLInventaire" FunctionName="AL_GJ_TravailModel.Store.SuppressionDobjetDeLInventaire" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
