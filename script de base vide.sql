@@ -211,10 +211,17 @@ values ('1','1')*/
 		select no_Employe, Nom + ' ' + Prénom + ' ' + Courriel as 'InfoEmploye'
 		from tbl_Employe
 		GO
-
+		/* professeur a dit pas besoin 
 		Create procedure Imputation
 		@no_Employe int , @no_Piece int , @no_Projet int, @date DateTime, @quantite_Retire int
 		as
 		insert into tbl_Impute(no_Employe, no_Piece, no_Projet, date, quantite_Retire)
 		Values (@no_Employe, @no_Piece, @no_Projet, @date, @quantite_Retire)
+		go*/
+
+		Create procedure SuppressionDobjetDeLInventaire
+		@QuantiteAEnlever int,@no_Piece int
+		as
+		update tbl_Inventaire set quantite = quantite - @QuantiteAEnlever
+		where no_Piece = @no_Piece
 		go
