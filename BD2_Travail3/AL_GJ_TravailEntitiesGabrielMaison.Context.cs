@@ -12,11 +12,13 @@ namespace BD2_Travail3
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
-    public partial class AL_GJ_TravailEntitiesGabrielMaison : DbContext
+    public partial class AL_GJ_TravailEntities : DbContext
     {
-        public AL_GJ_TravailEntitiesGabrielMaison()
-            : base("name=AL_GJ_TravailEntitiesGabrielMaison")
+        public AL_GJ_TravailEntities()
+            : base("name=AL_GJ_TravailEntities")
         {
         }
     
@@ -30,5 +32,14 @@ namespace BD2_Travail3
         public virtual DbSet<tbl_Inventaire> tbl_Inventaire { get; set; }
         public virtual DbSet<tbl_Marque> tbl_Marque { get; set; }
         public virtual DbSet<tbl_Projet> tbl_Projet { get; set; }
+    
+        public virtual ObjectResult<selectionnerEmployeSelonRecherche_Result> selectionnerEmployeSelonRecherche(string searchTerm)
+        {
+            var searchTermParameter = searchTerm != null ?
+                new ObjectParameter("searchTerm", searchTerm) :
+                new ObjectParameter("searchTerm", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<selectionnerEmployeSelonRecherche_Result>("selectionnerEmployeSelonRecherche", searchTermParameter);
+        }
     }
 }

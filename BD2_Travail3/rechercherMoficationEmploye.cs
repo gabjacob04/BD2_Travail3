@@ -36,7 +36,7 @@ namespace BD2_Travail3
                     cmbRechercheEmploye.DataSource = managerEmploye.ListerEmployeQuiMatchLettresDonnees(recherche);
                 }
                 cmbRechercheEmploye.ValueMember = "no_Employe";
-                cmbRechercheEmploye.DisplayMember = "Prénom";
+                cmbRechercheEmploye.DisplayMember = "InfoEmploye";
             }
             catch (Exception ex)
             {

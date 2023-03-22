@@ -37,6 +37,7 @@
           <Property Name="quantite_Critique" Type="int" />
           <Property Name="quantite_Minimum" Type="int" />
           <Property Name="no_Marque" Type="int" Nullable="false" />
+          <Property Name="no_Piece_Entreprise" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="tbl_Marque">
           <Key>
@@ -101,6 +102,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="selectionnerEmployeSelonRecherche" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="searchTerm" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="AL_GJ_TravailModelStoreContainer">
           <EntitySet Name="tbl_Employe" EntityType="Self.tbl_Employe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Impute" EntityType="Self.tbl_Impute" Schema="dbo" store:Type="Tables" />
@@ -165,6 +169,7 @@
           <Property Name="quantite_Critique" Type="Int32" />
           <Property Name="quantite_Minimum" Type="Int32" />
           <Property Name="no_Marque" Type="Int32" Nullable="false" />
+          <Property Name="no_Piece_Entreprise" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tbl_Impute" Relationship="Self.fk_no_Piece" FromRole="tbl_Inventaire" ToRole="tbl_Impute" />
           <NavigationProperty Name="tbl_Marque" Relationship="Self.FK__tbl_Inven__no_Ma__2F10007B" FromRole="tbl_Inventaire" ToRole="tbl_Marque" />
         </EntityType>
@@ -233,7 +238,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="AL_GJ_TravailEntitiesGabrielMaison" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="AL_GJ_TravailEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tbl_Employe" EntityType="Self.tbl_Employe" />
           <EntitySet Name="tbl_Impute" EntityType="Self.tbl_Impute" />
           <EntitySet Name="tbl_Inventaire" EntityType="Self.tbl_Inventaire" />
@@ -255,13 +260,20 @@
             <End Role="tbl_Marque" EntitySet="tbl_Marque" />
             <End Role="tbl_Inventaire" EntitySet="tbl_Inventaire" />
           </AssociationSet>
+          <FunctionImport Name="selectionnerEmployeSelonRecherche" ReturnType="Collection(AL_GJ_TravailModel.selectionnerEmployeSelonRecherche_Result)">
+            <Parameter Name="searchTerm" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="selectionnerEmployeSelonRecherche_Result">
+          <Property Type="Int32" Name="no_Employe" Nullable="false" />
+          <Property Type="String" Name="InfoEmploye" Nullable="false" MaxLength="767" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="AL_GJ_TravailModelStoreContainer" CdmEntityContainer="AL_GJ_TravailEntitiesGabrielMaison">
+        <EntityContainerMapping StorageEntityContainer="AL_GJ_TravailModelStoreContainer" CdmEntityContainer="AL_GJ_TravailEntities">
           <EntitySetMapping Name="tbl_Employe">
             <EntityTypeMapping TypeName="AL_GJ_TravailModel.tbl_Employe">
               <MappingFragment StoreEntitySet="tbl_Employe">
@@ -293,6 +305,7 @@
                 <ScalarProperty Name="quantite_Critique" ColumnName="quantite_Critique" />
                 <ScalarProperty Name="quantite_Minimum" ColumnName="quantite_Minimum" />
                 <ScalarProperty Name="no_Marque" ColumnName="no_Marque" />
+                <ScalarProperty Name="no_Piece_Entreprise" ColumnName="no_Piece_Entreprise" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -313,6 +326,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="selectionnerEmployeSelonRecherche" FunctionName="AL_GJ_TravailModel.Store.selectionnerEmployeSelonRecherche">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AL_GJ_TravailModel.selectionnerEmployeSelonRecherche_Result">
+                <ScalarProperty Name="no_Employe" ColumnName="no_Employe" />
+                <ScalarProperty Name="InfoEmploye" ColumnName="InfoEmploye" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
