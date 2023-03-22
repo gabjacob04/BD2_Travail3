@@ -201,6 +201,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "RechercherMoficationEmploye";
             this.Text = "rechercherMoficationEmploye";
+            this.Load += new System.EventHandler(this.RechercherMoficationEmploye_Load);
             this.grpRecherche.ResumeLayout(false);
             this.grpRecherche.PerformLayout();
             this.grpEmploye.ResumeLayout(false);

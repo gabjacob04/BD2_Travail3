@@ -13,22 +13,46 @@ namespace BD2_Travail3 {
     {
         ManagerImputation managerImputation;
         ManagerInventaire managerInventaire;
+        ManagerEmploye managerEmploye;
         public AjouterImputation()
         {
             InitializeComponent();
             managerInventaire = new ManagerInventaire();
+            managerEmploye = new ManagerEmploye();  
         }
 
         private void btnRechercher_Click(object sender, EventArgs e) {
             try
-            {
-                
+            {     
                 dgvAfficherPiece.DataSource = managerInventaire.listerInventaire(txtRechercheNumeroPiece.Text);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnChoisirEmploye_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbChoisirEmploye.Text is "")
+                {
+                    cmbChoisirEmploye.DataSource = managerEmploye.ListerEmploye();
+                    return;
+                }
+                cmbChoisirEmploye.DataSource = managerEmploye.ListerEmployeQuiMatchLettresDonnees(cmbChoisirEmploye.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void AjouterImputation_Load(object sender, EventArgs e)
+        {
+            cmbChoisirEmploye.ValueMember = "no_Employe";
+            cmbChoisirEmploye.DisplayMember = "InfoEmploye";
         }
     }
 }
