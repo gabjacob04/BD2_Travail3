@@ -128,6 +128,7 @@
             this.cmbProjet.Name = "cmbProjet";
             this.cmbProjet.Size = new System.Drawing.Size(336, 28);
             this.cmbProjet.TabIndex = 1;
+            this.cmbProjet.SelectionChangeCommitted += new System.EventHandler(this.cmbProjet_SelectionChangeCommitted);
             // 
             // lblChoisirProjet
             // 
@@ -158,6 +159,7 @@
             this.btnChoisirEmploye.TabIndex = 2;
             this.btnChoisirEmploye.Text = "Choisir un employé";
             this.btnChoisirEmploye.UseVisualStyleBackColor = true;
+            this.btnChoisirEmploye.Click += new System.EventHandler(this.btnChoisirEmploye_Click);
             // 
             // cmbChoisirEmploye
             // 

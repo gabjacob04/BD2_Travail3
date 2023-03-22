@@ -96,7 +96,7 @@ Insert into tbl_Projet(nom_projet,description_projet)
 Values ('Projet spécial','fornite')
 go
 Insert into tbl_Inventaire(nom_Piece,no_Piece_Entreprise, description_Piece, quantite, quantite_Minimum, quantite_Critique, no_Marque)
-Values ('Pièce spécial','2','Cette pièce est super duper spéciale',69,0,5, 1)
+Values ('Pièce spécial','P1','Cette pièce est super duper spéciale',69,0,5, 1)
 go
 Insert into tbl_Employe (Nom, Prénom, Courriel)
 Values ('Auger', 'Benoit', 'benoit.auger2@montreal.ca')
@@ -139,10 +139,10 @@ Insert into tbl_Marque(nom_Marque)
 Values ('NVidia'),
 ('Asus'), ('Intel')
 go
-Insert into tbl_Inventaire(nom_Piece,description_Piece,quantite,quantite_Critique,quantite_Minimum,no_marque)
-Values ('Carte graphique','une carte','40','10', '20',2),
-('Carte mère','mère','200','10', '15',3),
-('Procésseur','procceseur','30','15', '20',4)
+Insert into tbl_Inventaire(nom_Piece,no_Piece,description_Piece,quantite,quantite_Critique,quantite_Minimum,no_marque)
+Values ('Carte graphique','CG1','une carte','40','10', '20',2),
+('Carte mère','CM1','mère','200','10', '15',3),
+('Processeur','P2','procceseur','30','15', '20',4)
 go
 insert into tbl_Projet(nom_Projet, description_projet)
 values('ordidateur portable','projet portable'),('tours ordinateur','projet de tours pour quelquun'),('Serveur','serveur pour compagnie')
@@ -191,7 +191,7 @@ values ('1','1')*/
 	/* partie 4 */
 
 		create procedure RecherchePieceParNoPiece
-		@noPieceDemandé nvarchar(50)
+		@noPieceDemandé nvarchar(100)
 		AS
 		select *
 		from tbl_Inventaire
