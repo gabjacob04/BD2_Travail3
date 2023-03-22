@@ -205,3 +205,9 @@ values ('1','1')*/
 		from tbl_Employe
 		where Nom like '%'+@searchTerm+'%' or Prénom like '%'+@searchTerm+'%'
 		GO
+
+		Create procedure selectionnerTouteLesEmployes
+		as
+		select no_Employe, Nom + ' ' + Prénom + ' ' + Courriel as 'InfoEmploye'
+		from tbl_Employe
+		GO

@@ -26,12 +26,15 @@ namespace BD2_Travail3 {
         }
 
         private void btnRechercher_Click(object sender, EventArgs e) {
-            try {
+            try
+            {
+                
                 dgvAfficherPiece.DataSource = managerInventaire.listerInventaire(txtRechercheNumeroPiece.Text);
-            }catch(Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
             }
-            
         }
 
         private void cmbProjet_SelectionChangeCommitted(object sender, EventArgs e) {

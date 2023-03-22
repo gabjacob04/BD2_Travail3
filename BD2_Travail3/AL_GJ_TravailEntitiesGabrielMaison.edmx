@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AL_GJ_TravailModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AL_GJ_TravailModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tbl_Employe">
           <Key>
             <PropertyRef Name="no_Employe" />
@@ -37,6 +37,7 @@
           <Property Name="quantite_Critique" Type="int" />
           <Property Name="quantite_Minimum" Type="int" />
           <Property Name="no_Marque" Type="int" Nullable="false" />
+          <Property Name="no_Piece_Entreprise" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="tbl_Marque">
           <Key>
@@ -101,6 +102,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="RecherchePieceParNoPiece" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="noPieceDemandé" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="selectionnerEmployeSelonRecherche" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="searchTerm" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="selectionnerTouteLesEmployes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="AL_GJ_TravailModelStoreContainer">
           <EntitySet Name="tbl_Employe" EntityType="Self.tbl_Employe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Impute" EntityType="Self.tbl_Impute" Schema="dbo" store:Type="Tables" />
@@ -124,8 +132,7 @@
             <End Role="tbl_Impute" EntitySet="tbl_Impute" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AL_GJ_TravailModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -165,6 +172,7 @@
           <Property Name="quantite_Critique" Type="Int32" />
           <Property Name="quantite_Minimum" Type="Int32" />
           <Property Name="no_Marque" Type="Int32" Nullable="false" />
+          <Property Name="no_Piece_Entreprise" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tbl_Impute" Relationship="Self.fk_no_Piece" FromRole="tbl_Inventaire" ToRole="tbl_Impute" />
           <NavigationProperty Name="tbl_Marque" Relationship="Self.FK__tbl_Inven__no_Ma__2F10007B" FromRole="tbl_Inventaire" ToRole="tbl_Marque" />
         </EntityType>
@@ -233,7 +241,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="AL_GJ_TravailEntitiesGabrielMaison" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="AL_GJ_TravailEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tbl_Employe" EntityType="Self.tbl_Employe" />
           <EntitySet Name="tbl_Impute" EntityType="Self.tbl_Impute" />
           <EntitySet Name="tbl_Inventaire" EntityType="Self.tbl_Inventaire" />
@@ -255,13 +263,38 @@
             <End Role="tbl_Marque" EntitySet="tbl_Marque" />
             <End Role="tbl_Inventaire" EntitySet="tbl_Inventaire" />
           </AssociationSet>
+          <FunctionImport Name="selectionnerEmployeSelonRecherche" ReturnType="Collection(AL_GJ_TravailModel.selectionnerEmployeSelonRecherche_Result)">
+          <Parameter Name="searchTerm" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="selectionnerTouteLesEmployes" ReturnType="Collection(AL_GJ_TravailModel.selectionnerTouteLesEmployes_Result)" />
+          <FunctionImport Name="RecherchePieceParNoPiece" ReturnType="Collection(AL_GJ_TravailModel.RecherchePieceParNoPiece_Result)">
+            <Parameter Name="noPieceDemandé" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="selectionnerEmployeSelonRecherche_Result">
+          <Property Type="Int32" Name="no_Employe" Nullable="false" />
+          <Property Type="String" Name="InfoEmploye" Nullable="false" MaxLength="767" />
+        </ComplexType>
+        <ComplexType Name="selectionnerTouteLesEmployes_Result">
+          <Property Type="Int32" Name="no_Employe" Nullable="false" />
+          <Property Type="String" Name="InfoEmploye" Nullable="false" MaxLength="767" />
+        </ComplexType>
+        <ComplexType Name="RecherchePieceParNoPiece_Result">
+          <Property Type="Int32" Name="no_Piece" Nullable="false" />
+          <Property Type="String" Name="nom_Piece" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="description_Piece" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="quantite" Nullable="false" />
+          <Property Type="Int32" Name="quantite_Critique" Nullable="true" />
+          <Property Type="Int32" Name="quantite_Minimum" Nullable="true" />
+          <Property Type="Int32" Name="no_Marque" Nullable="false" />
+          <Property Type="String" Name="no_Piece_Entreprise" Nullable="true" MaxLength="100" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="AL_GJ_TravailModelStoreContainer" CdmEntityContainer="AL_GJ_TravailEntitiesGabrielMaison">
+        <EntityContainerMapping StorageEntityContainer="AL_GJ_TravailModelStoreContainer" CdmEntityContainer="AL_GJ_TravailEntities1">
           <EntitySetMapping Name="tbl_Employe">
             <EntityTypeMapping TypeName="AL_GJ_TravailModel.tbl_Employe">
               <MappingFragment StoreEntitySet="tbl_Employe">
@@ -293,6 +326,7 @@
                 <ScalarProperty Name="quantite_Critique" ColumnName="quantite_Critique" />
                 <ScalarProperty Name="quantite_Minimum" ColumnName="quantite_Minimum" />
                 <ScalarProperty Name="no_Marque" ColumnName="no_Marque" />
+                <ScalarProperty Name="no_Piece_Entreprise" ColumnName="no_Piece_Entreprise" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -313,6 +347,36 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="selectionnerEmployeSelonRecherche" FunctionName="AL_GJ_TravailModel.Store.selectionnerEmployeSelonRecherche">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AL_GJ_TravailModel.selectionnerEmployeSelonRecherche_Result">
+                <ScalarProperty Name="no_Employe" ColumnName="no_Employe" />
+                <ScalarProperty Name="InfoEmploye" ColumnName="InfoEmploye" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="selectionnerTouteLesEmployes" FunctionName="AL_GJ_TravailModel.Store.selectionnerTouteLesEmployes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AL_GJ_TravailModel.selectionnerTouteLesEmployes_Result">
+                <ScalarProperty Name="no_Employe" ColumnName="no_Employe" />
+                <ScalarProperty Name="InfoEmploye" ColumnName="InfoEmploye" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RecherchePieceParNoPiece" FunctionName="AL_GJ_TravailModel.Store.RecherchePieceParNoPiece">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AL_GJ_TravailModel.RecherchePieceParNoPiece_Result">
+                <ScalarProperty Name="no_Piece" ColumnName="no_Piece" />
+                <ScalarProperty Name="nom_Piece" ColumnName="nom_Piece" />
+                <ScalarProperty Name="description_Piece" ColumnName="description_Piece" />
+                <ScalarProperty Name="quantite" ColumnName="quantite" />
+                <ScalarProperty Name="quantite_Critique" ColumnName="quantite_Critique" />
+                <ScalarProperty Name="quantite_Minimum" ColumnName="quantite_Minimum" />
+                <ScalarProperty Name="no_Marque" ColumnName="no_Marque" />
+                <ScalarProperty Name="no_Piece_Entreprise" ColumnName="no_Piece_Entreprise" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -328,7 +392,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
       </DesignerInfoPropertySet>

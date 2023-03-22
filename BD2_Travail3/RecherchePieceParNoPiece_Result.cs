@@ -10,16 +10,9 @@
 namespace BD2_Travail3
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class tbl_Inventaire
+    public partial class RecherchePieceParNoPiece_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbl_Inventaire()
-        {
-            this.tbl_Impute = new HashSet<tbl_Impute>();
-        }
-    
         public int no_Piece { get; set; }
         public string nom_Piece { get; set; }
         public string description_Piece { get; set; }
@@ -28,9 +21,5 @@ namespace BD2_Travail3
         public Nullable<int> quantite_Minimum { get; set; }
         public int no_Marque { get; set; }
         public string no_Piece_Entreprise { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_Impute> tbl_Impute { get; set; }
-        public virtual tbl_Marque tbl_Marque { get; set; }
     }
 }
