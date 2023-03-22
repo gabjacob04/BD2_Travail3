@@ -95,8 +95,8 @@ go
 Insert into tbl_Projet(nom_projet,description_projet)
 Values ('Projet spécial','fornite')
 go
-Insert into tbl_Inventaire(nom_Piece, description_Piece, quantite, quantite_Minimum, quantite_Critique, no_Marque)
-Values ('Pièce spécial','Cette pièce est super duper spéciale',69,0,5, 1)
+Insert into tbl_Inventaire(nom_Piece,no_Piece_Entreprise, description_Piece, quantite, quantite_Minimum, quantite_Critique, no_Marque)
+Values ('Pièce spécial','2','Cette pièce est super duper spéciale',69,0,5, 1)
 go
 Insert into tbl_Employe (Nom, Prénom, Courriel)
 Values ('Auger', 'Benoit', 'benoit.auger2@montreal.ca')
