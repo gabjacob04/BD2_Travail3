@@ -16,5 +16,9 @@ namespace BD2_Travail3
         {
             InitializeComponent();
         }
+
+        private void InformationImputationsDUnePiece_Load(object sender, EventArgs e) {
+
+        }
     }
 }
