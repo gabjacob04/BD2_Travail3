@@ -14,11 +14,17 @@ namespace BD2_Travail3 {
         ManagerImputation managerImputation;
         ManagerInventaire managerInventaire;
         ManagerEmploye managerEmploye;
+        ManagerProjet managerProjet;
         public AjouterImputation()
         {
             InitializeComponent();
+            managerProjet = new ManagerProjet();
+            managerImputation = new ManagerImputation();
             managerInventaire = new ManagerInventaire();
             managerEmploye = new ManagerEmploye();  
+            cmbProjet.DataSource = managerProjet.TouteLesProjet();
+            cmbProjet.ValueMember = "no_Projet";
+            cmbProjet.DisplayMember = "nom_projet";
         }
 
         private void btnRechercher_Click(object sender, EventArgs e) {
@@ -53,6 +59,12 @@ namespace BD2_Travail3 {
         {
             cmbChoisirEmploye.ValueMember = "no_Employe";
             cmbChoisirEmploye.DisplayMember = "InfoEmploye";
+        private void cmbProjet_SelectionChangeCommitted(object sender, EventArgs e) {
+
+        }
+
+        private void btnChoisirEmploye_Click(object sender, EventArgs e) {
+
         }
     }
 }
