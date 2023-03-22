@@ -159,7 +159,6 @@
             this.btnChoisirEmploye.TabIndex = 2;
             this.btnChoisirEmploye.Text = "Choisir un employé";
             this.btnChoisirEmploye.UseVisualStyleBackColor = true;
-            this.btnChoisirEmploye.Click += new System.EventHandler(this.btnChoisirEmploye_Click);
             // 
             // cmbChoisirEmploye
             // 
@@ -195,6 +194,7 @@
             this.btnAjouterImputation.TabIndex = 7;
             this.btnAjouterImputation.Text = "Ajouter imputation";
             this.btnAjouterImputation.UseVisualStyleBackColor = true;
+            this.btnAjouterImputation.Click += new System.EventHandler(this.btnAjouterImputation_Click);
             // 
             // nudQuantite
             // 
@@ -218,6 +218,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "AjouterImputation";
             this.Text = "ajouterImputation";
+            this.Load += new System.EventHandler(this.AjouterImputation_Load);
             this.grpRechercherPiece.ResumeLayout(false);
             this.grpRechercherPiece.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAfficherPiece)).EndInit();

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace BD2_Travail3 {
     public class ManagerImputation {
-
-        //public List<ManagerImputation> ()
+   
     }
 }
