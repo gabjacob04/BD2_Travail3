@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AL_GJ_TravailModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_Employe">
+          <Key>
+            <PropertyRef Name="no_Employe" />
+          </Key>
+          <Property Name="no_Employe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Prénom" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Courriel" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Impute">
+          <Key>
+            <PropertyRef Name="no_Piece" />
+            <PropertyRef Name="no_Projet" />
+            <PropertyRef Name="no_Employe" />
+          </Key>
+          <Property Name="no_Piece" Type="int" Nullable="false" />
+          <Property Name="no_Projet" Type="int" Nullable="false" />
+          <Property Name="no_Employe" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="quantite_Retire" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Inventaire">
+          <Key>
+            <PropertyRef Name="no_Piece" />
+          </Key>
+          <Property Name="no_Piece" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_Piece" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="description_Piece" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="quantite" Type="int" Nullable="false" />
+          <Property Name="quantite_Critique" Type="int" />
+          <Property Name="quantite_Minimum" Type="int" />
+          <Property Name="no_Marque" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Marque">
+          <Key>
+            <PropertyRef Name="no_Marque" />
+          </Key>
+          <Property Name="no_Marque" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_Marque" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Projet">
+          <Key>
+            <PropertyRef Name="no_Projet" />
+          </Key>
+          <Property Name="no_Projet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_projet" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="description_projet" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tbl_Inven__no_Ma__2F10007B">
+          <End Role="tbl_Marque" Type="Self.tbl_Marque" Multiplicity="1" />
+          <End Role="tbl_Inventaire" Type="Self.tbl_Inventaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Marque">
+              <PropertyRef Name="no_Marque" />
+            </Principal>
+            <Dependent Role="tbl_Inventaire">
+              <PropertyRef Name="no_Marque" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_no_Employe">
+          <End Role="tbl_Employe" Type="Self.tbl_Employe" Multiplicity="1" />
+          <End Role="tbl_Impute" Type="Self.tbl_Impute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Employe">
+              <PropertyRef Name="no_Employe" />
+            </Principal>
+            <Dependent Role="tbl_Impute">
+              <PropertyRef Name="no_Employe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_no_Piece">
+          <End Role="tbl_Inventaire" Type="Self.tbl_Inventaire" Multiplicity="1" />
+          <End Role="tbl_Impute" Type="Self.tbl_Impute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Inventaire">
+              <PropertyRef Name="no_Piece" />
+            </Principal>
+            <Dependent Role="tbl_Impute">
+              <PropertyRef Name="no_Piece" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_no_Projet">
+          <End Role="tbl_Projet" Type="Self.tbl_Projet" Multiplicity="1" />
+          <End Role="tbl_Impute" Type="Self.tbl_Impute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Projet">
+              <PropertyRef Name="no_Projet" />
+            </Principal>
+            <Dependent Role="tbl_Impute">
+              <PropertyRef Name="no_Projet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AL_GJ_TravailModelStoreContainer">
+          <EntitySet Name="tbl_Employe" EntityType="Self.tbl_Employe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Impute" EntityType="Self.tbl_Impute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Inventaire" EntityType="Self.tbl_Inventaire" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Marque" EntityType="Self.tbl_Marque" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Projet" EntityType="Self.tbl_Projet" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tbl_Inven__no_Ma__2F10007B" Association="Self.FK__tbl_Inven__no_Ma__2F10007B">
+            <End Role="tbl_Marque" EntitySet="tbl_Marque" />
+            <End Role="tbl_Inventaire" EntitySet="tbl_Inventaire" />
+          </AssociationSet>
+          <AssociationSet Name="fk_no_Employe" Association="Self.fk_no_Employe">
+            <End Role="tbl_Employe" EntitySet="tbl_Employe" />
+            <End Role="tbl_Impute" EntitySet="tbl_Impute" />
+          </AssociationSet>
+          <AssociationSet Name="fk_no_Piece" Association="Self.fk_no_Piece">
+            <End Role="tbl_Inventaire" EntitySet="tbl_Inventaire" />
+            <End Role="tbl_Impute" EntitySet="tbl_Impute" />
+          </AssociationSet>
+          <AssociationSet Name="fk_no_Projet" Association="Self.fk_no_Projet">
+            <End Role="tbl_Projet" EntitySet="tbl_Projet" />
+            <End Role="tbl_Impute" EntitySet="tbl_Impute" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AL_GJ_TravailModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_Employe">
+          <Key>
+            <PropertyRef Name="no_Employe" />
+          </Key>
+          <Property Name="no_Employe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prénom" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Courriel" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbl_Impute" Relationship="Self.fk_no_Employe" FromRole="tbl_Employe" ToRole="tbl_Impute" />
+        </EntityType>
+        <EntityType Name="tbl_Impute">
+          <Key>
+            <PropertyRef Name="no_Piece" />
+            <PropertyRef Name="no_Projet" />
+            <PropertyRef Name="no_Employe" />
+          </Key>
+          <Property Name="no_Piece" Type="Int32" Nullable="false" />
+          <Property Name="no_Projet" Type="Int32" Nullable="false" />
+          <Property Name="no_Employe" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="quantite_Retire" Type="Int32" />
+          <NavigationProperty Name="tbl_Employe" Relationship="Self.fk_no_Employe" FromRole="tbl_Impute" ToRole="tbl_Employe" />
+          <NavigationProperty Name="tbl_Inventaire" Relationship="Self.fk_no_Piece" FromRole="tbl_Impute" ToRole="tbl_Inventaire" />
+          <NavigationProperty Name="tbl_Projet" Relationship="Self.fk_no_Projet" FromRole="tbl_Impute" ToRole="tbl_Projet" />
+        </EntityType>
+        <EntityType Name="tbl_Inventaire">
+          <Key>
+            <PropertyRef Name="no_Piece" />
+          </Key>
+          <Property Name="no_Piece" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_Piece" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description_Piece" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="quantite" Type="Int32" Nullable="false" />
+          <Property Name="quantite_Critique" Type="Int32" />
+          <Property Name="quantite_Minimum" Type="Int32" />
+          <Property Name="no_Marque" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_Impute" Relationship="Self.fk_no_Piece" FromRole="tbl_Inventaire" ToRole="tbl_Impute" />
+          <NavigationProperty Name="tbl_Marque" Relationship="Self.FK__tbl_Inven__no_Ma__2F10007B" FromRole="tbl_Inventaire" ToRole="tbl_Marque" />
+        </EntityType>
+        <EntityType Name="tbl_Marque">
+          <Key>
+            <PropertyRef Name="no_Marque" />
+          </Key>
+          <Property Name="no_Marque" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_Marque" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbl_Inventaire" Relationship="Self.FK__tbl_Inven__no_Ma__2F10007B" FromRole="tbl_Marque" ToRole="tbl_Inventaire" />
+        </EntityType>
+        <EntityType Name="tbl_Projet">
+          <Key>
+            <PropertyRef Name="no_Projet" />
+          </Key>
+          <Property Name="no_Projet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_projet" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description_projet" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbl_Impute" Relationship="Self.fk_no_Projet" FromRole="tbl_Projet" ToRole="tbl_Impute" />
+        </EntityType>
+        <Association Name="fk_no_Employe">
+          <End Role="tbl_Employe" Type="Self.tbl_Employe" Multiplicity="1" />
+          <End Role="tbl_Impute" Type="Self.tbl_Impute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Employe">
+              <PropertyRef Name="no_Employe" />
+            </Principal>
+            <Dependent Role="tbl_Impute">
+              <PropertyRef Name="no_Employe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_no_Piece">
+          <End Role="tbl_Inventaire" Type="Self.tbl_Inventaire" Multiplicity="1" />
+          <End Role="tbl_Impute" Type="Self.tbl_Impute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Inventaire">
+              <PropertyRef Name="no_Piece" />
+            </Principal>
+            <Dependent Role="tbl_Impute">
+              <PropertyRef Name="no_Piece" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_no_Projet">
+          <End Role="tbl_Projet" Type="Self.tbl_Projet" Multiplicity="1" />
+          <End Role="tbl_Impute" Type="Self.tbl_Impute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Projet">
+              <PropertyRef Name="no_Projet" />
+            </Principal>
+            <Dependent Role="tbl_Impute">
+              <PropertyRef Name="no_Projet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Inven__no_Ma__2F10007B">
+          <End Role="tbl_Marque" Type="Self.tbl_Marque" Multiplicity="1" />
+          <End Role="tbl_Inventaire" Type="Self.tbl_Inventaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Marque">
+              <PropertyRef Name="no_Marque" />
+            </Principal>
+            <Dependent Role="tbl_Inventaire">
+              <PropertyRef Name="no_Marque" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AL_GJ_TravailEntitiesGabrielMaison" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_Employe" EntityType="Self.tbl_Employe" />
+          <EntitySet Name="tbl_Impute" EntityType="Self.tbl_Impute" />
+          <EntitySet Name="tbl_Inventaire" EntityType="Self.tbl_Inventaire" />
+          <EntitySet Name="tbl_Marque" EntityType="Self.tbl_Marque" />
+          <EntitySet Name="tbl_Projet" EntityType="Self.tbl_Projet" />
+          <AssociationSet Name="fk_no_Employe" Association="Self.fk_no_Employe">
+            <End Role="tbl_Employe" EntitySet="tbl_Employe" />
+            <End Role="tbl_Impute" EntitySet="tbl_Impute" />
+          </AssociationSet>
+          <AssociationSet Name="fk_no_Piece" Association="Self.fk_no_Piece">
+            <End Role="tbl_Inventaire" EntitySet="tbl_Inventaire" />
+            <End Role="tbl_Impute" EntitySet="tbl_Impute" />
+          </AssociationSet>
+          <AssociationSet Name="fk_no_Projet" Association="Self.fk_no_Projet">
+            <End Role="tbl_Projet" EntitySet="tbl_Projet" />
+            <End Role="tbl_Impute" EntitySet="tbl_Impute" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Inven__no_Ma__2F10007B" Association="Self.FK__tbl_Inven__no_Ma__2F10007B">
+            <End Role="tbl_Marque" EntitySet="tbl_Marque" />
+            <End Role="tbl_Inventaire" EntitySet="tbl_Inventaire" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AL_GJ_TravailModelStoreContainer" CdmEntityContainer="AL_GJ_TravailEntitiesGabrielMaison">
+          <EntitySetMapping Name="tbl_Employe">
+            <EntityTypeMapping TypeName="AL_GJ_TravailModel.tbl_Employe">
+              <MappingFragment StoreEntitySet="tbl_Employe">
+                <ScalarProperty Name="no_Employe" ColumnName="no_Employe" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prénom" ColumnName="Prénom" />
+                <ScalarProperty Name="Courriel" ColumnName="Courriel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Impute">
+            <EntityTypeMapping TypeName="AL_GJ_TravailModel.tbl_Impute">
+              <MappingFragment StoreEntitySet="tbl_Impute">
+                <ScalarProperty Name="no_Piece" ColumnName="no_Piece" />
+                <ScalarProperty Name="no_Projet" ColumnName="no_Projet" />
+                <ScalarProperty Name="no_Employe" ColumnName="no_Employe" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="quantite_Retire" ColumnName="quantite_Retire" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Inventaire">
+            <EntityTypeMapping TypeName="AL_GJ_TravailModel.tbl_Inventaire">
+              <MappingFragment StoreEntitySet="tbl_Inventaire">
+                <ScalarProperty Name="no_Piece" ColumnName="no_Piece" />
+                <ScalarProperty Name="nom_Piece" ColumnName="nom_Piece" />
+                <ScalarProperty Name="description_Piece" ColumnName="description_Piece" />
+                <ScalarProperty Name="quantite" ColumnName="quantite" />
+                <ScalarProperty Name="quantite_Critique" ColumnName="quantite_Critique" />
+                <ScalarProperty Name="quantite_Minimum" ColumnName="quantite_Minimum" />
+                <ScalarProperty Name="no_Marque" ColumnName="no_Marque" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Marque">
+            <EntityTypeMapping TypeName="AL_GJ_TravailModel.tbl_Marque">
+              <MappingFragment StoreEntitySet="tbl_Marque">
+                <ScalarProperty Name="no_Marque" ColumnName="no_Marque" />
+                <ScalarProperty Name="nom_Marque" ColumnName="nom_Marque" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Projet">
+            <EntityTypeMapping TypeName="AL_GJ_TravailModel.tbl_Projet">
+              <MappingFragment StoreEntitySet="tbl_Projet">
+                <ScalarProperty Name="no_Projet" ColumnName="no_Projet" />
+                <ScalarProperty Name="nom_projet" ColumnName="nom_projet" />
+                <ScalarProperty Name="description_projet" ColumnName="description_projet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
