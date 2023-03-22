@@ -40,5 +40,9 @@ namespace BD2_Travail3 {
         private void cmbProjet_SelectionChangeCommitted(object sender, EventArgs e) {
 
         }
+
+        private void btnChoisirEmploye_Click(object sender, EventArgs e) {
+
+        }
     }
 }

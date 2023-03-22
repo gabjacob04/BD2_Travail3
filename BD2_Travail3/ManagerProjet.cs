@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BD2_Travail3 {
     public class ManagerProjet {
         public List<tbl_Projet> TouteLesProjet() {
-            using(var context = new AL_GJ_TravailEntitiesGabrielMaison()) {
+            using(var context = new AL_GJ_TravailEntities1()) {
                return context.tbl_Projet.OrderBy(p=>p.nom_projet).ToList();;
             }
         }
