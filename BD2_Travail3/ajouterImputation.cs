@@ -13,9 +13,16 @@ namespace BD2_Travail3 {
     {
         ManagerImputation managerImputation;
         ManagerInventaire managerInventaire;
+        ManagerProjet managerProjet;
         public AjouterImputation()
         {
             InitializeComponent();
+            managerProjet = new ManagerProjet();
+            managerImputation = new ManagerImputation();
+            managerInventaire = new ManagerInventaire();
+            cmbProjet.DataSource = managerProjet.TouteLesProjet();
+            cmbProjet.ValueMember = "no_Projet";
+            cmbProjet.DisplayMember = "nom_projet";
         }
 
         private void btnRechercher_Click(object sender, EventArgs e) {
@@ -25,6 +32,10 @@ namespace BD2_Travail3 {
                 MessageBox.Show(ex.Message);
             }
             
+        }
+
+        private void cmbProjet_SelectionChangeCommitted(object sender, EventArgs e) {
+
         }
     }
 }
