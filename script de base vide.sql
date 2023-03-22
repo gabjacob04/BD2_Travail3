@@ -211,3 +211,10 @@ values ('1','1')*/
 		select no_Employe, Nom + ' ' + Prénom + ' ' + Courriel as 'InfoEmploye'
 		from tbl_Employe
 		GO
+
+		Create procedure Imputation
+		@no_Employe int , @no_Piece int , @no_Projet int, @date DateTime, @quantite_Retire int
+		as
+		insert into tbl_Impute(no_Employe, no_Piece, no_Projet, date, quantite_Retire)
+		Values (@no_Employe, @no_Piece, @no_Projet, @date, @quantite_Retire)
+		go
