@@ -18,6 +18,8 @@ IF  EXISTS (SELECT name FROM sys.databases WHERE name = 'AL_GJ_Travail')
   go
   Use AL_GJ_Travail
   go
+  set dateformat ymd
+  go
 /* Cas òu toutes les contraintes sont définis DANS le create de la table, auncune contrainte après le create (dans le cas d'une table avec clé étrangère)*/
 CREATE TABLE tbl_Marque
 (no_Marque int primary key not null identity,
@@ -76,6 +78,11 @@ go
 
 
 /* PARTIE 3 */
+
+/* insertion de données en batch à partir de lt_DonneesLibres PARTIE ALEXIS
+Insert into tbl_Employe (Nom, Prénom, Courriel)
+Select Nom, Prénom, Courriel from fichierExelPourTravailPartie2_3.dbo.Feuil2$DonnéesExternes_1
+go*/
 /* insertion de données en batch à partir de lt_DonneesLibres*/
 Insert into tbl_Employe (Nom, Prénom, Courriel)
 Select Nom, Prénom, Courriel from ltDonneesLibres.dbo.Feuil2$DonnéesExternes_1
@@ -180,3 +187,21 @@ go*/
 /*Insert into tbl_Projet(nom_projet,description_projet)
 values ('1','1')*/
 
+
+	/* partie 4 */
+
+		create procedure RecherchePieceParNoPiece
+		@noPieceDemandé nvarchar(50)
+		AS
+		select *
+		from tbl_Inventaire
+		where no_Piece_Entreprise like '%'+@noPieceDemandé+'%'
+		GO
+
+		create procedure selectionnerEmployeSelonRecherche
+		@searchTerm nvarchar(50) 
+		AS
+		select no_Employe, Nom + ' ' + Prénom + ' ' + Courriel as 'InfoEmploye'
+		from tbl_Employe
+		where Nom like '%'+@searchTerm+'%' or Prénom like '%'+@searchTerm+'%'
+		GO

@@ -72,6 +72,7 @@
     </Compile>
     <Compile Include="ManagerEmploye.cs" />
     <Compile Include="ManagerImputation.cs" />
+    <Compile Include="ManagerInventaire.cs" />
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>

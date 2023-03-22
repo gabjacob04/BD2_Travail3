@@ -12,13 +12,19 @@ namespace BD2_Travail3 {
     public partial class AjouterImputation : Form
     {
         ManagerImputation managerImputation;
+        ManagerInventaire managerInventaire;
         public AjouterImputation()
         {
             InitializeComponent();
         }
 
         private void btnRechercher_Click(object sender, EventArgs e) {
-
+            try {
+                dgvAfficherPiece.DataSource = managerInventaire.listerInventaire(txtRechercheNumeroPiece.Text);
+            }catch(Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
     }
 }
