@@ -27,15 +27,7 @@ namespace BD2_Travail3
             {
                 mettreTextBoxValueARien();
                 cmbRechercheEmploye.Text = "";
-                if (txtNomPrenom.Text is "")
-                {
-                    cmbRechercheEmploye.DataSource = managerEmploye.ListerEmploye();
-                }
-                else
-                {
-                    string recherche = txtNomPrenom.Text;
-                    cmbRechercheEmploye.DataSource = managerEmploye.ListerEmployeQuiMatchLettresDonnees(recherche);
-                }
+                cmbRechercheEmploye.DataSource = managerEmploye.ListerEmployeQuiMatchLettresDonnees(txtNomPrenom.Text);
                 cmbRechercheEmploye_SelectionChangeCommitted(sender, e);
             }
             catch (Exception ex)

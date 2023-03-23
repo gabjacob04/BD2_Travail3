@@ -42,11 +42,6 @@ namespace BD2_Travail3 {
         {
             try
             {
-                if (cmbChoisirEmploye.Text is "")
-                {
-                    cmbChoisirEmploye.DataSource = managerEmploye.ListerEmploye();
-                    return;
-                }
                 cmbChoisirEmploye.DataSource = managerEmploye.ListerEmployeQuiMatchLettresDonnees(cmbChoisirEmploye.Text);
             }
             catch (Exception ex)
@@ -57,6 +52,9 @@ namespace BD2_Travail3 {
        
         private void AjouterImputation_Load(object sender, EventArgs e)
         {
+            cmbProjet.DataSource = managerProjet.TouteLesProjet();
+            cmbProjet.ValueMember = "no_Projet";
+            cmbProjet.DisplayMember = "nom_projet";
             cmbChoisirEmploye.ValueMember = "no_Employe";
             cmbChoisirEmploye.DisplayMember = "InfoEmploye";
         }
