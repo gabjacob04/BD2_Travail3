@@ -14,6 +14,7 @@ namespace BD2_Travail3
     
     public partial class tbl_Impute
     {
+        public int no_Impute { get; set; }
         public int no_Piece { get; set; }
         public int no_Projet { get; set; }
         public int no_Employe { get; set; }

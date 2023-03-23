@@ -15,16 +15,16 @@ namespace BD2_Travail3 {
             try
             {
                 int nombreLigneModifier = 0;
-                using (var context = new AL_GJ_TravailEntities1())
+                using (var context = new AL_GJ_TravailEntities())
                 {
-                    if (context.tbl_Impute.Find(imputeAAjouter.no_Piece, imputeAAjouter.no_Projet, imputeAAjouter.no_Employe) != null)
-                    {
-                        tbl_Impute imputeAModifier = context.tbl_Impute.Find(imputeAAjouter.no_Piece, imputeAAjouter.no_Projet, imputeAAjouter.no_Employe);
-                        context.SuppressionDobjetDeLInventaire(imputeAAjouter.quantite_Retire, imputeAAjouter.no_Piece);
-                        imputeAModifier.quantite_Retire = imputeAAjouter.quantite_Retire + imputeAModifier.quantite_Retire;
-                    }
-                    else
-                    {
+                    //if (context.tbl_Impute.Find(imputeAAjouter.no_Piece, imputeAAjouter.no_Projet, imputeAAjouter.no_Employe) != null)
+                    //{
+                    //    tbl_Impute imputeAModifier = context.tbl_Impute.Find(imputeAAjouter.no_Piece, imputeAAjouter.no_Projet, imputeAAjouter.no_Employe);
+                    //    context.SuppressionDobjetDeLInventaire(imputeAAjouter.quantite_Retire, imputeAAjouter.no_Piece);
+                    //    imputeAModifier.quantite_Retire = imputeAAjouter.quantite_Retire + imputeAModifier.quantite_Retire;
+                    //}
+                    //else
+                    //{
                         tbl_Impute impute = new tbl_Impute();
                         impute.no_Employe = imputeAAjouter.no_Employe;
                         impute.no_Piece = imputeAAjouter.no_Piece;
@@ -36,7 +36,7 @@ namespace BD2_Travail3 {
                         context.tbl_Impute.Add(impute);
                         //string etat2 = context.Entry(employeAModifier).State.ToString();
 
-                    }
+                    //}
 
                     if (context.ChangeTracker.HasChanges())
                     {
@@ -44,6 +44,21 @@ namespace BD2_Travail3 {
                     }
                 }
                 return nombreLigneModifier;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<getImputeByYearAndMonth_Result1> getListImputationEnFonctionDUneRechercher(int no_Piece, string date)
+        {
+            try
+            {
+                using (var context = new AL_GJ_TravailEntities())
+                {
+                    return context.getImputeByYearAndMonth(no_Piece,date).ToList();
+                }
             }
             catch (Exception)
             {

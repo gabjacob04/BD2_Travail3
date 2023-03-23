@@ -11,15 +11,13 @@ namespace BD2_Travail3
 {
     using System;
     
-    public partial class RecherchePieceParNoPiece_Result
+    public partial class getImputeByYearAndMonth_Result
     {
-        public int no_Piece { get; set; }
-        public string no_Piece_Entreprise { get; set; }
-        public string nom_Piece { get; set; }
-        public string description_Piece { get; set; }
-        public int quantite { get; set; }
-        public Nullable<int> quantite_Critique { get; set; }
-        public Nullable<int> quantite_Minimum { get; set; }
-        public int no_Marque { get; set; }
+        public int no_Impute { get; set; }
+        public Nullable<System.DateTime> date { get; set; }
+        public Nullable<int> quantite_Retire { get; set; }
+        public string description_projet { get; set; }
+        public string Nom { get; set; }
+        public string Prénom { get; set; }
     }
 }

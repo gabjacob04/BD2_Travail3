@@ -16,10 +16,12 @@
         </EntityType>
         <EntityType Name="tbl_Impute">
           <Key>
+            <PropertyRef Name="no_Impute" />
             <PropertyRef Name="no_Piece" />
             <PropertyRef Name="no_Projet" />
             <PropertyRef Name="no_Employe" />
           </Key>
+          <Property Name="no_Impute" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="no_Piece" Type="int" Nullable="false" />
           <Property Name="no_Projet" Type="int" Nullable="false" />
           <Property Name="no_Employe" Type="int" Nullable="false" />
@@ -31,13 +33,13 @@
             <PropertyRef Name="no_Piece" />
           </Key>
           <Property Name="no_Piece" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="no_Piece_Entreprise" Type="nvarchar" MaxLength="100" />
           <Property Name="nom_Piece" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="description_Piece" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="quantite" Type="int" Nullable="false" />
           <Property Name="quantite_Critique" Type="int" />
           <Property Name="quantite_Minimum" Type="int" />
           <Property Name="no_Marque" Type="int" Nullable="false" />
-          <Property Name="no_Piece_Entreprise" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="tbl_Marque">
           <Key>
@@ -102,6 +104,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="getImputeByYearAndMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="no_Piece" Type="int" Mode="In" />
+          <Parameter Name="yearSearchTerm" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Imputation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="no_Employe" Type="int" Mode="In" />
+          <Parameter Name="no_Piece" Type="int" Mode="In" />
+          <Parameter Name="no_Projet" Type="int" Mode="In" />
+          <Parameter Name="date" Type="datetime" Mode="In" />
+          <Parameter Name="quantite_Retire" Type="int" Mode="In" />
+        </Function>
         <Function Name="RecherchePieceParNoPiece" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="noPieceDemandé" Type="nvarchar" Mode="In" />
         </Function>
@@ -152,10 +165,12 @@
         </EntityType>
         <EntityType Name="tbl_Impute">
           <Key>
+            <PropertyRef Name="no_Impute" />
             <PropertyRef Name="no_Piece" />
             <PropertyRef Name="no_Projet" />
             <PropertyRef Name="no_Employe" />
           </Key>
+          <Property Name="no_Impute" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="no_Piece" Type="Int32" Nullable="false" />
           <Property Name="no_Projet" Type="Int32" Nullable="false" />
           <Property Name="no_Employe" Type="Int32" Nullable="false" />
@@ -170,13 +185,13 @@
             <PropertyRef Name="no_Piece" />
           </Key>
           <Property Name="no_Piece" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="no_Piece_Entreprise" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="nom_Piece" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="description_Piece" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="quantite" Type="Int32" Nullable="false" />
           <Property Name="quantite_Critique" Type="Int32" />
           <Property Name="quantite_Minimum" Type="Int32" />
           <Property Name="no_Marque" Type="Int32" Nullable="false" />
-          <Property Name="no_Piece_Entreprise" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tbl_Impute" Relationship="Self.fk_no_Piece" FromRole="tbl_Inventaire" ToRole="tbl_Impute" />
           <NavigationProperty Name="tbl_Marque" Relationship="Self.FK__tbl_Inven__no_Ma__2F10007B" FromRole="tbl_Inventaire" ToRole="tbl_Marque" />
         </EntityType>
@@ -245,7 +260,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="AL_GJ_TravailEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="AL_GJ_TravailEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tbl_Employe" EntityType="Self.tbl_Employe" />
           <EntitySet Name="tbl_Impute" EntityType="Self.tbl_Impute" />
           <EntitySet Name="tbl_Inventaire" EntityType="Self.tbl_Inventaire" />
@@ -267,18 +282,39 @@
             <End Role="tbl_Marque" EntitySet="tbl_Marque" />
             <End Role="tbl_Inventaire" EntitySet="tbl_Inventaire" />
           </AssociationSet>
+          <FunctionImport Name="Imputation">
+            <Parameter Name="no_Employe" Mode="In" Type="Int32" />
+            <Parameter Name="no_Piece" Mode="In" Type="Int32" />
+            <Parameter Name="no_Projet" Mode="In" Type="Int32" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+            <Parameter Name="quantite_Retire" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RecherchePieceParNoPiece" ReturnType="Collection(AL_GJ_TravailModel.RecherchePieceParNoPiece_Result)">
+          <Parameter Name="noPieceDemandé" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="selectionnerEmployeSelonRecherche" ReturnType="Collection(AL_GJ_TravailModel.selectionnerEmployeSelonRecherche_Result)">
           <Parameter Name="searchTerm" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="selectionnerTouteLesEmployes" ReturnType="Collection(AL_GJ_TravailModel.selectionnerTouteLesEmployes_Result)" />
-          <FunctionImport Name="RecherchePieceParNoPiece" ReturnType="Collection(AL_GJ_TravailModel.RecherchePieceParNoPiece_Result)">
-          <Parameter Name="noPieceDemandé" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="SuppressionDobjetDeLInventaire">
             <Parameter Name="QuantiteAEnlever" Mode="In" Type="Int32" />
             <Parameter Name="no_Piece" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="getImputeByYearAndMonth" ReturnType="Collection(AL_GJ_TravailModel.getImputeByYearAndMonth_Result1)">
+            <Parameter Name="no_Piece" Mode="In" Type="Int32" />
+            <Parameter Name="yearSearchTerm" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="RecherchePieceParNoPiece_Result">
+          <Property Type="Int32" Name="no_Piece" Nullable="false" />
+          <Property Type="String" Name="no_Piece_Entreprise" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="nom_Piece" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="description_Piece" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="quantite" Nullable="false" />
+          <Property Type="Int32" Name="quantite_Critique" Nullable="true" />
+          <Property Type="Int32" Name="quantite_Minimum" Nullable="true" />
+          <Property Type="Int32" Name="no_Marque" Nullable="false" />
+        </ComplexType>
         <ComplexType Name="selectionnerEmployeSelonRecherche_Result">
           <Property Type="Int32" Name="no_Employe" Nullable="false" />
           <Property Type="String" Name="InfoEmploye" Nullable="false" MaxLength="767" />
@@ -287,22 +323,28 @@
           <Property Type="Int32" Name="no_Employe" Nullable="false" />
           <Property Type="String" Name="InfoEmploye" Nullable="false" MaxLength="767" />
         </ComplexType>
-        <ComplexType Name="RecherchePieceParNoPiece_Result">
-          <Property Type="Int32" Name="no_Piece" Nullable="false" />
-          <Property Type="String" Name="nom_Piece" Nullable="false" MaxLength="255" />
-          <Property Type="String" Name="description_Piece" Nullable="false" MaxLength="255" />
-          <Property Type="Int32" Name="quantite" Nullable="false" />
-          <Property Type="Int32" Name="quantite_Critique" Nullable="true" />
-          <Property Type="Int32" Name="quantite_Minimum" Nullable="true" />
-          <Property Type="Int32" Name="no_Marque" Nullable="false" />
-          <Property Type="String" Name="no_Piece_Entreprise" Nullable="true" MaxLength="100" />
+        <ComplexType Name="getImputeByYearAndMonth_Result">
+          <Property Type="Int32" Name="no_Impute" Nullable="false" />
+          <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="quantite_Retire" Nullable="true" />
+          <Property Type="String" Name="description_projet" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nom" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Prénom" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="getImputeByYearAndMonth_Result1">
+          <Property Type="Int32" Name="no_Impute" Nullable="false" />
+          <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="quantite_Retire" Nullable="true" />
+          <Property Type="String" Name="description_projet" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nom" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Prénom" Nullable="false" MaxLength="255" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="AL_GJ_TravailModelStoreContainer" CdmEntityContainer="AL_GJ_TravailEntities1">
+        <EntityContainerMapping StorageEntityContainer="AL_GJ_TravailModelStoreContainer" CdmEntityContainer="AL_GJ_TravailEntities">
           <EntitySetMapping Name="tbl_Employe">
             <EntityTypeMapping TypeName="AL_GJ_TravailModel.tbl_Employe">
               <MappingFragment StoreEntitySet="tbl_Employe">
@@ -316,6 +358,7 @@
           <EntitySetMapping Name="tbl_Impute">
             <EntityTypeMapping TypeName="AL_GJ_TravailModel.tbl_Impute">
               <MappingFragment StoreEntitySet="tbl_Impute">
+                <ScalarProperty Name="no_Impute" ColumnName="no_Impute" />
                 <ScalarProperty Name="no_Piece" ColumnName="no_Piece" />
                 <ScalarProperty Name="no_Projet" ColumnName="no_Projet" />
                 <ScalarProperty Name="no_Employe" ColumnName="no_Employe" />
@@ -328,13 +371,13 @@
             <EntityTypeMapping TypeName="AL_GJ_TravailModel.tbl_Inventaire">
               <MappingFragment StoreEntitySet="tbl_Inventaire">
                 <ScalarProperty Name="no_Piece" ColumnName="no_Piece" />
+                <ScalarProperty Name="no_Piece_Entreprise" ColumnName="no_Piece_Entreprise" />
                 <ScalarProperty Name="nom_Piece" ColumnName="nom_Piece" />
                 <ScalarProperty Name="description_Piece" ColumnName="description_Piece" />
                 <ScalarProperty Name="quantite" ColumnName="quantite" />
                 <ScalarProperty Name="quantite_Critique" ColumnName="quantite_Critique" />
                 <ScalarProperty Name="quantite_Minimum" ColumnName="quantite_Minimum" />
                 <ScalarProperty Name="no_Marque" ColumnName="no_Marque" />
-                <ScalarProperty Name="no_Piece_Entreprise" ColumnName="no_Piece_Entreprise" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -355,6 +398,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Imputation" FunctionName="AL_GJ_TravailModel.Store.Imputation" />
+          <FunctionImportMapping FunctionImportName="RecherchePieceParNoPiece" FunctionName="AL_GJ_TravailModel.Store.RecherchePieceParNoPiece">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AL_GJ_TravailModel.RecherchePieceParNoPiece_Result">
+                <ScalarProperty Name="no_Piece" ColumnName="no_Piece" />
+                <ScalarProperty Name="no_Piece_Entreprise" ColumnName="no_Piece_Entreprise" />
+                <ScalarProperty Name="nom_Piece" ColumnName="nom_Piece" />
+                <ScalarProperty Name="description_Piece" ColumnName="description_Piece" />
+                <ScalarProperty Name="quantite" ColumnName="quantite" />
+                <ScalarProperty Name="quantite_Critique" ColumnName="quantite_Critique" />
+                <ScalarProperty Name="quantite_Minimum" ColumnName="quantite_Minimum" />
+                <ScalarProperty Name="no_Marque" ColumnName="no_Marque" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="selectionnerEmployeSelonRecherche" FunctionName="AL_GJ_TravailModel.Store.selectionnerEmployeSelonRecherche">
             <ResultMapping>
               <ComplexTypeMapping TypeName="AL_GJ_TravailModel.selectionnerEmployeSelonRecherche_Result">
@@ -371,21 +429,19 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="RecherchePieceParNoPiece" FunctionName="AL_GJ_TravailModel.Store.RecherchePieceParNoPiece">
+          <FunctionImportMapping FunctionImportName="SuppressionDobjetDeLInventaire" FunctionName="AL_GJ_TravailModel.Store.SuppressionDobjetDeLInventaire" />
+          <FunctionImportMapping FunctionImportName="getImputeByYearAndMonth" FunctionName="AL_GJ_TravailModel.Store.getImputeByYearAndMonth">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="AL_GJ_TravailModel.RecherchePieceParNoPiece_Result">
-                <ScalarProperty Name="no_Piece" ColumnName="no_Piece" />
-                <ScalarProperty Name="nom_Piece" ColumnName="nom_Piece" />
-                <ScalarProperty Name="description_Piece" ColumnName="description_Piece" />
-                <ScalarProperty Name="quantite" ColumnName="quantite" />
-                <ScalarProperty Name="quantite_Critique" ColumnName="quantite_Critique" />
-                <ScalarProperty Name="quantite_Minimum" ColumnName="quantite_Minimum" />
-                <ScalarProperty Name="no_Marque" ColumnName="no_Marque" />
-                <ScalarProperty Name="no_Piece_Entreprise" ColumnName="no_Piece_Entreprise" />
+              <ComplexTypeMapping TypeName="AL_GJ_TravailModel.getImputeByYearAndMonth_Result1">
+                <ScalarProperty Name="no_Impute" ColumnName="no_Impute" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="quantite_Retire" ColumnName="quantite_Retire" />
+                <ScalarProperty Name="description_projet" ColumnName="description_projet" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prénom" ColumnName="Prénom" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SuppressionDobjetDeLInventaire" FunctionName="AL_GJ_TravailModel.Store.SuppressionDobjetDeLInventaire" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

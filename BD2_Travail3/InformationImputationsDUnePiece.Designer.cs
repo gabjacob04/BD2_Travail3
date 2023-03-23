@@ -201,6 +201,7 @@
             this.btnAfficherInformations.TabIndex = 8;
             this.btnAfficherInformations.Text = "Afficher les informations";
             this.btnAfficherInformations.UseVisualStyleBackColor = true;
+            this.btnAfficherInformations.Click += new System.EventHandler(this.btnAfficherInformations_Click);
             // 
             // dgvImputationDUnePiece
             // 
