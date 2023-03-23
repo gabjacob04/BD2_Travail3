@@ -13,10 +13,12 @@ namespace BD2_Travail3
     public partial class InformationImputationsDUnePiece : Form
     {
         ManagerInventaire managerInventaire;
+        ManagerImputation managerImputation;
         public InformationImputationsDUnePiece()
         {
             InitializeComponent();
             managerInventaire = new ManagerInventaire();
+            managerImputation = new ManagerImputation();    
         }
 
         private void InformationImputationsDUnePiece_Load(object sender, EventArgs e) {
@@ -28,6 +30,26 @@ namespace BD2_Travail3
             try
             {
                 dgvAfficherPiece.DataSource = managerInventaire.listerInventaire(txtRechercheNumeroPiece.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnAfficherInformations_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string annee = nudAnnee.Value.ToString();
+                string mois = nudMois.Value.ToString();
+                string formatDate = annee + "-" + mois + "-01";
+                if (dgvAfficherPiece.CurrentRow is null)
+                {
+                    throw new Exception("Vous n'avez aucune pièce de sélectionner");
+                }
+                int no_Piece = (int)dgvAfficherPiece[0, dgvAfficherPiece.CurrentRow.Index].Value;
+                dgvImputationDUnePiece.DataSource = managerImputation.getListImputationEnFonctionDUneRechercher(no_Piece,formatDate);
             }
             catch (Exception ex)
             {

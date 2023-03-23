@@ -64,20 +64,26 @@
     <Compile Include="AjouterImputation.Designer.cs">
       <DependentUpon>AjouterImputation.cs</DependentUpon>
     </Compile>
-    <Compile Include="AL_GJ_TravailEntitiesGabrielMaison.Context.cs">
+    <Compile Include="AL_GJ_TravailMaisonGabriel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AL_GJ_TravailEntitiesGabrielMaison.Context.tt</DependentUpon>
+      <DependentUpon>AL_GJ_TravailMaisonGabriel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="AL_GJ_TravailEntitiesGabrielMaison.cs">
+    <Compile Include="AL_GJ_TravailMaisonGabriel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AL_GJ_TravailEntitiesGabrielMaison.tt</DependentUpon>
+      <DependentUpon>AL_GJ_TravailMaisonGabriel.tt</DependentUpon>
     </Compile>
-    <Compile Include="AL_GJ_TravailEntitiesGabrielMaison.Designer.cs">
+    <Compile Include="AL_GJ_TravailMaisonGabriel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AL_GJ_TravailEntitiesGabrielMaison.edmx</DependentUpon>
+      <DependentUpon>AL_GJ_TravailMaisonGabriel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="getImputeByYearAndMonth_Result.cs">
+      <DependentUpon>AL_GJ_TravailMaisonGabriel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="getImputeByYearAndMonth_Result1.cs">
+      <DependentUpon>AL_GJ_TravailMaisonGabriel.tt</DependentUpon>
     </Compile>
     <Compile Include="InformationImputationsDUnePiece.cs">
       <SubType>Form</SubType>
@@ -98,7 +104,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecherchePieceParNoPiece_Result.cs">
-      <DependentUpon>AL_GJ_TravailEntitiesGabrielMaison.tt</DependentUpon>
+      <DependentUpon>AL_GJ_TravailMaisonGabriel.tt</DependentUpon>
     </Compile>
     <Compile Include="RechercherMoficationEmploye.cs">
       <SubType>Form</SubType>
@@ -107,25 +113,25 @@
       <DependentUpon>RechercherMoficationEmploye.cs</DependentUpon>
     </Compile>
     <Compile Include="selectionnerEmployeSelonRecherche_Result.cs">
-      <DependentUpon>AL_GJ_TravailEntitiesGabrielMaison.tt</DependentUpon>
+      <DependentUpon>AL_GJ_TravailMaisonGabriel.tt</DependentUpon>
     </Compile>
     <Compile Include="selectionnerTouteLesEmployes_Result.cs">
-      <DependentUpon>AL_GJ_TravailEntitiesGabrielMaison.tt</DependentUpon>
+      <DependentUpon>AL_GJ_TravailMaisonGabriel.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Employe.cs">
-      <DependentUpon>AL_GJ_TravailEntitiesGabrielMaison.tt</DependentUpon>
+      <DependentUpon>AL_GJ_TravailMaisonGabriel.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Impute.cs">
-      <DependentUpon>AL_GJ_TravailEntitiesGabrielMaison.tt</DependentUpon>
+      <DependentUpon>AL_GJ_TravailMaisonGabriel.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Inventaire.cs">
-      <DependentUpon>AL_GJ_TravailEntitiesGabrielMaison.tt</DependentUpon>
+      <DependentUpon>AL_GJ_TravailMaisonGabriel.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Marque.cs">
-      <DependentUpon>AL_GJ_TravailEntitiesGabrielMaison.tt</DependentUpon>
+      <DependentUpon>AL_GJ_TravailMaisonGabriel.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Projet.cs">
-      <DependentUpon>AL_GJ_TravailEntitiesGabrielMaison.tt</DependentUpon>
+      <DependentUpon>AL_GJ_TravailMaisonGabriel.tt</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AjouterImputation.resx">
       <DependentUpon>AjouterImputation.cs</DependentUpon>
@@ -148,12 +154,12 @@
     <EmbeddedResource Include="RechercherMoficationEmploye.resx">
       <DependentUpon>RechercherMoficationEmploye.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="AL_GJ_TravailEntitiesGabrielMaison.edmx">
+    <EntityDeploy Include="AL_GJ_TravailMaisonGabriel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AL_GJ_TravailEntitiesGabrielMaison.Designer.cs</LastGenOutput>
+      <LastGenOutput>AL_GJ_TravailMaisonGabriel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="AL_GJ_TravailEntitiesGabrielMaison.edmx.diagram">
-      <DependentUpon>AL_GJ_TravailEntitiesGabrielMaison.edmx</DependentUpon>
+    <None Include="AL_GJ_TravailMaisonGabriel.edmx.diagram">
+      <DependentUpon>AL_GJ_TravailMaisonGabriel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -173,15 +179,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AL_GJ_TravailEntitiesGabrielMaison.Context.tt">
+    <Content Include="AL_GJ_TravailMaisonGabriel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AL_GJ_TravailEntitiesGabrielMaison.edmx</DependentUpon>
-      <LastGenOutput>AL_GJ_TravailEntitiesGabrielMaison.Context.cs</LastGenOutput>
+      <DependentUpon>AL_GJ_TravailMaisonGabriel.edmx</DependentUpon>
+      <LastGenOutput>AL_GJ_TravailMaisonGabriel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="AL_GJ_TravailEntitiesGabrielMaison.tt">
+    <Content Include="AL_GJ_TravailMaisonGabriel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AL_GJ_TravailEntitiesGabrielMaison.edmx</DependentUpon>
-      <LastGenOutput>AL_GJ_TravailEntitiesGabrielMaison.cs</LastGenOutput>
+      <DependentUpon>AL_GJ_TravailMaisonGabriel.edmx</DependentUpon>
+      <LastGenOutput>AL_GJ_TravailMaisonGabriel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

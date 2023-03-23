@@ -21,13 +21,13 @@ namespace BD2_Travail3
         }
     
         public int no_Piece { get; set; }
+        public string no_Piece_Entreprise { get; set; }
         public string nom_Piece { get; set; }
         public string description_Piece { get; set; }
         public int quantite { get; set; }
         public Nullable<int> quantite_Critique { get; set; }
         public Nullable<int> quantite_Minimum { get; set; }
         public int no_Marque { get; set; }
-        public string no_Piece_Entreprise { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_Impute> tbl_Impute { get; set; }

@@ -11,7 +11,7 @@ namespace BD2_Travail3 {
         {
             try
             {
-                using (var context = new AL_GJ_TravailEntities1())
+                using (var context = new AL_GJ_TravailEntities())
                 {
                     return context.RecherchePieceParNoPiece(noPieceDemandé).ToList();
                 }

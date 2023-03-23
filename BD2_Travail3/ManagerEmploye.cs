@@ -9,27 +9,11 @@ namespace BD2_Travail3
 {
     internal class ManagerEmploye
     {
-        public List<selectionnerTouteLesEmployes_Result> ListerEmploye()
-        {
-            try
-            {
-                using (var context = new AL_GJ_TravailEntities1())
-                {
-                    return context.selectionnerTouteLesEmployes().ToList();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-        }
-
         public List<selectionnerEmployeSelonRecherche_Result> ListerEmployeQuiMatchLettresDonnees(string lettres)
         {
             try
             {
-                using (var context = new AL_GJ_TravailEntities1())
+                using (var context = new AL_GJ_TravailEntities())
                 {
                     return context.selectionnerEmployeSelonRecherche(lettres).ToList();
                     //return context.tbl_Employe.Where(c => c.Nom.Contains(lettres) || c.Prénom.Contains(lettres)).OrderBy(c=> c.Nom).ToList();
@@ -45,7 +29,7 @@ namespace BD2_Travail3
         {
             try
             {
-                using (var context = new AL_GJ_TravailEntities1())
+                using (var context = new AL_GJ_TravailEntities())
                 {
                     return context.tbl_Employe.Find(no_Employe);
                 }
@@ -61,7 +45,7 @@ namespace BD2_Travail3
             try
             {   
                 int nombreLigneModifier = 0;
-                using (var context = new AL_GJ_TravailEntities1())
+                using (var context = new AL_GJ_TravailEntities())
                 {
                     tbl_Employe employe = context.tbl_Employe.Find(employeAModifier.no_Employe);
                     employe.no_Employe = employeAModifier.no_Employe;

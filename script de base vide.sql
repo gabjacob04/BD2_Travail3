@@ -40,7 +40,7 @@ go
 /* Cas où toutes les contraintes sont définis APRÈS la creation de la table (dans le cas d'une table avec clé étrangère)*/
 Create table tbl_Inventaire
 (no_Piece int primary key not null identity,
-no_Piece_Entreprise nvarchar(100),
+no_Piece_Entreprise nvarchar(100) unique,
 nom_Piece nvarchar(255) not null,
 description_Piece nvarchar(255) not null,
 quantite int not null default 0,
@@ -203,12 +203,7 @@ values ('1','1')*/
 		select no_Employe, Nom + ' ' + Prénom + ' ' + Courriel as 'InfoEmploye'
 		from tbl_Employe
 		where Nom like '%'+@searchTerm+'%' or Prénom like '%'+@searchTerm+'%'
-		GO
-
-		Create procedure selectionnerTouteLesEmployes
-		as
-		select no_Employe, Nom + ' ' + Prénom + ' ' + Courriel as 'InfoEmploye'
-		from tbl_Employe
+		order by Nom, Prénom
 		GO
 
 		Create procedure Imputation
@@ -216,4 +211,20 @@ values ('1','1')*/
 		as
 		insert into tbl_Impute(no_Employe, no_Piece, no_Projet, date, quantite_Retire)
 		Values (@no_Employe, @no_Piece, @no_Projet, @date, @quantite_Retire)
+		go
+
+		Create procedure getImputeByYearAndMonth
+		@yearSearchTerm nvarchar(10)
+		as
+		select no_Impute, date, quantite_Retire, tbl_Projet.description_projet, tbl_Employe.Nom, tbl_Employe.Prénom from tbl_Impute
+		inner join tbl_Employe on tbl_Impute.no_Employe = tbl_Employe.no_Employe
+		inner join tbl_Projet on tbl_Impute.no_Projet = tbl_Projet.no_Projet
+		where date > @yearSearchTerm 
+		go
+
+		Create procedure SuppressionDobjetDeLInventaire
+        @QuantiteAEnlever int,@no_Piece int
+        as
+        update tbl_Inventaire set quantite = quantite - @QuantiteAEnlever
+        where no_Piece = @no_Piece
 		go
