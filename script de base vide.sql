@@ -1,5 +1,3 @@
-
-
 /* Nom(s) : 
 Gabriel Jacob
 Alexis Lavertu
@@ -55,7 +53,8 @@ alter table tbl_Inventaire
 add constraint check_quantite check (quantite >= 0)
 go
 Create table tbl_Impute
-(no_Piece int not null,
+(no_Impute int not null identity,
+no_Piece int not null,
 no_Projet int not null,
 no_Employe int not null,
 date DateTime null,
@@ -65,7 +64,7 @@ go
 /* contraintes */
 Alter table tbl_Impute
 add constraint def_date default '2000-01-01 00:00:00' for date,
-constraint grp_PKs primary key (no_Piece, no_Projet, no_Employe),
+constraint grp_PKs primary key (no_Impute, no_Piece, no_Projet, no_Employe),
 constraint fk_no_Piece foreign key (no_Piece) references tbl_Inventaire(no_Piece),
 constraint fk_no_Projet foreign key (no_Projet) references tbl_Projet(no_Projet),
 constraint fk_no_Employe foreign key (no_Employe) references tbl_Employe(no_Employe),
@@ -211,17 +210,10 @@ values ('1','1')*/
 		select no_Employe, Nom + ' ' + Prénom + ' ' + Courriel as 'InfoEmploye'
 		from tbl_Employe
 		GO
-		/* professeur a dit pas besoin 
+
 		Create procedure Imputation
 		@no_Employe int , @no_Piece int , @no_Projet int, @date DateTime, @quantite_Retire int
 		as
 		insert into tbl_Impute(no_Employe, no_Piece, no_Projet, date, quantite_Retire)
 		Values (@no_Employe, @no_Piece, @no_Projet, @date, @quantite_Retire)
-		go*/
-
-		Create procedure SuppressionDobjetDeLInventaire
-		@QuantiteAEnlever int,@no_Piece int
-		as
-		update tbl_Inventaire set quantite = quantite - @QuantiteAEnlever
-		where no_Piece = @no_Piece
 		go

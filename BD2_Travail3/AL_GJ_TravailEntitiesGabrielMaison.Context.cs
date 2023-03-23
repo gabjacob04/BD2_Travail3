@@ -55,5 +55,18 @@ namespace BD2_Travail3
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RecherchePieceParNoPiece_Result>("RecherchePieceParNoPiece", noPieceDemandéParameter);
         }
+    
+        public virtual int SuppressionDobjetDeLInventaire(Nullable<int> quantiteAEnlever, Nullable<int> no_Piece)
+        {
+            var quantiteAEnleverParameter = quantiteAEnlever.HasValue ?
+                new ObjectParameter("QuantiteAEnlever", quantiteAEnlever) :
+                new ObjectParameter("QuantiteAEnlever", typeof(int));
+    
+            var no_PieceParameter = no_Piece.HasValue ?
+                new ObjectParameter("no_Piece", no_Piece) :
+                new ObjectParameter("no_Piece", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SuppressionDobjetDeLInventaire", quantiteAEnleverParameter, no_PieceParameter);
+        }
     }
 }
