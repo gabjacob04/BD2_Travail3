@@ -100,5 +100,11 @@ namespace BD2_Travail3 {
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void cmbProjet_SelectedIndexChanged(object sender, EventArgs e) {
+            cmbProjet.DataSource = managerProjet.TouteLesProjet();
+            cmbProjet.ValueMember = "no_Projet";
+            cmbProjet.DisplayMember = "nom_projet";
+        }
     }
 }
