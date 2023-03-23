@@ -158,7 +158,6 @@
             this.btnChoisirEmploye.TabIndex = 2;
             this.btnChoisirEmploye.Text = "Choisir un employé";
             this.btnChoisirEmploye.UseVisualStyleBackColor = true;
-            this.btnChoisirEmploye.Click += new System.EventHandler(this.btnChoisirEmploye_Click);
             // 
             // cmbChoisirEmploye
             // 
@@ -194,7 +193,6 @@
             this.btnAjouterImputation.TabIndex = 7;
             this.btnAjouterImputation.Text = "Ajouter imputation";
             this.btnAjouterImputation.UseVisualStyleBackColor = true;
-            this.btnAjouterImputation.Click += new System.EventHandler(this.btnAjouterImputation_Click);
             // 
             // nudQuantite
             // 
