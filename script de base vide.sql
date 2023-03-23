@@ -139,7 +139,7 @@ Insert into tbl_Marque(nom_Marque)
 Values ('NVidia'),
 ('Asus'), ('Intel')
 go
-Insert into tbl_Inventaire(nom_Piece,no_Piece,description_Piece,quantite,quantite_Critique,quantite_Minimum,no_marque)
+Insert into tbl_Inventaire(nom_Piece,no_Piece_Entreprise,description_Piece,quantite,quantite_Critique,quantite_Minimum,no_marque)
 Values ('Carte graphique','CG1','une carte','40','10', '20',2),
 ('Carte mère','CM1','mère','200','10', '15',3),
 ('Processeur','P2','procceseur','30','15', '20',4)
