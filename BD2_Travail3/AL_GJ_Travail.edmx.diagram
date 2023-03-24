@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="31b72702f24843b6a0b10405214a75d9" Name="Diagram1">
+      <Diagram DiagramId="216cb405cb5e44869aafac4d250440f4" Name="Diagram1">
         <EntityTypeShape EntityType="AL_GJ_TravailModel.tbl_Employe" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="AL_GJ_TravailModel.tbl_Impute" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="AL_GJ_TravailModel.tbl_Inventaire" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
@@ -13,7 +13,7 @@
         <AssociationConnector Association="AL_GJ_TravailModel.fk_no_Employe" ManuallyRouted="false" />
         <AssociationConnector Association="AL_GJ_TravailModel.fk_no_Piece" ManuallyRouted="false" />
         <AssociationConnector Association="AL_GJ_TravailModel.fk_no_Projet" ManuallyRouted="false" />
-        <AssociationConnector Association="AL_GJ_TravailModel.FK__tbl_Inven__no_Ma__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="AL_GJ_TravailModel.FK__tbl_Inven__no_Ma__300424B4" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

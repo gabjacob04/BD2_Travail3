@@ -21,8 +21,10 @@ namespace BD2_Travail3
             managerImputation = new ManagerImputation();    
         }
 
-        private void InformationImputationsDUnePiece_Load(object sender, EventArgs e) {
-
+        private void InformationImputationsDUnePiece_Load(object sender, EventArgs e) 
+        {
+            dgvAfficherPiece.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvImputationDUnePiece.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void btnRechercher_Click(object sender, EventArgs e)
@@ -48,8 +50,8 @@ namespace BD2_Travail3
                 {
                     throw new Exception("Vous n'avez aucune pièce de sélectionner");
                 }
-                int no_Piece = (int)dgvAfficherPiece[0, dgvAfficherPiece.CurrentRow.Index].Value;
-                dgvImputationDUnePiece.DataSource = managerImputation.getListImputationEnFonctionDUneRechercher(no_Piece,formatDate);
+                string no_Piece_Entreprise = (string)dgvAfficherPiece[0, dgvAfficherPiece.CurrentRow.Index].Value;
+                dgvImputationDUnePiece.DataSource = managerImputation.getListImputationEnFonctionDUneRechercher(no_Piece_Entreprise, formatDate);
             }
             catch (Exception ex)
             {

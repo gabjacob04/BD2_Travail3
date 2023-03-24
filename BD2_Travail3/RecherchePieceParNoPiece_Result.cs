@@ -13,13 +13,8 @@ namespace BD2_Travail3
     
     public partial class RecherchePieceParNoPiece_Result
     {
-        public int no_Piece { get; set; }
         public string no_Piece_Entreprise { get; set; }
         public string nom_Piece { get; set; }
-        public string description_Piece { get; set; }
         public int quantite { get; set; }
-        public Nullable<int> quantite_Critique { get; set; }
-        public Nullable<int> quantite_Minimum { get; set; }
-        public int no_Marque { get; set; }
     }
 }

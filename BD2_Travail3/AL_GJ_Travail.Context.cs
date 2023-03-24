@@ -33,29 +33,17 @@ namespace BD2_Travail3
         public virtual DbSet<tbl_Marque> tbl_Marque { get; set; }
         public virtual DbSet<tbl_Projet> tbl_Projet { get; set; }
     
-        public virtual int Imputation(Nullable<int> no_Employe, Nullable<int> no_Piece, Nullable<int> no_Projet, Nullable<System.DateTime> date, Nullable<int> quantite_Retire)
+        public virtual ObjectResult<getImputeByYearAndMonth_Result> getImputeByYearAndMonth(string no_Piece_Entreprise, string yearSearchTerm)
         {
-            var no_EmployeParameter = no_Employe.HasValue ?
-                new ObjectParameter("no_Employe", no_Employe) :
-                new ObjectParameter("no_Employe", typeof(int));
+            var no_Piece_EntrepriseParameter = no_Piece_Entreprise != null ?
+                new ObjectParameter("no_Piece_Entreprise", no_Piece_Entreprise) :
+                new ObjectParameter("no_Piece_Entreprise", typeof(string));
     
-            var no_PieceParameter = no_Piece.HasValue ?
-                new ObjectParameter("no_Piece", no_Piece) :
-                new ObjectParameter("no_Piece", typeof(int));
+            var yearSearchTermParameter = yearSearchTerm != null ?
+                new ObjectParameter("yearSearchTerm", yearSearchTerm) :
+                new ObjectParameter("yearSearchTerm", typeof(string));
     
-            var no_ProjetParameter = no_Projet.HasValue ?
-                new ObjectParameter("no_Projet", no_Projet) :
-                new ObjectParameter("no_Projet", typeof(int));
-    
-            var dateParameter = date.HasValue ?
-                new ObjectParameter("date", date) :
-                new ObjectParameter("date", typeof(System.DateTime));
-    
-            var quantite_RetireParameter = quantite_Retire.HasValue ?
-                new ObjectParameter("quantite_Retire", quantite_Retire) :
-                new ObjectParameter("quantite_Retire", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Imputation", no_EmployeParameter, no_PieceParameter, no_ProjetParameter, dateParameter, quantite_RetireParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getImputeByYearAndMonth_Result>("getImputeByYearAndMonth", no_Piece_EntrepriseParameter, yearSearchTermParameter);
         }
     
         public virtual ObjectResult<RecherchePieceParNoPiece_Result> RecherchePieceParNoPiece(string noPieceDemandé)
@@ -76,11 +64,6 @@ namespace BD2_Travail3
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<selectionnerEmployeSelonRecherche_Result>("selectionnerEmployeSelonRecherche", searchTermParameter);
         }
     
-        public virtual ObjectResult<selectionnerTouteLesEmployes_Result> selectionnerTouteLesEmployes()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<selectionnerTouteLesEmployes_Result>("selectionnerTouteLesEmployes");
-        }
-    
         public virtual int SuppressionDobjetDeLInventaire(Nullable<int> quantiteAEnlever, Nullable<int> no_Piece)
         {
             var quantiteAEnleverParameter = quantiteAEnlever.HasValue ?
@@ -92,19 +75,6 @@ namespace BD2_Travail3
                 new ObjectParameter("no_Piece", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SuppressionDobjetDeLInventaire", quantiteAEnleverParameter, no_PieceParameter);
-        }
-    
-        public virtual ObjectResult<getImputeByYearAndMonth_Result1> getImputeByYearAndMonth(Nullable<int> no_Piece, string yearSearchTerm)
-        {
-            var no_PieceParameter = no_Piece.HasValue ?
-                new ObjectParameter("no_Piece", no_Piece) :
-                new ObjectParameter("no_Piece", typeof(int));
-    
-            var yearSearchTermParameter = yearSearchTerm != null ?
-                new ObjectParameter("yearSearchTerm", yearSearchTerm) :
-                new ObjectParameter("yearSearchTerm", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getImputeByYearAndMonth_Result1>("getImputeByYearAndMonth", no_PieceParameter, yearSearchTermParameter);
         }
     }
 }

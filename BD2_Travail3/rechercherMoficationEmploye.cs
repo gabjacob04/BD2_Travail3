@@ -95,8 +95,10 @@ namespace BD2_Travail3
                 int nbreLigneAffectee = managerEmploye.ModifierEmploye(employeAModifier);
                 if (nbreLigneAffectee > 0)
                 {
+                    MessageBox.Show("Modification avec succès");
+                    cmbRechercheEmploye.DataSource= managerEmploye.ListerEmployeQuiMatchLettresDonnees(txtNomPrenom.Text);
+                    cmbRechercheEmploye.SelectedValue = employeAModifier.no_Employe;
                     MessageBox.Show("Modification effectuée avec succès " +nbreLigneAffectee + " de ligne(s) affectée");
-                    //cmbRechercheEmploye.Invalidate();
                     return;
                 }
                 MessageBox.Show("Erreur, aucune ligne affectée");
