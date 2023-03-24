@@ -37,18 +37,6 @@ namespace BD2_Travail3 {
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void btnChoisirEmploye_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbChoisirEmploye.DataSource = managerEmploye.ListerEmployeQuiMatchLettresDonnees(cmbChoisirEmploye.Text);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
        
         private void AjouterImputation_Load(object sender, EventArgs e)
         {
@@ -106,6 +94,18 @@ namespace BD2_Travail3 {
             cmbProjet.DataSource = managerProjet.TouteLesProjet();
             cmbProjet.ValueMember = "no_Projet";
             cmbProjet.DisplayMember = "nom_projet";
+        }
+
+        private void btnChoisirEmploye_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbChoisirEmploye.DataSource = managerEmploye.ListerEmployeQuiMatchLettresDonnees(cmbChoisirEmploye.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
