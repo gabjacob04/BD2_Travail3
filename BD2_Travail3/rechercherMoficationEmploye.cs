@@ -83,11 +83,12 @@ namespace BD2_Travail3
                 {
                     throw new Exception("Aucun champ(s) ne peut être vide");
                 }
-                tbl_Employe employeAModifier = new tbl_Employe();
                 if (cmbRechercheEmploye.SelectedValue is null)
                 {
                     throw new Exception("Vous n'avez aucun employé de sélectionné dans le combo box");
                 }
+
+                tbl_Employe employeAModifier = new tbl_Employe();
                 employeAModifier.no_Employe = (int)cmbRechercheEmploye.SelectedValue;
                 employeAModifier.Nom = txtNom.Text;
                 employeAModifier.Prénom = txtPrenom.Text;
@@ -95,7 +96,7 @@ namespace BD2_Travail3
                 int nbreLigneAffectee = managerEmploye.ModifierEmploye(employeAModifier);
                 if (nbreLigneAffectee > 0)
                 {
-                    MessageBox.Show("Modification avec succès");
+                    //MessageBox.Show("Modification avec succès");
                     cmbRechercheEmploye.DataSource= managerEmploye.ListerEmployeQuiMatchLettresDonnees(txtNomPrenom.Text);
                     cmbRechercheEmploye.SelectedValue = employeAModifier.no_Employe;
                     MessageBox.Show("Modification effectuée avec succès " +nbreLigneAffectee + " de ligne(s) affectée");
