@@ -159,6 +159,7 @@
             this.btnChoisirEmploye.TabIndex = 2;
             this.btnChoisirEmploye.Text = "Choisir un employé";
             this.btnChoisirEmploye.UseVisualStyleBackColor = true;
+            this.btnChoisirEmploye.Click += new System.EventHandler(this.btnChoisirEmploye_Click);
             // 
             // cmbChoisirEmploye
             // 
