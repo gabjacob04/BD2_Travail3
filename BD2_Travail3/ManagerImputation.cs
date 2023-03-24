@@ -17,26 +17,15 @@ namespace BD2_Travail3 {
                 int nombreLigneModifier = 0;
                 using (var context = new AL_GJ_TravailEntities())
                 {
-                    //if (context.tbl_Impute.Find(imputeAAjouter.no_Piece, imputeAAjouter.no_Projet, imputeAAjouter.no_Employe) != null)
-                    //{
-                    //    tbl_Impute imputeAModifier = context.tbl_Impute.Find(imputeAAjouter.no_Piece, imputeAAjouter.no_Projet, imputeAAjouter.no_Employe);
-                    //    context.SuppressionDobjetDeLInventaire(imputeAAjouter.quantite_Retire, imputeAAjouter.no_Piece);
-                    //    imputeAModifier.quantite_Retire = imputeAAjouter.quantite_Retire + imputeAModifier.quantite_Retire;
-                    //}
-                    //else
-                    //{
-                        tbl_Impute impute = new tbl_Impute();
-                        impute.no_Employe = imputeAAjouter.no_Employe;
-                        impute.no_Piece = imputeAAjouter.no_Piece;
-                        impute.no_Projet = imputeAAjouter.no_Projet;
-                        impute.date = imputeAAjouter.date;
-                        impute.quantite_Retire = imputeAAjouter.quantite_Retire;
+                    tbl_Impute impute = new tbl_Impute();
+                    impute.no_Employe = imputeAAjouter.no_Employe;
+                    impute.no_Piece = imputeAAjouter.no_Piece;
+                    impute.no_Projet = imputeAAjouter.no_Projet;
+                    impute.date = imputeAAjouter.date;
+                    impute.quantite_Retire = imputeAAjouter.quantite_Retire;
 
-                        context.SuppressionDobjetDeLInventaire(impute.quantite_Retire, impute.no_Piece);
-                        context.tbl_Impute.Add(impute);
-                        //string etat2 = context.Entry(employeAModifier).State.ToString();
-
-                    //}
+                    context.SuppressionDobjetDeLInventaire(impute.quantite_Retire, impute.no_Piece);
+                    context.tbl_Impute.Add(impute);
 
                     if (context.ChangeTracker.HasChanges())
                     {
@@ -51,13 +40,13 @@ namespace BD2_Travail3 {
             }
         }
 
-        public List<getImputeByYearAndMonth_Result1> getListImputationEnFonctionDUneRechercher(int no_Piece, string date)
+        public List<getImputeByYearAndMonth_Result> getListImputationEnFonctionDUneRechercher(string no_Piece_Entreprise, string date)
         {
             try
             {
                 using (var context = new AL_GJ_TravailEntities())
                 {
-                    return context.getImputeByYearAndMonth(no_Piece,date).ToList();
+                    return context.getImputeByYearAndMonth(no_Piece_Entreprise, date).ToList();
                 }
             }
             catch (Exception)

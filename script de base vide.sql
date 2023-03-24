@@ -78,10 +78,6 @@ go
 
 /* PARTIE 3 */
 
-/* insertion de données en batch à partir de lt_DonneesLibres PARTIE ALEXIS
-Insert into tbl_Employe (Nom, Prénom, Courriel)
-Select Nom, Prénom, Courriel from fichierExelPourTravailPartie2_3.dbo.Feuil2$DonnéesExternes_1
-go*/
 /* insertion de données en batch à partir de lt_DonneesLibres*/
 Insert into tbl_Employe (Nom, Prénom, Courriel)
 Select Nom, Prénom, Courriel from ltDonneesLibres.dbo.Feuil2$DonnéesExternes_1
@@ -101,7 +97,7 @@ Insert into tbl_Employe (Nom, Prénom, Courriel)
 Values ('Auger', 'Benoit', 'benoit.auger2@montreal.ca')
 go
 Insert into tbl_Impute(no_Employe, no_Piece, no_Projet, date, quantite_Retire)
-Values (104, 1, 1, '2023-02-15 00:00:00', 10)
+Values (104, 1, 1, '2020-02-15 00:00:00', 10)
 go
 /*Update tbl_Inventaire set quantite = quantite - 10
 Where no_Piece = 1
@@ -114,7 +110,7 @@ Insert into tbl_Projet(nom_projet, description_projet)
 Values ('Projet de tours 2','MOn projet (Alexis)')
 go
 Insert into tbl_Impute(no_Employe, no_Piece, no_Projet, date, quantite_Retire)
-Values (27, 1, 2, '2023-02-15 00:00:00', 5)
+Values (27, 1, 2, '2023-01-15 00:00:00', 5)
 go
 /*Update tbl_Inventaire
 set quantite = quantite - 5
@@ -150,8 +146,8 @@ insert into tbl_Employe(Prénom,Nom,Courriel)
 values('Jésus','crist','JésusCrist@JeSuisUnMessi.com'),('Olivier','Ouiellete','OlivierGamer@gmail.com'),('Jean-Phillipe','Debleaua','JeanPhil@FILIPO.com')
 go
 Insert into tbl_Impute(no_Piece,no_Projet,no_Employe,date,quantite_Retire)
-Values (2,3,106,'2023-02-22 00:00:00',10),
-(3,4,107,'2023-02-22 00:00:00',20),
+Values (2,3,106,'2020-04-22 00:00:00',10),
+(3,4,107,'2021-10-22 00:00:00',20),
 (4,4,108,'2023-02-22 00:00:00',30)
 go
 /* UN grand select pour démontrer les ajouts imposés */
@@ -189,10 +185,10 @@ values ('1','1')*/
 
 	/* partie 4 */
 
-		create procedure RecherchePieceParNoPiece
+		Create procedure RecherchePieceParNoPiece
 		@noPieceDemandé nvarchar(100)
 		AS
-		select *
+		select no_Piece_Entreprise, nom_Piece, quantite
 		from tbl_Inventaire
 		where no_Piece_Entreprise like '%'+@noPieceDemandé+'%'
 		GO
@@ -206,20 +202,15 @@ values ('1','1')*/
 		order by Nom, Prénom
 		GO
 
-		Create procedure Imputation
-		@no_Employe int , @no_Piece int , @no_Projet int, @date DateTime, @quantite_Retire int
-		as
-		insert into tbl_Impute(no_Employe, no_Piece, no_Projet, date, quantite_Retire)
-		Values (@no_Employe, @no_Piece, @no_Projet, @date, @quantite_Retire)
-		go
-
 		Create procedure getImputeByYearAndMonth
+		@no_Piece_Entreprise nvarchar(100),
 		@yearSearchTerm nvarchar(10)
 		as
 		select no_Impute, date, quantite_Retire, tbl_Projet.description_projet, tbl_Employe.Nom, tbl_Employe.Prénom from tbl_Impute
+		inner join tbl_Inventaire on tbl_Impute.no_Piece = tbl_Inventaire.no_Piece
 		inner join tbl_Employe on tbl_Impute.no_Employe = tbl_Employe.no_Employe
 		inner join tbl_Projet on tbl_Impute.no_Projet = tbl_Projet.no_Projet
-		where date > @yearSearchTerm 
+		where tbl_Inventaire.no_Piece_Entreprise = @no_Piece_Entreprise and date > @yearSearchTerm 
 		go
 
 		Create procedure SuppressionDobjetDeLInventaire

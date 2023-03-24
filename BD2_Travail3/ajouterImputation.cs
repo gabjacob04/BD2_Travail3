@@ -51,6 +51,7 @@ namespace BD2_Travail3 {
 
         private void AjouterImputation_Load(object sender, EventArgs e)
         {
+            dgvAfficherPiece.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             cmbProjet.DataSource = managerProjet.TouteLesProjet();
             cmbProjet.ValueMember = "no_Projet";
             cmbProjet.DisplayMember = "nom_projet";
