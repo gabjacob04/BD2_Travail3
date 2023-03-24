@@ -128,6 +128,7 @@
             this.cmbProjet.Name = "cmbProjet";
             this.cmbProjet.Size = new System.Drawing.Size(336, 28);
             this.cmbProjet.TabIndex = 1;
+            this.cmbProjet.SelectedIndexChanged += new System.EventHandler(this.cmbProjet_SelectedIndexChanged);
             // 
             // lblChoisirProjet
             // 
@@ -158,7 +159,6 @@
             this.btnChoisirEmploye.TabIndex = 2;
             this.btnChoisirEmploye.Text = "Choisir un employé";
             this.btnChoisirEmploye.UseVisualStyleBackColor = true;
-            this.btnChoisirEmploye.Click += new System.EventHandler(this.btnChoisirEmploye_Click);
             // 
             // cmbChoisirEmploye
             // 
@@ -194,7 +194,6 @@
             this.btnAjouterImputation.TabIndex = 7;
             this.btnAjouterImputation.Text = "Ajouter imputation";
             this.btnAjouterImputation.UseVisualStyleBackColor = true;
-            this.btnAjouterImputation.Click += new System.EventHandler(this.btnAjouterImputation_Click);
             // 
             // nudQuantite
             // 

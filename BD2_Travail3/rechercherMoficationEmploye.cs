@@ -98,10 +98,10 @@ namespace BD2_Travail3
                     MessageBox.Show("Modification avec succès");
                     cmbRechercheEmploye.DataSource= managerEmploye.ListerEmployeQuiMatchLettresDonnees(txtNomPrenom.Text);
                     cmbRechercheEmploye.SelectedValue = employeAModifier.no_Employe;
-                    //cmbRechercheEmploye.Invalidate();
+                    MessageBox.Show("Modification effectuée avec succès " +nbreLigneAffectee + " de ligne(s) affectée");
                     return;
                 }
-                MessageBox.Show("erreur, aucune ligne affectée");
+                MessageBox.Show("Erreur, aucune ligne affectée");
             }
             catch (Exception ex)
             {
