@@ -10,7 +10,7 @@ namespace BD2_Travail3 {
     public class ManagerImputation 
     {
 
-        public int AjouterUneImputation(tbl_Impute imputeAAjouter)
+        public int AjouterUneImputation(tbl_Impute imputeAAjouter, string no_Piece_Entreprise)
         {
             try
             {
@@ -18,8 +18,10 @@ namespace BD2_Travail3 {
                 using (var context = new AL_GJ_TravailEntities())
                 {
                     tbl_Impute impute = new tbl_Impute();
+                    tbl_Inventaire recupererNoPiece = new tbl_Inventaire();
+                    recupererNoPiece = context.tbl_Inventaire.FirstOrDefault(c => c.no_Piece_Entreprise == no_Piece_Entreprise);
                     impute.no_Employe = imputeAAjouter.no_Employe;
-                    impute.no_Piece = imputeAAjouter.no_Piece;
+                    impute.no_Piece = recupererNoPiece.no_Piece;
                     impute.no_Projet = imputeAAjouter.no_Projet;
                     impute.date = imputeAAjouter.date;
                     impute.quantite_Retire = imputeAAjouter.quantite_Retire;

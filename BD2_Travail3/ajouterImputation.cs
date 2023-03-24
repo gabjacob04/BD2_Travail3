@@ -26,10 +26,10 @@ namespace BD2_Travail3 {
 
             managerEmploye = new ManagerEmploye();  
         }
+
         private void btnRechercher_Click(object sender, EventArgs e) {
             try
             {
-                cmbProjet.DataSource = managerProjet.TouteLesProjet();   
                 dgvAfficherPiece.DataSource = managerInventaire.listerInventaire(txtRechercheNumeroPiece.Text);
             }
             catch (Exception ex)
@@ -64,25 +64,11 @@ namespace BD2_Travail3 {
             }
         }
 
-        private void btnAjouterImputation_Click(object sender, EventArgs e)
+        private void btnChoisirEmploye_Click(object sender, EventArgs e)
         {
             try
             {
-                checkForErrors();
-
-                tbl_Impute imputeAAjouter = new tbl_Impute();
-                imputeAAjouter.no_Piece = (int)dgvAfficherPiece[0, dgvAfficherPiece.CurrentRow.Index].Value;
-                imputeAAjouter.no_Employe = (int)cmbChoisirEmploye.SelectedValue;
-                imputeAAjouter.no_Projet = (int)cmbProjet.SelectedValue;
-                imputeAAjouter.date = DateTime.Now;
-                imputeAAjouter.quantite_Retire = (int)nudQuantite.Value;
-                int nbreLigneAffectee = managerImputation.AjouterUneImputation(imputeAAjouter);
-                if (nbreLigneAffectee > 0)
-                {
-                    MessageBox.Show("Ajout et/ou modification avec succès");
-                    return;
-                }
-                throw new Exception("Erreur, aucun ajout effectué");
+                cmbChoisirEmploye.DataSource = managerEmploye.ListerEmployeQuiMatchLettresDonnees(cmbChoisirEmploye.Text);
             }
             catch (Exception ex)
             {
@@ -90,17 +76,26 @@ namespace BD2_Travail3 {
             }
         }
 
-        private void cmbProjet_SelectedIndexChanged(object sender, EventArgs e) {
-            cmbProjet.DataSource = managerProjet.TouteLesProjet();
-            cmbProjet.ValueMember = "no_Projet";
-            cmbProjet.DisplayMember = "nom_projet";
-        }
-
-        private void btnChoisirEmploye_Click(object sender, EventArgs e)
+        private void btnAjouterImputation_Click(object sender, EventArgs e)
         {
             try
             {
-                cmbChoisirEmploye.DataSource = managerEmploye.ListerEmployeQuiMatchLettresDonnees(cmbChoisirEmploye.Text);
+                checkForErrors();
+
+                tbl_Impute imputeAAjouter = new tbl_Impute();
+                string no_Piece_Entreprise = (string)dgvAfficherPiece[0, dgvAfficherPiece.CurrentRow.Index].Value;
+                imputeAAjouter.no_Employe = (int)cmbChoisirEmploye.SelectedValue;
+                imputeAAjouter.no_Projet = (int)cmbProjet.SelectedValue;
+                imputeAAjouter.date = DateTime.Now;
+                imputeAAjouter.quantite_Retire = (int)nudQuantite.Value;
+                int nbreLigneAffectee = managerImputation.AjouterUneImputation(imputeAAjouter, no_Piece_Entreprise);
+                if (nbreLigneAffectee > 0)
+                {
+                    MessageBox.Show("Ajout effectué avec succès");
+                    dgvAfficherPiece.DataSource = managerInventaire.listerInventaire(txtRechercheNumeroPiece.Text);
+                    return;
+                }
+                throw new Exception("Erreur, aucun ajout effectué");
             }
             catch (Exception ex)
             {
