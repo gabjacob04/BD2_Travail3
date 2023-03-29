@@ -54,9 +54,13 @@ namespace BD2_Travail3 {
             {
                 throw new Exception("Aucune pièce de sélectionné");
             }
-            if (cmbChoisirEmploye.SelectedValue is null || cmbProjet.SelectedValue is null)
+            if (cmbChoisirEmploye.SelectedValue is null)
             {
-                throw new Exception("Aucun employé et/ou projet de sélectionné");
+                throw new Exception("Aucun employé de sélectionné");
+            }
+            if (cmbProjet.SelectedValue is null)
+            {
+                throw new Exception("Aucun projet de sélectionné");
             }
             if (nudQuantite.Value <= 0)
             {

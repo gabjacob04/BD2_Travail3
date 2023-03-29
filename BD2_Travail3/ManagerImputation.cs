@@ -20,6 +20,12 @@ namespace BD2_Travail3 {
                     tbl_Impute impute = new tbl_Impute();
                     tbl_Inventaire recupererNoPiece = new tbl_Inventaire();
                     recupererNoPiece = context.tbl_Inventaire.FirstOrDefault(c => c.no_Piece_Entreprise == no_Piece_Entreprise);
+
+                    if (recupererNoPiece.quantite - imputeAAjouter.quantite_Retire < 0)
+                    {
+                        throw new Exception("La quantité retirée est trop élevée pour la quantité restante de la pièce");
+                    }
+
                     impute.no_Employe = imputeAAjouter.no_Employe;
                     impute.no_Piece = recupererNoPiece.no_Piece;
                     impute.no_Projet = imputeAAjouter.no_Projet;
