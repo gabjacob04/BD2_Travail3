@@ -100,6 +100,8 @@ namespace BD2_Travail3
                     cmbRechercheEmploye.DataSource= managerEmploye.ListerEmployeQuiMatchLettresDonnees(txtNomPrenom.Text);
                     cmbRechercheEmploye.SelectedValue = employeAModifier.no_Employe;
                     MessageBox.Show("Modification effectuée avec succès " +nbreLigneAffectee + " de ligne(s) affectée");
+                    mettreAZero();
+                    mettreTextBoxDisabled();
                     return;
                 }
                 MessageBox.Show("Erreur, aucune ligne affectée");
@@ -108,6 +110,15 @@ namespace BD2_Travail3
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void mettreAZero()
+        {
+            txtCourriel.Text = "";
+            txtNom.Text = "";
+            txtPrenom.Text = "";
+            txtNomPrenom.Text = "";
+            cmbRechercheEmploye.SelectedValue = "";
         }
 
         private void RechercherMoficationEmploye_Load(object sender, EventArgs e)
