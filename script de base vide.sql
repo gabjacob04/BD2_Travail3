@@ -219,3 +219,13 @@ values ('1','1')*/
         update tbl_Inventaire set quantite = quantite - @QuantiteAEnlever
         where no_Piece = @no_Piece
 		go
+
+	/*Travail Pratique 2*/
+
+		Create table quantiteAccepteePourProjet
+		(
+		no_Projet int foreign key references tbl_Projet(no_Projet) not null,
+		no_Piece int foreign key references tbl_Inventaire(no_Piece) not null,
+		quantiteAcceptee int check (quantiteAcceptee >= 0)
+		)
+		go

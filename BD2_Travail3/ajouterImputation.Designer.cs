@@ -204,6 +204,11 @@
             0,
             0,
             0});
+            this.nudQuantite.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
             this.nudQuantite.Name = "nudQuantite";
             this.nudQuantite.Size = new System.Drawing.Size(159, 27);
             this.nudQuantite.TabIndex = 6;

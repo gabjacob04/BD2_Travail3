@@ -32,6 +32,11 @@ namespace BD2_Travail3
             try
             {
                 dgvAfficherPiece.DataSource = managerInventaire.listerInventaire(txtRechercheNumeroPiece.Text);
+                dgvImputationDUnePiece.DataSource = null;
+                for (int i = 0; i < dgvImputationDUnePiece.Rows.Count; i++)
+                {
+                    dgvImputationDUnePiece[0, dgvImputationDUnePiece.CurrentRow.Index].Dispose();
+                }
             }
             catch (Exception ex)
             {
