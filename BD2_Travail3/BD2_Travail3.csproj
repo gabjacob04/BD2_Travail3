@@ -82,6 +82,12 @@
     <Compile Include="getImputeByYearAndMonth_Result.cs">
       <DependentUpon>AL_GJ_Travail.tt</DependentUpon>
     </Compile>
+    <Compile Include="GererErreurDeConcurrence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GererErreurDeConcurrence.Designer.cs">
+      <DependentUpon>GererErreurDeConcurrence.cs</DependentUpon>
+    </Compile>
     <Compile Include="InformationImputationsDUnePiece.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +141,9 @@
     </Compile>
     <EmbeddedResource Include="AjouterImputation.resx">
       <DependentUpon>AjouterImputation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GererErreurDeConcurrence.resx">
+      <DependentUpon>GererErreurDeConcurrence.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InformationImputationsDUnePiece.resx">
       <DependentUpon>InformationImputationsDUnePiece.cs</DependentUpon>
