@@ -54,15 +54,15 @@ namespace BD2_Travail3 {
             {
                 throw new Exception("Aucune pièce de sélectionné");
             }
-            if (cmbChoisirEmploye.SelectedValue is null)
-            {
-                throw new Exception("Aucun employé de sélectionné");
-            }
             if (cmbProjet.SelectedValue is null)
             {
                 throw new Exception("Aucun projet de sélectionné");
             }
-            if (nudQuantite.Value <= 0)
+            if (cmbChoisirEmploye.SelectedValue is null)
+            {
+                throw new Exception("Aucun employé de sélectionné");
+            }
+            if (nudQuantite.Value == 0)
             {
                 throw new Exception("La quantité ne peut être 0");
             }
@@ -77,6 +77,18 @@ namespace BD2_Travail3 {
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void mettreAZero()
+        {
+            nudQuantite.Value = 0;
+            cmbChoisirEmploye.SelectedValue = "";
+            cmbProjet.SelectedValue = "";
+            dgvAfficherPiece.DataSource = null;
+            for (int i = 0; i < dgvAfficherPiece.Rows.Count; i++)
+            {
+                dgvAfficherPiece[0, dgvAfficherPiece.CurrentRow.Index].Dispose();
             }
         }
 
@@ -97,6 +109,7 @@ namespace BD2_Travail3 {
                 {
                     MessageBox.Show("Ajout effectué avec succès");
                     dgvAfficherPiece.DataSource = managerInventaire.listerInventaire(txtRechercheNumeroPiece.Text);
+                    mettreAZero();
                     return;
                 }
                 throw new Exception("Erreur, aucun ajout effectué");
