@@ -232,6 +232,28 @@ values ('1','1')*/
 		alter table tbl_quantiteAccepteePourProjet
 		add constraint pK_ProjetEtPiece primary key (no_Projet, no_Piece)
 		go
+
+		insert into tbl_quantiteAccepteePourProjet (no_Piece, no_Projet, quantiteAcceptee)
+		values (4, 5, 20),
+		(3, 4, 10), (2, 3, 30), (1, 2, 40)
+		go
+
+		create view vueListerQuantiteAccepteePourProjet
+		as
+		select tbl_quantiteAccepteePourProjet.no_Piece, no_Projet, tbl_Inventaire.description_Piece, quantiteAcceptee from tbl_quantiteAccepteePourProjet
+				inner join tbl_Inventaire on tbl_quantiteAccepteePourProjet.no_Piece = tbl_Inventaire.no_Piece
+		go
+
+		create procedure modifierQuantiteeAcceptee
+		@no_Projet int,
+		@no_Piece int,
+		@quantiteAcceptee int
+		as
+
+		update vueListerQuantiteAccepteePourProjet
+		set quantiteAcceptee = @quantiteAcceptee
+		where no_Piece = @no_Piece and no_Projet = @no_Projet
+		go
 		
 
 
