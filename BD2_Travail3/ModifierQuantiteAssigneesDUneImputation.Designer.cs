@@ -41,20 +41,22 @@
             // dgvPieces
             // 
             this.dgvPieces.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPieces.Location = new System.Drawing.Point(22, 243);
+            this.dgvPieces.Location = new System.Drawing.Point(16, 197);
+            this.dgvPieces.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvPieces.Name = "dgvPieces";
             this.dgvPieces.RowHeadersWidth = 51;
             this.dgvPieces.RowTemplate.Height = 24;
-            this.dgvPieces.Size = new System.Drawing.Size(632, 187);
+            this.dgvPieces.Size = new System.Drawing.Size(474, 152);
             this.dgvPieces.TabIndex = 12;
             // 
             // lblPieces
             // 
             this.lblPieces.AutoSize = true;
             this.lblPieces.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPieces.Location = new System.Drawing.Point(17, 196);
+            this.lblPieces.Location = new System.Drawing.Point(13, 159);
+            this.lblPieces.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPieces.Name = "lblPieces";
-            this.lblPieces.Size = new System.Drawing.Size(90, 29);
+            this.lblPieces.Size = new System.Drawing.Size(71, 25);
             this.lblPieces.TabIndex = 10;
             this.lblPieces.Text = "Pièces";
             // 
@@ -63,9 +65,11 @@
             this.grpChoisirProjet.Controls.Add(this.cmbListeProjets);
             this.grpChoisirProjet.Controls.Add(this.lblNomProjet);
             this.grpChoisirProjet.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpChoisirProjet.Location = new System.Drawing.Point(22, 22);
+            this.grpChoisirProjet.Location = new System.Drawing.Point(16, 18);
+            this.grpChoisirProjet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.grpChoisirProjet.Name = "grpChoisirProjet";
-            this.grpChoisirProjet.Size = new System.Drawing.Size(632, 105);
+            this.grpChoisirProjet.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpChoisirProjet.Size = new System.Drawing.Size(474, 85);
             this.grpChoisirProjet.TabIndex = 13;
             this.grpChoisirProjet.TabStop = false;
             this.grpChoisirProjet.Text = "Rechercher un projet";
@@ -73,40 +77,45 @@
             // cmbListeProjets
             // 
             this.cmbListeProjets.FormattingEnabled = true;
-            this.cmbListeProjets.Location = new System.Drawing.Point(218, 36);
+            this.cmbListeProjets.Location = new System.Drawing.Point(164, 29);
+            this.cmbListeProjets.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbListeProjets.Name = "cmbListeProjets";
-            this.cmbListeProjets.Size = new System.Drawing.Size(399, 26);
+            this.cmbListeProjets.Size = new System.Drawing.Size(300, 23);
             this.cmbListeProjets.TabIndex = 1;
             // 
             // lblNomProjet
             // 
             this.lblNomProjet.AutoSize = true;
             this.lblNomProjet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomProjet.Location = new System.Drawing.Point(37, 34);
+            this.lblNomProjet.Location = new System.Drawing.Point(28, 28);
+            this.lblNomProjet.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNomProjet.Name = "lblNomProjet";
-            this.lblNomProjet.Size = new System.Drawing.Size(133, 25);
+            this.lblNomProjet.Size = new System.Drawing.Size(108, 20);
             this.lblNomProjet.TabIndex = 0;
             this.lblNomProjet.Text = "Nom du projet";
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(673, 52);
+            this.button1.Location = new System.Drawing.Point(505, 42);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(141, 37);
+            this.button1.Size = new System.Drawing.Size(106, 30);
             this.button1.TabIndex = 14;
             this.button1.Text = "Détruire ce projet";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ModifierQuantiteAssigneesDUneImputation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(838, 450);
+            this.ClientSize = new System.Drawing.Size(628, 366);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.grpChoisirProjet);
             this.Controls.Add(this.dgvPieces);
             this.Controls.Add(this.lblPieces);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ModifierQuantiteAssigneesDUneImputation";
             this.Text = "ModifierQuantiteAssigneesDUneImputation";
             this.Load += new System.EventHandler(this.ModifierQuantiteAssigneesDUneImputation_Load);
