@@ -34,5 +34,17 @@ namespace BD2_Travail3
             InformationImputationsDUnePiece informationImputationsDUnePiece = new InformationImputationsDUnePiece();
             informationImputationsDUnePiece.ShowDialog();
         }
+
+        private void gestionDesErreursDeConcurrenceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GererErreurDeConcurrence gererErreurDeConcurrence = new GererErreurDeConcurrence();
+            gererErreurDeConcurrence.ShowDialog();  
+        }
+
+        private void modifierQuantitéAssignéesÀUnProjetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ModifierQuantiteAssigneesDUneImputation modifierQuantiteAssigneesDUneImputation = new ModifierQuantiteAssigneesDUneImputation();
+            modifierQuantiteAssigneesDUneImputation.ShowDialog();
+        }
     }
 }

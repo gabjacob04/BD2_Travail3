@@ -16,5 +16,10 @@ namespace BD2_Travail3
         {
             InitializeComponent();
         }
+
+        private void ModifierQuantiteAssigneesDUneImputation_Load(object sender, EventArgs e)
+        {
+            cmbListeProjets.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
     }
 }
