@@ -42,12 +42,13 @@
             // 
             this.dgvPieces.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPieces.Location = new System.Drawing.Point(16, 197);
-            this.dgvPieces.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvPieces.Margin = new System.Windows.Forms.Padding(2);
             this.dgvPieces.Name = "dgvPieces";
             this.dgvPieces.RowHeadersWidth = 51;
             this.dgvPieces.RowTemplate.Height = 24;
             this.dgvPieces.Size = new System.Drawing.Size(474, 152);
             this.dgvPieces.TabIndex = 12;
+            this.dgvPieces.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPieces_CellEndEdit);
             // 
             // lblPieces
             // 
@@ -66,9 +67,9 @@
             this.grpChoisirProjet.Controls.Add(this.lblNomProjet);
             this.grpChoisirProjet.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpChoisirProjet.Location = new System.Drawing.Point(16, 18);
-            this.grpChoisirProjet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpChoisirProjet.Margin = new System.Windows.Forms.Padding(2);
             this.grpChoisirProjet.Name = "grpChoisirProjet";
-            this.grpChoisirProjet.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpChoisirProjet.Padding = new System.Windows.Forms.Padding(2);
             this.grpChoisirProjet.Size = new System.Drawing.Size(474, 85);
             this.grpChoisirProjet.TabIndex = 13;
             this.grpChoisirProjet.TabStop = false;
@@ -78,10 +79,11 @@
             // 
             this.cmbListeProjets.FormattingEnabled = true;
             this.cmbListeProjets.Location = new System.Drawing.Point(164, 29);
-            this.cmbListeProjets.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbListeProjets.Margin = new System.Windows.Forms.Padding(2);
             this.cmbListeProjets.Name = "cmbListeProjets";
             this.cmbListeProjets.Size = new System.Drawing.Size(300, 23);
             this.cmbListeProjets.TabIndex = 1;
+            this.cmbListeProjets.SelectionChangeCommitted += new System.EventHandler(this.cmbListeProjets_SelectionChangeCommitted);
             // 
             // lblNomProjet
             // 
@@ -98,7 +100,7 @@
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(505, 42);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(106, 30);
             this.button1.TabIndex = 14;
@@ -115,7 +117,7 @@
             this.Controls.Add(this.grpChoisirProjet);
             this.Controls.Add(this.dgvPieces);
             this.Controls.Add(this.lblPieces);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ModifierQuantiteAssigneesDUneImputation";
             this.Text = "ModifierQuantiteAssigneesDUneImputation";
             this.Load += new System.EventHandler(this.ModifierQuantiteAssigneesDUneImputation_Load);
