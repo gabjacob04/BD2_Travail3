@@ -136,6 +136,9 @@ avertissement 6002: La table/vue 'AL_GJ_Travail.dbo.vueListerQuantiteAccepteePou
           <Parameter Name="QuantiteAEnlever" Type="int" Mode="In" />
           <Parameter Name="no_Piece" Type="int" Mode="In" />
         </Function>
+        <Function Name="SupprimerUnProjet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="no_projet" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="AL_GJ_TravailModelStoreContainer">
           <EntitySet Name="tbl_Employe" EntityType="Self.tbl_Employe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Impute" EntityType="Self.tbl_Impute" Schema="dbo" store:Type="Tables" />
@@ -320,6 +323,9 @@ avertissement 6002: La table/vue 'AL_GJ_Travail.dbo.vueListerQuantiteAccepteePou
             <Parameter Name="no_Piece" Mode="In" Type="Int32" />
             <Parameter Name="quantiteAcceptee" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SupprimerUnProjet">
+            <Parameter Name="no_projet" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="getImputeByYearAndMonth_Result">
           <Property Type="Int32" Name="no_Impute" Nullable="false" />
@@ -458,6 +464,7 @@ avertissement 6002: La table/vue 'AL_GJ_Travail.dbo.vueListerQuantiteAccepteePou
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="modifierQuantiteeAcceptee" FunctionName="AL_GJ_TravailModel.Store.modifierQuantiteeAcceptee" />
+          <FunctionImportMapping FunctionImportName="SupprimerUnProjet" FunctionName="AL_GJ_TravailModel.Store.SupprimerUnProjet" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
