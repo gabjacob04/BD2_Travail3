@@ -135,8 +135,8 @@ Values ('NVidia'),
 ('Asus'), ('Intel')
 go
 Insert into tbl_Inventaire(nom_Piece,no_Piece_Entreprise,description_Piece,quantite,quantite_Critique,quantite_Minimum,no_marque)
-Values ('Carte graphique','CG1','une carte','40','10', '20',2),
-('Carte mère','CM1','mère','200','10', '15',3),
+Values ('Carte graphique','CG1','une carte graphique','40','10', '20',2),
+('Carte mère','CM1','carte mère','200','10', '15',3),
 ('Processeur','P2','procceseur','30','15', '20',4)
 go
 insert into tbl_Projet(nom_Projet, description_projet)
@@ -255,5 +255,24 @@ values ('1','1')*/
 		where no_Piece = @no_Piece and no_Projet = @no_Projet
 		go
 		
-
-
+		create procedure SupprimerUnProjet
+		@no_projet int
+		as
+		SET NOCOUNT ON;
+		begin try
+		begin transaction
+ 	 	delete from tbl_Impute where no_Projet = @no_projet
+		delete from tbl_quantiteAccepteePourProjet where no_Projet = @no_projet
+		delete  from tbl_Projet where no_Projet = @no_projet
+	 	commit transaction
+		  end try
+   begin catch
+	if @@trancount > 0
+		begin
+			rollback transaction;
+			throw 51000,'problème durant l''exécution la destruction est annulée',1; /* no erreur > 50 000 et < 2 147 483 647 , state entre 0 et 255 (sévérité)*/
+		end
+	end catch
+    go
+		
+			
