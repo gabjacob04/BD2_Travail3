@@ -43,7 +43,7 @@ namespace BD2_Travail3
 
         private void modifierQuantitéAssignéesÀUnProjetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ModifierQuantiteAssigneesDUneImputation modifierQuantiteAssigneesDUneImputation = new ModifierQuantiteAssigneesDUneImputation();
+            ModifierQuantiteAssigneesDUnProjet modifierQuantiteAssigneesDUneImputation = new ModifierQuantiteAssigneesDUnProjet();
             modifierQuantiteAssigneesDUneImputation.ShowDialog();
         }
     }

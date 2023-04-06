@@ -1,6 +1,6 @@
 ﻿namespace BD2_Travail3
 {
-    partial class ModifierQuantiteAssigneesDUneImputation
+    partial class ModifierQuantiteAssigneesDUnProjet
     {
         /// <summary>
         /// Required designer variable.

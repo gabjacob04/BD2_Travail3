@@ -98,17 +98,18 @@
     <Compile Include="ManagerImputation.cs" />
     <Compile Include="ManagerInventaire.cs" />
     <Compile Include="ManagerProjet.cs" />
+    <Compile Include="ManagerProjetPiece.cs" />
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModifierQuantiteAssigneesDUneImputation.cs">
+    <Compile Include="ModifierQuantiteAssigneesDUnProjet.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModifierQuantiteAssigneesDUneImputation.Designer.cs">
-      <DependentUpon>ModifierQuantiteAssigneesDUneImputation.cs</DependentUpon>
+    <Compile Include="ModifierQuantiteAssigneesDUnProjet.Designer.cs">
+      <DependentUpon>ModifierQuantiteAssigneesDUnProjet.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -139,6 +140,9 @@
     <Compile Include="tbl_Projet.cs">
       <DependentUpon>AL_GJ_Travail.tt</DependentUpon>
     </Compile>
+    <Compile Include="vueListerQuantiteAccepteePourProjet.cs">
+      <DependentUpon>AL_GJ_Travail.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AjouterImputation.resx">
       <DependentUpon>AjouterImputation.cs</DependentUpon>
     </EmbeddedResource>
@@ -151,8 +155,8 @@
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModifierQuantiteAssigneesDUneImputation.resx">
-      <DependentUpon>ModifierQuantiteAssigneesDUneImputation.cs</DependentUpon>
+    <EmbeddedResource Include="ModifierQuantiteAssigneesDUnProjet.resx">
+      <DependentUpon>ModifierQuantiteAssigneesDUnProjet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
