@@ -25,7 +25,6 @@ namespace BD2_Travail3
             cmbListeProjets.DataSource = managerProjet.TouteLesProjet();
             cmbListeProjets.ValueMember = "no_Projet";
             cmbListeProjets.DisplayMember = "nom_projet";
-            cmbListeProjets.SelectedItem = "";
         }
 
         private void button1_Click(object sender, EventArgs e)
