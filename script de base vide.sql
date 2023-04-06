@@ -222,10 +222,16 @@ values ('1','1')*/
 
 	/*Travail Pratique 2*/
 
-		Create table quantiteAccepteePourProjet
+		Create table tbl_quantiteAccepteePourProjet
 		(
 		no_Projet int foreign key references tbl_Projet(no_Projet) not null,
 		no_Piece int foreign key references tbl_Inventaire(no_Piece) not null,
 		quantiteAcceptee int check (quantiteAcceptee >= 0)
 		)
 		go
+		alter table tbl_quantiteAccepteePourProjet
+		add constraint pK_ProjetEtPiece primary key (no_Projet, no_Piece)
+		go
+		
+
+
