@@ -31,8 +31,8 @@
             this.dgvPieces = new System.Windows.Forms.DataGridView();
             this.lblPieces = new System.Windows.Forms.Label();
             this.grpChoisirProjet = new System.Windows.Forms.GroupBox();
-            this.lblNomProjet = new System.Windows.Forms.Label();
             this.cmbListeProjets = new System.Windows.Forms.ComboBox();
+            this.lblNomProjet = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPieces)).BeginInit();
             this.grpChoisirProjet.SuspendLayout();
@@ -70,6 +70,14 @@
             this.grpChoisirProjet.TabStop = false;
             this.grpChoisirProjet.Text = "Rechercher un projet";
             // 
+            // cmbListeProjets
+            // 
+            this.cmbListeProjets.FormattingEnabled = true;
+            this.cmbListeProjets.Location = new System.Drawing.Point(218, 36);
+            this.cmbListeProjets.Name = "cmbListeProjets";
+            this.cmbListeProjets.Size = new System.Drawing.Size(399, 26);
+            this.cmbListeProjets.TabIndex = 1;
+            // 
             // lblNomProjet
             // 
             this.lblNomProjet.AutoSize = true;
@@ -80,20 +88,12 @@
             this.lblNomProjet.TabIndex = 0;
             this.lblNomProjet.Text = "Nom du projet";
             // 
-            // cmbListeProjets
-            // 
-            this.cmbListeProjets.FormattingEnabled = true;
-            this.cmbListeProjets.Location = new System.Drawing.Point(218, 36);
-            this.cmbListeProjets.Name = "cmbListeProjets";
-            this.cmbListeProjets.Size = new System.Drawing.Size(399, 26);
-            this.cmbListeProjets.TabIndex = 1;
-            // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(673, 58);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(673, 52);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(141, 26);
+            this.button1.Size = new System.Drawing.Size(141, 37);
             this.button1.TabIndex = 14;
             this.button1.Text = "Détruire ce projet";
             this.button1.UseVisualStyleBackColor = true;
