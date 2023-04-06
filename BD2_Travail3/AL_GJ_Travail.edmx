@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AL_GJ_TravailModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AL_GJ_TravailModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tbl_Employe">
           <Key>
             <PropertyRef Name="no_Employe" />
@@ -55,6 +55,19 @@
           <Property Name="no_Projet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nom_projet" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="description_projet" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'AL_GJ_Travail.dbo.vueListerQuantiteAccepteePourProjet' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="vueListerQuantiteAccepteePourProjet">
+          <Key>
+            <PropertyRef Name="no_Piece" />
+            <PropertyRef Name="no_Projet" />
+            <PropertyRef Name="description_Piece" />
+          </Key>
+          <Property Name="no_Piece" Type="int" Nullable="false" />
+          <Property Name="no_Projet" Type="int" Nullable="false" />
+          <Property Name="description_Piece" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="quantiteAcceptee" Type="int" />
         </EntityType>
         <Association Name="FK__tbl_Inven__no_Ma__300424B4">
           <End Role="tbl_Marque" Type="Self.tbl_Marque" Multiplicity="1" />
@@ -108,6 +121,11 @@
           <Parameter Name="no_Piece_Entreprise" Type="nvarchar" Mode="In" />
           <Parameter Name="yearSearchTerm" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="modifierQuantiteeAcceptee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="no_Projet" Type="int" Mode="In" />
+          <Parameter Name="no_Piece" Type="int" Mode="In" />
+          <Parameter Name="quantiteAcceptee" Type="int" Mode="In" />
+        </Function>
         <Function Name="RecherchePieceParNoPiece" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="noPieceDemandé" Type="nvarchar" Mode="In" />
         </Function>
@@ -124,6 +142,14 @@
           <EntitySet Name="tbl_Inventaire" EntityType="Self.tbl_Inventaire" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Marque" EntityType="Self.tbl_Marque" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Projet" EntityType="Self.tbl_Projet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vueListerQuantiteAccepteePourProjet" EntityType="Self.vueListerQuantiteAccepteePourProjet" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vueListerQuantiteAccepteePourProjet].[no_Piece] AS [no_Piece], 
+    [vueListerQuantiteAccepteePourProjet].[no_Projet] AS [no_Projet], 
+    [vueListerQuantiteAccepteePourProjet].[description_Piece] AS [description_Piece], 
+    [vueListerQuantiteAccepteePourProjet].[quantiteAcceptee] AS [quantiteAcceptee]
+    FROM [dbo].[vueListerQuantiteAccepteePourProjet] AS [vueListerQuantiteAccepteePourProjet]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__tbl_Inven__no_Ma__300424B4" Association="Self.FK__tbl_Inven__no_Ma__300424B4">
             <End Role="tbl_Marque" EntitySet="tbl_Marque" />
             <End Role="tbl_Inventaire" EntitySet="tbl_Inventaire" />
@@ -141,8 +167,7 @@
             <End Role="tbl_Impute" EntitySet="tbl_Impute" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AL_GJ_TravailModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -280,14 +305,20 @@
             <Parameter Name="yearSearchTerm" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="RecherchePieceParNoPiece" ReturnType="Collection(AL_GJ_TravailModel.RecherchePieceParNoPiece_Result)">
-            <Parameter Name="noPieceDemandé" Mode="In" Type="String" />
+          <Parameter Name="noPieceDemandé" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="selectionnerEmployeSelonRecherche" ReturnType="Collection(AL_GJ_TravailModel.selectionnerEmployeSelonRecherche_Result)">
-            <Parameter Name="searchTerm" Mode="In" Type="String" />
+          <Parameter Name="searchTerm" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SuppressionDobjetDeLInventaire">
             <Parameter Name="QuantiteAEnlever" Mode="In" Type="Int32" />
             <Parameter Name="no_Piece" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="vueListerQuantiteAccepteePourProjet" EntityType="AL_GJ_TravailModel.vueListerQuantiteAccepteePourProjet" />
+          <FunctionImport Name="modifierQuantiteeAcceptee">
+            <Parameter Name="no_Projet" Mode="In" Type="Int32" />
+            <Parameter Name="no_Piece" Mode="In" Type="Int32" />
+            <Parameter Name="quantiteAcceptee" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="getImputeByYearAndMonth_Result">
@@ -307,6 +338,17 @@
           <Property Type="Int32" Name="no_Employe" Nullable="false" />
           <Property Type="String" Name="InfoEmploye" Nullable="false" MaxLength="767" />
         </ComplexType>
+        <EntityType Name="vueListerQuantiteAccepteePourProjet">
+          <Key>
+            <PropertyRef Name="no_Piece" />
+            <PropertyRef Name="no_Projet" />
+            <PropertyRef Name="description_Piece" />
+          </Key>
+          <Property Name="no_Piece" Type="Int32" Nullable="false" />
+          <Property Name="no_Projet" Type="Int32" Nullable="false" />
+          <Property Name="description_Piece" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="quantiteAcceptee" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -396,6 +438,26 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SuppressionDobjetDeLInventaire" FunctionName="AL_GJ_TravailModel.Store.SuppressionDobjetDeLInventaire" />
+          <EntitySetMapping Name="vueListerQuantiteAccepteePourProjet">
+            <EntityTypeMapping TypeName="AL_GJ_TravailModel.vueListerQuantiteAccepteePourProjet">
+              <MappingFragment StoreEntitySet="vueListerQuantiteAccepteePourProjet">
+                <ScalarProperty Name="quantiteAcceptee" ColumnName="quantiteAcceptee" />
+                <ScalarProperty Name="description_Piece" ColumnName="description_Piece" />
+                <ScalarProperty Name="no_Projet" ColumnName="no_Projet" />
+                <ScalarProperty Name="no_Piece" ColumnName="no_Piece" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="AL_GJ_TravailModel.vueListerQuantiteAccepteePourProjet">
+              <ModificationFunctionMapping>
+                <UpdateFunction FunctionName="AL_GJ_TravailModel.Store.modifierQuantiteeAcceptee">
+                  <ScalarProperty Name="quantiteAcceptee" ParameterName="quantiteAcceptee" Version="Current" />
+                  <ScalarProperty Name="no_Piece" ParameterName="no_Piece" Version="Current" />
+                  <ScalarProperty Name="no_Projet" ParameterName="no_Projet" Version="Current" />
+                </UpdateFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="modifierQuantiteeAcceptee" FunctionName="AL_GJ_TravailModel.Store.modifierQuantiteeAcceptee" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
