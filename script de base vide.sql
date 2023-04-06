@@ -226,16 +226,20 @@ values ('1','1')*/
 		(
 		no_Projet int foreign key references tbl_Projet(no_Projet) not null,
 		no_Piece int foreign key references tbl_Inventaire(no_Piece) not null,
-		quantiteAcceptee int check (quantiteAcceptee >= 0)
+		quantiteAcceptee int
 		)
 		go
+
+
 		alter table tbl_quantiteAccepteePourProjet
-		add constraint pK_ProjetEtPiece primary key (no_Projet, no_Piece)
+		add constraint pK_ProjetEtPiece primary key (no_Projet, no_Piece),
+		constraint C_quantiteeAcceptee check (quantiteAcceptee >= 0)
 		go
 
+
 		insert into tbl_quantiteAccepteePourProjet (no_Piece, no_Projet, quantiteAcceptee)
-		values (4, 5, 20),
-		(3, 4, 10), (2, 3, 30), (1, 2, 40)
+		values (4, 5, 20),(3, 5, 20),(1, 5, 20),
+		(3, 4, 10), (2, 3, 30), (1, 2, 40), (2, 2, 40), (4, 2, 40)
 		go
 
 		create view vueListerQuantiteAccepteePourProjet
