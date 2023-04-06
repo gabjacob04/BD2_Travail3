@@ -69,11 +69,11 @@ namespace BD2_Travail3
             catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
             {
                 MessageBox.Show(ex.Message);
+                context = new AL_GJ_TravailEntities();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-
             }
         }
 
