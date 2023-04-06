@@ -32,6 +32,7 @@ namespace BD2_Travail3
         public virtual DbSet<tbl_Inventaire> tbl_Inventaire { get; set; }
         public virtual DbSet<tbl_Marque> tbl_Marque { get; set; }
         public virtual DbSet<tbl_Projet> tbl_Projet { get; set; }
+        public virtual DbSet<vueListerQuantiteAccepteePourProjet> vueListerQuantiteAccepteePourProjet { get; set; }
     
         public virtual ObjectResult<getImputeByYearAndMonth_Result> getImputeByYearAndMonth(string no_Piece_Entreprise, string yearSearchTerm)
         {
@@ -75,6 +76,23 @@ namespace BD2_Travail3
                 new ObjectParameter("no_Piece", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SuppressionDobjetDeLInventaire", quantiteAEnleverParameter, no_PieceParameter);
+        }
+    
+        public virtual int modifierQuantiteeAcceptee(Nullable<int> no_Projet, Nullable<int> no_Piece, Nullable<int> quantiteAcceptee)
+        {
+            var no_ProjetParameter = no_Projet.HasValue ?
+                new ObjectParameter("no_Projet", no_Projet) :
+                new ObjectParameter("no_Projet", typeof(int));
+    
+            var no_PieceParameter = no_Piece.HasValue ?
+                new ObjectParameter("no_Piece", no_Piece) :
+                new ObjectParameter("no_Piece", typeof(int));
+    
+            var quantiteAccepteeParameter = quantiteAcceptee.HasValue ?
+                new ObjectParameter("quantiteAcceptee", quantiteAcceptee) :
+                new ObjectParameter("quantiteAcceptee", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("modifierQuantiteeAcceptee", no_ProjetParameter, no_PieceParameter, quantiteAccepteeParameter);
         }
     }
 }

@@ -10,15 +10,17 @@ using System.Windows.Forms;
 
 namespace BD2_Travail3
 {
-    public partial class ModifierQuantiteAssigneesDUneImputation : Form
+    public partial class ModifierQuantiteAssigneesDUnProjet : Form
     {
         ManagerProjet managerProjet;
-        ManagerImputation ManagerImputation;
-        public ModifierQuantiteAssigneesDUneImputation()
+        ManagerProjetPiece managerProjetPiece;
+        AL_GJ_TravailEntities context;
+        public ModifierQuantiteAssigneesDUnProjet()
         {
             InitializeComponent();
             managerProjet = new ManagerProjet();
-            ManagerImputation = new ManagerImputation();
+            managerProjetPiece = new ManagerProjetPiece();
+            context = new AL_GJ_TravailEntities();
         }
 
         private void ModifierQuantiteAssigneesDUneImputation_Load(object sender, EventArgs e)
@@ -27,8 +29,7 @@ namespace BD2_Travail3
             cmbListeProjets.DataSource = managerProjet.TouteLesProjet();
             cmbListeProjets.ValueMember = "no_Projet";
             cmbListeProjets.DisplayMember = "nom_projet";
-            cmbListeProjets.ValueMember = "";
-           
+            dgvPieces.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -38,18 +39,22 @@ namespace BD2_Travail3
 
         private void cmbListeProjets_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            string no_projet = (string)cmbListeProjets.SelectedValue;
-            //dgvPieces.DataSource = ManagerProjet.
-
-            //dgvPieces.Columns["nom"].ReadOnly = true;
-            // dgvPieces.Columns["session"].Visible = false;
-            dgvPieces.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            try
+            {
+                dgvPieces.DataSource = managerProjetPiece.ListerQuantiteAccepteePourProjet((int)cmbListeProjets.SelectedValue, ref context);
+                dgvPieces.Columns["no_Projet"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
         private void enregister()
         {
             try
             {
-                int nombreLigneAffectees = 0; // = ManagerImputation.enregisterNote(ref context);
+                int nombreLigneAffectees = managerProjetPiece.enregisterQuantiteeAcceptee(ref context);
                 if (nombreLigneAffectees > 0)
                 {
                     MessageBox.Show("Enregistrement effectué avec succès");
@@ -65,16 +70,11 @@ namespace BD2_Travail3
             {
                 MessageBox.Show(ex.Message);
             }
-            catch (Exception babaje)
+            catch (Exception ex)
             {
-                MessageBox.Show(babaje.Message);
+                MessageBox.Show(ex.Message);
 
             }
-            /* catch (Exception ex)
-             {
-
-                 MessageBox.Show(ex.Message);
-             }*/
         }
 
         private void dgvPieces_CellEndEdit(object sender, DataGridViewCellEventArgs e)

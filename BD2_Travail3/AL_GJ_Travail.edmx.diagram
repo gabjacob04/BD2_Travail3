@@ -14,6 +14,7 @@
         <AssociationConnector Association="AL_GJ_TravailModel.fk_no_Piece" ManuallyRouted="false" />
         <AssociationConnector Association="AL_GJ_TravailModel.fk_no_Projet" ManuallyRouted="false" />
         <AssociationConnector Association="AL_GJ_TravailModel.FK__tbl_Inven__no_Ma__300424B4" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AL_GJ_TravailModel.vueListerQuantiteAccepteePourProjet" Width="1.5" PointX="5.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
