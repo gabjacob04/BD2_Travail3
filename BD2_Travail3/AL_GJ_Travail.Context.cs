@@ -94,5 +94,14 @@ namespace BD2_Travail3
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("modifierQuantiteeAcceptee", no_ProjetParameter, no_PieceParameter, quantiteAccepteeParameter);
         }
+    
+        public virtual int SupprimerUnProjet(Nullable<int> no_projet)
+        {
+            var no_projetParameter = no_projet.HasValue ?
+                new ObjectParameter("no_projet", no_projet) :
+                new ObjectParameter("no_projet", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SupprimerUnProjet", no_projetParameter);
+        }
     }
 }

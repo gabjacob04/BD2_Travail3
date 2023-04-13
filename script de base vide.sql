@@ -259,24 +259,60 @@ values ('1','1')*/
 		where no_Piece = @no_Piece and no_Projet = @no_Projet
 		go
 		
+		use AL_GJ_Travail
 		create procedure SupprimerUnProjet
 		@no_projet int
 		as
 		SET NOCOUNT ON;
 		begin try
-		begin transaction
- 	 	delete from tbl_Impute where no_Projet = @no_projet
-		delete from tbl_quantiteAccepteePourProjet where no_Projet = @no_projet
-		delete  from tbl_Projet where no_Projet = @no_projet
-	 	commit transaction
-		  end try
-   begin catch
-	if @@trancount > 0
-		begin
-			rollback transaction;
-			throw 51000,'problème durant l''exécution la destruction est annulée',1; /* no erreur > 50 000 et < 2 147 483 647 , state entre 0 et 255 (sévérité)*/
-		end
-	end catch
-    go
+			begin transaction
+ 	 			delete from tbl_Impute where no_Projet = @no_projet
+				delete from tbl_quantiteAccepteePourProjet where no_Projet = @no_projet
+				delete  from tbl_Projet where no_Projet = @no_projet
+	 		commit transaction
+		end try
+		begin catch
+		if @@trancount > 0
+			begin
+				rollback transaction;
+				throw 51000,'problème durant lexécution, la destruction est annulée',1; /* no erreur > 50 000 et < 2 147 483 647 , state entre 0 et 255 (sévérité)*/
+			end
+		end catch
+		go
 		
-			
+		create trigger verifierQueQuantiteAccepteeNEstPasDepasse
+		on tbl_Impute
+		for insert,update
+		as
+		SET NOCOUNT ON
+		/*if (update(no_competiteur) or update(no_epreuve))*/
+		begin
+		if exists (	select * from inserted
+					inner join tbl_quantiteAccepteePourProjet on inserted.no_Projet = tbl_quantiteAccepteePourProjet.no_Projet
+					and inserted.no_Piece = tbl_quantiteAccepteePourProjet.no_Piece
+					inner join tbl_Impute on inserted.no_Projet = tbl_Impute.no_Projet and inserted.no_Piece = tbl_Impute.no_Piece 
+					/*where quantite_Retire > quantiteAcceptee*/
+					where quantiteAcceptee < (select sum(quantite_Retire) from tbl_Impute
+												where inserted.no_Piece = tbl_Impute.no_Piece
+												and inserted.no_Projet = tbl_Impute.no_Projet))
+												
+				begin
+			THROW 51000, 'La quantité est trop élevée', 99;
+			rollback
+			end
+		end
+		set nocount off
+		go
+
+		/*marche*/
+		insert into tbl_Impute(no_Employe, no_Piece, no_Projet, date, quantite_Retire)
+		values (1, 1, 2, getDate(), 1), (1, 1, 2, GETDATE(), 30), (1, 2, 3, GETDATE(), 38), (1, 2, 3, GETDATE(), 1)
+		go
+		delete from tbl_Impute where no_Piece = 1 and no_Projet = 2
+		delete from tbl_Impute where no_Piece = 2 and no_Projet = 2
+		go
+
+		/*marche pas*/
+		insert into tbl_Impute(no_Employe, no_Piece, no_Projet, date, quantite_Retire)
+		values (1, 1, 2, getDate(), 11), (1, 1, 2, GETDATE(), 30), (1, 2, 3, GETDATE(), 15), (1, 2, 3, GETDATE(), 100)
+	

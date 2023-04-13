@@ -47,5 +47,20 @@ namespace BD2_Travail3
             }
             return nombreLigneAffectees;
         }
+
+        public void SupprimerUnProjet(int no_projet)
+        {
+            try
+            {
+                using (var context = new AL_GJ_TravailEntities())
+                {
+                    context.SupprimerUnProjet(no_projet);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

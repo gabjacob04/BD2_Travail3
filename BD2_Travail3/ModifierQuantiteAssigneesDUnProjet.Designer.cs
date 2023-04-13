@@ -33,7 +33,7 @@
             this.grpChoisirProjet = new System.Windows.Forms.GroupBox();
             this.cmbListeProjets = new System.Windows.Forms.ComboBox();
             this.lblNomProjet = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnDetruire = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPieces)).BeginInit();
             this.grpChoisirProjet.SuspendLayout();
             this.SuspendLayout();
@@ -41,12 +41,12 @@
             // dgvPieces
             // 
             this.dgvPieces.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPieces.Location = new System.Drawing.Point(16, 197);
-            this.dgvPieces.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvPieces.Location = new System.Drawing.Point(21, 242);
+            this.dgvPieces.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvPieces.Name = "dgvPieces";
             this.dgvPieces.RowHeadersWidth = 51;
             this.dgvPieces.RowTemplate.Height = 24;
-            this.dgvPieces.Size = new System.Drawing.Size(474, 152);
+            this.dgvPieces.Size = new System.Drawing.Size(632, 187);
             this.dgvPieces.TabIndex = 12;
             this.dgvPieces.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPieces_CellEndEdit);
             // 
@@ -54,10 +54,9 @@
             // 
             this.lblPieces.AutoSize = true;
             this.lblPieces.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPieces.Location = new System.Drawing.Point(13, 159);
-            this.lblPieces.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPieces.Location = new System.Drawing.Point(17, 196);
             this.lblPieces.Name = "lblPieces";
-            this.lblPieces.Size = new System.Drawing.Size(71, 25);
+            this.lblPieces.Size = new System.Drawing.Size(90, 29);
             this.lblPieces.TabIndex = 10;
             this.lblPieces.Text = "Pièces";
             // 
@@ -66,11 +65,11 @@
             this.grpChoisirProjet.Controls.Add(this.cmbListeProjets);
             this.grpChoisirProjet.Controls.Add(this.lblNomProjet);
             this.grpChoisirProjet.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpChoisirProjet.Location = new System.Drawing.Point(16, 18);
-            this.grpChoisirProjet.Margin = new System.Windows.Forms.Padding(2);
+            this.grpChoisirProjet.Location = new System.Drawing.Point(21, 22);
+            this.grpChoisirProjet.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.grpChoisirProjet.Name = "grpChoisirProjet";
-            this.grpChoisirProjet.Padding = new System.Windows.Forms.Padding(2);
-            this.grpChoisirProjet.Size = new System.Drawing.Size(474, 85);
+            this.grpChoisirProjet.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.grpChoisirProjet.Size = new System.Drawing.Size(632, 105);
             this.grpChoisirProjet.TabIndex = 13;
             this.grpChoisirProjet.TabStop = false;
             this.grpChoisirProjet.Text = "Rechercher un projet";
@@ -78,10 +77,10 @@
             // cmbListeProjets
             // 
             this.cmbListeProjets.FormattingEnabled = true;
-            this.cmbListeProjets.Location = new System.Drawing.Point(164, 29);
-            this.cmbListeProjets.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbListeProjets.Location = new System.Drawing.Point(219, 36);
+            this.cmbListeProjets.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbListeProjets.Name = "cmbListeProjets";
-            this.cmbListeProjets.Size = new System.Drawing.Size(300, 23);
+            this.cmbListeProjets.Size = new System.Drawing.Size(399, 26);
             this.cmbListeProjets.TabIndex = 1;
             this.cmbListeProjets.SelectionChangeCommitted += new System.EventHandler(this.cmbListeProjets_SelectionChangeCommitted);
             // 
@@ -89,36 +88,35 @@
             // 
             this.lblNomProjet.AutoSize = true;
             this.lblNomProjet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomProjet.Location = new System.Drawing.Point(28, 28);
-            this.lblNomProjet.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNomProjet.Location = new System.Drawing.Point(37, 34);
             this.lblNomProjet.Name = "lblNomProjet";
-            this.lblNomProjet.Size = new System.Drawing.Size(108, 20);
+            this.lblNomProjet.Size = new System.Drawing.Size(133, 25);
             this.lblNomProjet.TabIndex = 0;
             this.lblNomProjet.Text = "Nom du projet";
             // 
-            // button1
+            // btnDetruire
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(505, 42);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(106, 30);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Détruire ce projet";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnDetruire.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDetruire.Location = new System.Drawing.Point(673, 52);
+            this.btnDetruire.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDetruire.Name = "btnDetruire";
+            this.btnDetruire.Size = new System.Drawing.Size(141, 37);
+            this.btnDetruire.TabIndex = 14;
+            this.btnDetruire.Text = "Détruire ce projet";
+            this.btnDetruire.UseVisualStyleBackColor = true;
+            this.btnDetruire.Click += new System.EventHandler(this.button1_Click);
             // 
-            // ModifierQuantiteAssigneesDUneImputation
+            // ModifierQuantiteAssigneesDUnProjet
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(628, 366);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(837, 450);
+            this.Controls.Add(this.btnDetruire);
             this.Controls.Add(this.grpChoisirProjet);
             this.Controls.Add(this.dgvPieces);
             this.Controls.Add(this.lblPieces);
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "ModifierQuantiteAssigneesDUneImputation";
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Name = "ModifierQuantiteAssigneesDUnProjet";
             this.Text = "ModifierQuantiteAssigneesDUneImputation";
             this.Load += new System.EventHandler(this.ModifierQuantiteAssigneesDUneImputation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPieces)).EndInit();
@@ -136,6 +134,6 @@
         private System.Windows.Forms.GroupBox grpChoisirProjet;
         private System.Windows.Forms.ComboBox cmbListeProjets;
         private System.Windows.Forms.Label lblNomProjet;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDetruire;
     }
 }

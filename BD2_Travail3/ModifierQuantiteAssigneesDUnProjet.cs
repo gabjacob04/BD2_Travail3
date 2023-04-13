@@ -26,23 +26,47 @@ namespace BD2_Travail3
         private void ModifierQuantiteAssigneesDUneImputation_Load(object sender, EventArgs e)
         {
             cmbListeProjets.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbListeProjets.DataSource = managerProjet.TouteLesProjet();
-            cmbListeProjets.ValueMember = "no_Projet";
-            cmbListeProjets.DisplayMember = "nom_projet";
+            setDataSourceComboBox();
             dgvPieces.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
+        private void setDataSourceComboBox()
+        {
+            try
+            {
+                cmbListeProjets.DataSource = managerProjet.TouteLesProjet();
+                cmbListeProjets.ValueMember = "no_Projet";
+                cmbListeProjets.DisplayMember = "nom_projet";
+            }
+            catch (Exception)
+            {
+                throw;
+            }       
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                managerProjetPiece.SupprimerUnProjet((int)cmbListeProjets.SelectedValue);
+                setDataSourceComboBox();
+                dgvPieces.DataSource = null;
+                for (int i = 0; i < dgvPieces.Rows.Count; i++)
+                {
+                    dgvPieces[0, dgvPieces.CurrentRow.Index].Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void cmbListeProjets_SelectionChangeCommitted(object sender, EventArgs e)
         {
             try
             {
-                dgvPieces.DataSource = managerProjetPiece.ListerQuantiteAccepteePourProjet((int)cmbListeProjets.SelectedValue, ref context);
-                dgvPieces.Columns["no_Projet"].Visible = false;
+                assignerDGV();
             }
             catch (Exception ex)
             {
@@ -50,6 +74,45 @@ namespace BD2_Travail3
             }
             
         }
+
+        private void assignerDGV()
+        {
+            try
+            {
+                dgvPieces.DataSource = managerProjetPiece.ListerQuantiteAccepteePourProjet((int)cmbListeProjets.SelectedValue, ref context);
+                dgvPieces.Columns["no_Projet"].Visible = false;
+                dgvPieces.Columns["no_Piece"].ReadOnly = true;
+                dgvPieces.Columns["description_Piece"].ReadOnly = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
+        }
+
+        private void casErreurRemettreDGVBonEtat()
+        {
+            try
+            {
+                int positionRowIndex = dgvPieces.CurrentRow.Index;
+                int positionCellIndex = dgvPieces.CurrentCell.ColumnIndex;
+
+                context = new AL_GJ_TravailEntities();
+                dgvPieces.DataSource = null;
+                for (int i = 0; i < dgvPieces.Rows.Count; i++)
+                {
+                    dgvPieces[0, dgvPieces.CurrentRow.Index].Dispose();
+                }
+                assignerDGV();
+                dgvPieces.CurrentCell = dgvPieces.Rows[positionRowIndex].Cells[positionCellIndex];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }        
+        }
+
         private void enregister()
         {
             try
@@ -62,18 +125,14 @@ namespace BD2_Travail3
                 }
                 else
                 {
-                    throw new Exception("Erreur,aucun changement effectué");
+                    throw new Exception("Erreur, aucun changement effectué");
                 }
 
-            }
-            catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
-            {
-                MessageBox.Show(ex.Message);
-                context = new AL_GJ_TravailEntities();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                casErreurRemettreDGVBonEtat();
             }
         }
 
