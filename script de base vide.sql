@@ -279,6 +279,13 @@ values ('1','1')*/
 			end
 		end catch
 		go
+
+		update vueListerQuantiteAccepteePourProjet 
+		set quantiteAcceptee =  50
+		where no_Piece = 1 and no_Projet = 2
+		go
+		select * from vueListerQuantiteAccepteePourProjet
+		go
 		
 		create trigger verifierQueQuantiteAccepteeNEstPasDepasse
 		on tbl_Impute
@@ -297,7 +304,7 @@ values ('1','1')*/
 												and inserted.no_Projet = tbl_Impute.no_Projet))
 												
 				begin
-			THROW 51000, 'La quantité est trop élevée', 99;
+			THROW 51000, 'Votre quantité dépasse la quantité accepté pour la pièce de ce projet', 99;
 			rollback
 			end
 		end
