@@ -322,4 +322,8 @@ values ('1','1')*/
 		/*marche pas*/
 		insert into tbl_Impute(no_Employe, no_Piece, no_Projet, date, quantite_Retire)
 		values (1, 1, 2, getDate(), 11), (1, 1, 2, GETDATE(), 30), (1, 2, 3, GETDATE(), 15), (1, 2, 3, GETDATE(), 100)
+		go
+		
+		alter table tbl_Projet
+		add concurrenceTimeStamp TimeStamp not null
 	

@@ -16,7 +16,7 @@ namespace BD2_Travail3
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ModifierProjetConcurrence());
+            Application.Run(new Menu());
         }
     }
 }

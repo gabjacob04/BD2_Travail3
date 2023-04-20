@@ -46,5 +46,11 @@ namespace BD2_Travail3
             ModifierQuantiteAssigneesDUnProjet modifierQuantiteAssigneesDUneImputation = new ModifierQuantiteAssigneesDUnProjet();
             modifierQuantiteAssigneesDUneImputation.ShowDialog();
         }
+
+        private void modifierUnProjetconcurrenceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ModifierProjetConcurrence modifierProjetConcurrence = new ModifierProjetConcurrence();
+            modifierProjetConcurrence.ShowDialog();
+        }
     }
 }
