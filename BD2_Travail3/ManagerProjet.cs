@@ -22,5 +22,31 @@ namespace BD2_Travail3 {
                 return context.tbl_Projet.Where(p => p.no_Projet == id).ToList();
             }
         }
+        
+        public int ModifierProjet(tbl_Projet projetAModifier)
+        {
+            try
+            {
+                int nombreLigneModifier = 0;
+                using (var context = new AL_GJ_TravailEntities())
+                {
+                    tbl_Projet projet = context.tbl_Projet.Find(projetAModifier.no_Projet);
+                    projet.no_Projet = projetAModifier.no_Projet;
+                    projet.nom_projet = projetAModifier.nom_projet;
+                    projet.description_projet = projetAModifier.description_projet;
+
+                    if (context.ChangeTracker.HasChanges())
+                    {
+                        nombreLigneModifier = context.SaveChanges();
+                    }
+                }
+                return nombreLigneModifier;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }
