@@ -114,6 +114,7 @@
             this.btn_prendre_valeur_bd.TabIndex = 7;
             this.btn_prendre_valeur_bd.Text = "Prendre la valeur de la BD";
             this.btn_prendre_valeur_bd.UseVisualStyleBackColor = true;
+            this.btn_prendre_valeur_bd.Click += new System.EventHandler(this.btn_prendre_valeur_bd_Click);
             // 
             // btn_prendre_valeur_proposé
             // 
@@ -125,7 +126,7 @@
             this.btn_prendre_valeur_proposé.Text = "Prendre ma valeur proposée";
             this.btn_prendre_valeur_proposé.UseVisualStyleBackColor = true;
             // 
-            // GéréErreurDeConcurrence
+            // GererErreurDeConcurrence
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -139,8 +140,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "GéréErreurDeConcurrence";
+            this.Name = "GererErreurDeConcurrence";
             this.Text = "comment gérer l\'erreur de concurrence";
+            this.Load += new System.EventHandler(this.GererErreurDeConcurrence_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

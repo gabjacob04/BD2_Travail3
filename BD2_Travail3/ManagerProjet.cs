@@ -31,7 +31,6 @@ namespace BD2_Travail3 {
                 using (var context = new AL_GJ_TravailEntities())
                 {
                     tbl_Projet projet = context.tbl_Projet.Find(projetAModifier.no_Projet);
-                    projet.no_Projet = projetAModifier.no_Projet;
                     projet.nom_projet = projetAModifier.nom_projet;
                     projet.description_projet = projetAModifier.description_projet;
 
