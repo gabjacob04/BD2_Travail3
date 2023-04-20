@@ -83,6 +83,7 @@
             this.dgvAfficherPiece.RowTemplate.Height = 24;
             this.dgvAfficherPiece.Size = new System.Drawing.Size(644, 125);
             this.dgvAfficherPiece.TabIndex = 4;
+            this.dgvAfficherPiece.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAfficherPiece_CellClick);
             // 
             // txtRechercheNumeroPiece
             // 

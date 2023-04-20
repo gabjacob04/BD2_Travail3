@@ -105,6 +105,12 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModifierProjetConcurrence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifierProjetConcurrence.Designer.cs">
+      <DependentUpon>ModifierProjetConcurrence.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModifierQuantiteAssigneesDUnProjet.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifierProjetConcurrence.resx">
+      <DependentUpon>ModifierProjetConcurrence.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModifierQuantiteAssigneesDUnProjet.resx">
       <DependentUpon>ModifierQuantiteAssigneesDUnProjet.cs</DependentUpon>

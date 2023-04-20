@@ -14,5 +14,13 @@ namespace BD2_Travail3 {
                return context.tbl_Projet.OrderBy(p=>p.nom_projet).ToList();;
             }
         }
+
+        public List<tbl_Projet> ProjetParId(int id)
+        {
+            using (var context = new AL_GJ_TravailEntities())
+            {
+                return context.tbl_Projet.Where(p => p.no_Projet == id).ToList();
+            }
+        }
     }
 }

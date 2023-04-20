@@ -23,6 +23,7 @@ namespace BD2_Travail3
         public int no_Projet { get; set; }
         public string nom_projet { get; set; }
         public string description_projet { get; set; }
+        public byte[] concurrenceTimeStamp { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_Impute> tbl_Impute { get; set; }
