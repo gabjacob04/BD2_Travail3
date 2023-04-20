@@ -55,6 +55,7 @@
           <Property Name="no_Projet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nom_projet" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="description_projet" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="concurrenceTimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
 avertissement 6002: La table/vue 'AL_GJ_Travail.dbo.vueListerQuantiteAccepteePourProjet' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
@@ -232,6 +233,7 @@ avertissement 6002: La table/vue 'AL_GJ_Travail.dbo.vueListerQuantiteAccepteePou
           <Property Name="nom_projet" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="description_projet" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="tbl_Impute" Relationship="Self.fk_no_Projet" FromRole="tbl_Projet" ToRole="tbl_Impute" />
+          <Property Name="concurrenceTimeStamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
         <Association Name="fk_no_Employe">
           <End Role="tbl_Employe" Type="Self.tbl_Employe" Multiplicity="1" />
@@ -324,7 +326,7 @@ avertissement 6002: La table/vue 'AL_GJ_Travail.dbo.vueListerQuantiteAccepteePou
             <Parameter Name="quantiteAcceptee" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SupprimerUnProjet">
-            <Parameter Name="no_projet" Mode="In" Type="Int32" />
+          <Parameter Name="no_projet" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="getImputeByYearAndMonth_Result">
@@ -408,6 +410,7 @@ avertissement 6002: La table/vue 'AL_GJ_Travail.dbo.vueListerQuantiteAccepteePou
           <EntitySetMapping Name="tbl_Projet">
             <EntityTypeMapping TypeName="AL_GJ_TravailModel.tbl_Projet">
               <MappingFragment StoreEntitySet="tbl_Projet">
+                <ScalarProperty Name="concurrenceTimeStamp" ColumnName="concurrenceTimeStamp" />
                 <ScalarProperty Name="no_Projet" ColumnName="no_Projet" />
                 <ScalarProperty Name="nom_projet" ColumnName="nom_projet" />
                 <ScalarProperty Name="description_projet" ColumnName="description_projet" />

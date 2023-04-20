@@ -42,6 +42,10 @@ namespace BD2_Travail3 {
                 }
                 return nombreLigneModifier;
             }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException exUpdate)
+            {
+                throw new Exception(exUpdate.InnerException.InnerException.Message);
+            }
             catch (Exception)
             {
                 throw;

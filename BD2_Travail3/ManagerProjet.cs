@@ -15,6 +15,14 @@ namespace BD2_Travail3 {
             }
         }
 
+        public List<tbl_Projet> ProjetParId(int id)
+        {
+            using (var context = new AL_GJ_TravailEntities())
+            {
+                return context.tbl_Projet.Where(p => p.no_Projet == id).ToList();
+            }
+        }
+        
         public int ModifierProjet(tbl_Projet projetAModifier)
         {
             try

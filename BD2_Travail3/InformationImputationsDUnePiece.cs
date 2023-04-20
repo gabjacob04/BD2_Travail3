@@ -63,5 +63,14 @@ namespace BD2_Travail3
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void dgvAfficherPiece_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvImputationDUnePiece.DataSource = null;
+            for (int i = 0; i < dgvImputationDUnePiece.Rows.Count; i++)
+            {
+                dgvImputationDUnePiece[0, dgvImputationDUnePiece.CurrentRow.Index].Dispose();
+            }
+        }
     }
 }
