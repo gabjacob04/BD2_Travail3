@@ -13,49 +13,75 @@ namespace BD2_Travail3
 {
     public partial class GererErreurDeConcurrence : Form
     {
-        public GererErreurDeConcurrence()
+        DbPropertyValues valeurDatabase;
+        DbEntityEntry valeurUser;
+        AL_GJ_TravailEntities context;
+
+        public GererErreurDeConcurrence(DbEntityEntry valeurUser, DbPropertyValues valeurDatabase, ref AL_GJ_TravailEntities context)
         {
             InitializeComponent();
-        }
-
-        private void txt_valeur_changee_de_bd_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_valeur_proposé_TextChanged(object sender, EventArgs e)
-        {
-
+            this.valeurUser = valeurUser;
+            this.valeurDatabase = valeurDatabase;
+            this.context = context;
         }
 
         private void GererErreurDeConcurrence_Load(object sender, EventArgs e)
         {
+            try
+            {
+                if (valeurUser is null || valeurDatabase is null)
+                {
+                    throw new Exception("Impossible de récupérer les valeurs");
+                }
+                txtUserDescription.Text = valeurUser.CurrentValues.GetValue<string>("description_projet");
+                txtUserNomProjet.Text = valeurUser.CurrentValues.GetValue<string>("nom_projet");
 
+                txtDatabaseDescription.Text = valeurDatabase.GetValue<string>("description_projet");
+                txtDatabaseNomProjet.Text = valeurDatabase.GetValue<string>("nom_projet");
+
+                txtOriginalDescription.Text = valeurUser.OriginalValues.GetValue<string>("description_projet");
+                txtOriginalNomProjet.Text = valeurUser.OriginalValues.GetValue<string>("nom_projet");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void btn_prendre_valeur_proposé_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var currentUserValues = valeurUser.CurrentValues;
+                valeurUser.OriginalValues.SetValues(valeurDatabase);
+                valeurDatabase.SetValues(currentUserValues);
+                context.SaveChanges();
+
+                MessageBox.Show("Modification effectué avec succès");
+                this.Hide();
+                this.Closed += (s, args) => this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btn_prendre_valeur_bd_Click(object sender, EventArgs e)
         {
-            
-          /*  DbUpdateConcurrencyException dex;
-            if (nom_projet is changed)
+            try
             {
-                var valeurNomCoursOG = dex.Entries.Single().GetDatabaseValues().GetValue<string>("nom_projet");
-                txt_valeur_changee_de_bd.Text = valeurNomCoursOG;
+                valeurUser.Reload();
+                valeurUser.OriginalValues.SetValues(valeurDatabase);
+                context.SaveChanges();
+
+                MessageBox.Show("Vos valeurs ont été annulée et vous avez été mis à jour avec la bd");
+                this.Hide();
+                this.Closed += (s, args) => this.Close();
             }
-            else
+            catch (Exception ex)
             {
-                var valeurPondOG = dex.Entries.Single().GetDatabaseValues().GetValue<string>("description_projet");
-                txt_valeur_changee_de_bd.Text = valeurPondOG;
+                MessageBox.Show(ex.Message);
             }
-                    var value = dex.Entries.Single().GetDatabaseValues();
-                    dex.Entries.Single().OriginalValues.SetValues(value);
-                    context.SaveChanges();
-                    MessageBox.Show("Le cour est toute décalisser fak on a le cours d'origine normal.");
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }*/
         }
     }
 }

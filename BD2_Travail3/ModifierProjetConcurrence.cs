@@ -75,6 +75,21 @@ namespace BD2_Travail3
                 }
                 throw new Exception("Une erreur est survenue");
             }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                //Value du User
+                var valeurModifierUser = ex.Entries.Single();
+                //Valeur Database
+                var valeurDataBase = ex.Entries.Single().GetDatabaseValues();
+
+                GererErreurDeConcurrence gererErreurDeConcurrence = new GererErreurDeConcurrence(valeurModifierUser, valeurDataBase, ref context);
+                gererErreurDeConcurrence.ShowDialog();
+
+                int selectedProjet = cmbListeProjets.SelectedIndex;
+                AfficherProjetsComboBox();
+                cmbListeProjets.SelectedIndex = selectedProjet;
+                cmbListeProjets_SelectionChangeCommitted_1(sender, e);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
