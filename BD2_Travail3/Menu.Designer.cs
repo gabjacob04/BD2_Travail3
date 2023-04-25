@@ -33,8 +33,8 @@
             this.rechercherModificationEmployeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterUneImputationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informationSurLesImputationsDunePieceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gestionDesErreursDeConcurrenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modifierQuantitéAssignéesÀUnProjetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifierUnProjetconcurrenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,8 +55,8 @@
             this.rechercherModificationEmployeToolStripMenuItem,
             this.ajouterUneImputationToolStripMenuItem,
             this.informationSurLesImputationsDunePieceToolStripMenuItem,
-            this.gestionDesErreursDeConcurrenceToolStripMenuItem,
-            this.modifierQuantitéAssignéesÀUnProjetToolStripMenuItem});
+            this.modifierQuantitéAssignéesÀUnProjetToolStripMenuItem,
+            this.modifierUnProjetconcurrenceToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(60, 24);
             this.menuToolStripMenuItem.Text = "Menu";
@@ -82,19 +82,19 @@
             this.informationSurLesImputationsDunePieceToolStripMenuItem.Text = "Information sur les imputations d\'une pièce";
             this.informationSurLesImputationsDunePieceToolStripMenuItem.Click += new System.EventHandler(this.informationSurLesImputationsDunePieceToolStripMenuItem_Click);
             // 
-            // gestionDesErreursDeConcurrenceToolStripMenuItem
-            // 
-            this.gestionDesErreursDeConcurrenceToolStripMenuItem.Name = "gestionDesErreursDeConcurrenceToolStripMenuItem";
-            this.gestionDesErreursDeConcurrenceToolStripMenuItem.Size = new System.Drawing.Size(378, 26);
-            this.gestionDesErreursDeConcurrenceToolStripMenuItem.Text = "Gestion des erreurs de concurrence";
-            this.gestionDesErreursDeConcurrenceToolStripMenuItem.Click += new System.EventHandler(this.gestionDesErreursDeConcurrenceToolStripMenuItem_Click);
-            // 
             // modifierQuantitéAssignéesÀUnProjetToolStripMenuItem
             // 
             this.modifierQuantitéAssignéesÀUnProjetToolStripMenuItem.Name = "modifierQuantitéAssignéesÀUnProjetToolStripMenuItem";
             this.modifierQuantitéAssignéesÀUnProjetToolStripMenuItem.Size = new System.Drawing.Size(378, 26);
             this.modifierQuantitéAssignéesÀUnProjetToolStripMenuItem.Text = "Modifier quantité assignées à un projet";
             this.modifierQuantitéAssignéesÀUnProjetToolStripMenuItem.Click += new System.EventHandler(this.modifierQuantitéAssignéesÀUnProjetToolStripMenuItem_Click);
+            // 
+            // modifierUnProjetconcurrenceToolStripMenuItem
+            // 
+            this.modifierUnProjetconcurrenceToolStripMenuItem.Name = "modifierUnProjetconcurrenceToolStripMenuItem";
+            this.modifierUnProjetconcurrenceToolStripMenuItem.Size = new System.Drawing.Size(378, 26);
+            this.modifierUnProjetconcurrenceToolStripMenuItem.Text = "Modifier un projet (concurrence)";
+            this.modifierUnProjetconcurrenceToolStripMenuItem.Click += new System.EventHandler(this.modifierUnProjetconcurrenceToolStripMenuItem_Click);
             // 
             // Menu
             // 
@@ -121,8 +121,8 @@
         private System.Windows.Forms.ToolStripMenuItem rechercherModificationEmployeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajouterUneImputationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem informationSurLesImputationsDunePieceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gestionDesErreursDeConcurrenceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modifierQuantitéAssignéesÀUnProjetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modifierUnProjetconcurrenceToolStripMenuItem;
     }
 }
 

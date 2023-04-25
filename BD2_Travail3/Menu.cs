@@ -35,16 +35,16 @@ namespace BD2_Travail3
             informationImputationsDUnePiece.ShowDialog();
         }
 
-        private void gestionDesErreursDeConcurrenceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            GererErreurDeConcurrence gererErreurDeConcurrence = new GererErreurDeConcurrence();
-            gererErreurDeConcurrence.ShowDialog();  
-        }
-
         private void modifierQuantitéAssignéesÀUnProjetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ModifierQuantiteAssigneesDUnProjet modifierQuantiteAssigneesDUneImputation = new ModifierQuantiteAssigneesDUnProjet();
             modifierQuantiteAssigneesDUneImputation.ShowDialog();
+        }
+
+        private void modifierUnProjetconcurrenceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ModifierProjetConcurrence modifierProjetConcurrence = new ModifierProjetConcurrence();
+            modifierProjetConcurrence.ShowDialog();
         }
     }
 }

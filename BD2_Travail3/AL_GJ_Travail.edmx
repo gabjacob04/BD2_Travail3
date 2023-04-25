@@ -233,7 +233,7 @@ avertissement 6002: La table/vue 'AL_GJ_Travail.dbo.vueListerQuantiteAccepteePou
           <Property Name="nom_projet" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="description_projet" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="tbl_Impute" Relationship="Self.fk_no_Projet" FromRole="tbl_Projet" ToRole="tbl_Impute" />
-          <Property Name="concurrenceTimeStamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="concurrenceTimeStamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
         </EntityType>
         <Association Name="fk_no_Employe">
           <End Role="tbl_Employe" Type="Self.tbl_Employe" Multiplicity="1" />
