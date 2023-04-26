@@ -291,6 +291,8 @@ values ('1','1')*/
 		select * from tbl_quantiteAccepteePourProjet where @no_projet = no_Projet
 		go*/
 
+		/*  marche
+		exec SupprimerUnProjet 5*/
 		/* ne marchera pas
 		exec SupprimerUnProjet 4*/
 
