@@ -274,7 +274,7 @@ values ('1','1')*/
 		if @@trancount > 0
 			begin
 				rollback transaction;
-				throw 51000,'problème durant lexécution, le projet possèdes des imputations, la destruction est annulée',1; /* no erreur > 50 000 et < 2 147 483 647 , state entre 0 et 255 (sévérité)*/
+				throw 51000,'problème durant l''exécution, le projet sélectionné possèdes des imputations, la destruction a été annulée',1; /* no erreur > 50 000 et < 2 147 483 647 , state entre 0 et 255 (sévérité)*/
 			end
 		end catch
 		go

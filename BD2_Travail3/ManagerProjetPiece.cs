@@ -59,13 +59,7 @@ namespace BD2_Travail3
             }
             catch (System.Data.Entity.Core.EntityCommandExecutionException ex)
             {
-                var LeMessage = ex.InnerException.InnerException.Message;
-                if (ex.InnerException.InnerException.Message.Contains("annulée"))
-                {
-                    throw new Exception("On ne peut pas détruire ce cours, car il est utilisé dans notre système");
-                }
-
-                throw new Exception(ex.InnerException.InnerException.Message);
+                throw new Exception(ex.InnerException.Message);
             }
             catch (Exception)
             {
