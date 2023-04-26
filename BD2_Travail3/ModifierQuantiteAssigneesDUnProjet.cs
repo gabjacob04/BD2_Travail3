@@ -80,8 +80,10 @@ namespace BD2_Travail3
             try
             {
                 dgvPieces.DataSource = managerProjetPiece.ListerQuantiteAccepteePourProjet((int)cmbListeProjets.SelectedValue, ref context);
+                dgvPieces.Columns["no_Piece_Entreprise"].DisplayIndex = 1;
+                dgvPieces.Columns["no_Piece_Entreprise"].ReadOnly = true;
                 dgvPieces.Columns["no_Projet"].Visible = false;
-                dgvPieces.Columns["no_Piece"].ReadOnly = true;
+                dgvPieces.Columns["no_Piece"].Visible = false;
                 dgvPieces.Columns["description_Piece"].ReadOnly = true;
             }
             catch (Exception)

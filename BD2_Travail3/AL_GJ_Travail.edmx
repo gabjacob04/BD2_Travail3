@@ -67,6 +67,7 @@ avertissement 6002: La table/vue 'AL_GJ_Travail.dbo.vueListerQuantiteAccepteePou
           </Key>
           <Property Name="no_Piece" Type="int" Nullable="false" />
           <Property Name="no_Projet" Type="int" Nullable="false" />
+          <Property Name="no_Piece_Entreprise" Type="nvarchar" MaxLength="100" />
           <Property Name="description_Piece" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="quantiteAcceptee" Type="int" />
         </EntityType>
@@ -150,6 +151,7 @@ avertissement 6002: La table/vue 'AL_GJ_Travail.dbo.vueListerQuantiteAccepteePou
             <DefiningQuery>SELECT 
     [vueListerQuantiteAccepteePourProjet].[no_Piece] AS [no_Piece], 
     [vueListerQuantiteAccepteePourProjet].[no_Projet] AS [no_Projet], 
+    [vueListerQuantiteAccepteePourProjet].[no_Piece_Entreprise] AS [no_Piece_Entreprise], 
     [vueListerQuantiteAccepteePourProjet].[description_Piece] AS [description_Piece], 
     [vueListerQuantiteAccepteePourProjet].[quantiteAcceptee] AS [quantiteAcceptee]
     FROM [dbo].[vueListerQuantiteAccepteePourProjet] AS [vueListerQuantiteAccepteePourProjet]</DefiningQuery>
@@ -356,6 +358,7 @@ avertissement 6002: La table/vue 'AL_GJ_Travail.dbo.vueListerQuantiteAccepteePou
           <Property Name="no_Projet" Type="Int32" Nullable="false" />
           <Property Name="description_Piece" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="quantiteAcceptee" Type="Int32" />
+          <Property Name="no_Piece_Entreprise" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -450,6 +453,7 @@ avertissement 6002: La table/vue 'AL_GJ_Travail.dbo.vueListerQuantiteAccepteePou
           <EntitySetMapping Name="vueListerQuantiteAccepteePourProjet">
             <EntityTypeMapping TypeName="AL_GJ_TravailModel.vueListerQuantiteAccepteePourProjet">
               <MappingFragment StoreEntitySet="vueListerQuantiteAccepteePourProjet">
+                <ScalarProperty Name="no_Piece_Entreprise" ColumnName="no_Piece_Entreprise" />
                 <ScalarProperty Name="quantiteAcceptee" ColumnName="quantiteAcceptee" />
                 <ScalarProperty Name="description_Piece" ColumnName="description_Piece" />
                 <ScalarProperty Name="no_Projet" ColumnName="no_Projet" />

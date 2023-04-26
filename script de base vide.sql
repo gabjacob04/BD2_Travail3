@@ -244,7 +244,7 @@ values ('1','1')*/
 
 		create view vueListerQuantiteAccepteePourProjet
 		as
-		select tbl_quantiteAccepteePourProjet.no_Piece, no_Projet, tbl_Inventaire.description_Piece, quantiteAcceptee from tbl_quantiteAccepteePourProjet
+		select tbl_quantiteAccepteePourProjet.no_Piece, no_Projet, no_Piece_Entreprise, tbl_Inventaire.description_Piece, quantiteAcceptee from tbl_quantiteAccepteePourProjet
 				inner join tbl_Inventaire on tbl_quantiteAccepteePourProjet.no_Piece = tbl_Inventaire.no_Piece
 		go
 
@@ -259,14 +259,13 @@ values ('1','1')*/
 		where no_Piece = @no_Piece and no_Projet = @no_Projet
 		go
 		
-		use AL_GJ_Travail
 		create procedure SupprimerUnProjet
 		@no_projet int
 		as
 		SET NOCOUNT ON;
 		begin try
 			begin transaction
- 	 			delete from tbl_Impute where no_Projet = @no_projet
+ 	 			/*delete from tbl_Impute where no_Projet = @no_projet*/
 				delete from tbl_quantiteAccepteePourProjet where no_Projet = @no_projet
 				delete  from tbl_Projet where no_Projet = @no_projet
 	 		commit transaction
@@ -275,7 +274,7 @@ values ('1','1')*/
 		if @@trancount > 0
 			begin
 				rollback transaction;
-				throw 51000,'problème durant lexécution, la destruction est annulée',1; /* no erreur > 50 000 et < 2 147 483 647 , state entre 0 et 255 (sévérité)*/
+				throw 51000,'problème durant lexécution, le projet possèdes des imputations, la destruction est annulée',1; /* no erreur > 50 000 et < 2 147 483 647 , state entre 0 et 255 (sévérité)*/
 			end
 		end catch
 		go
