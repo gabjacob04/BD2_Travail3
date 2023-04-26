@@ -258,7 +258,9 @@ values ('1','1')*/
 		set quantiteAcceptee = @quantiteAcceptee
 		where no_Piece = @no_Piece and no_Projet = @no_Projet
 		go
+
 		
+
 		create procedure SupprimerUnProjet
 		@no_projet int
 		as
@@ -278,6 +280,19 @@ values ('1','1')*/
 			end
 		end catch
 		go
+		/*cree un projet
+		declare @no_projet int
+		insert into tbl_Projet(nom_projet,description_projet)
+		values('test' , 'un petit test') 
+		set @no_projet = SCOPE_IDENTITY()
+		insert into tbl_quantiteAccepteePourProjet(no_Projet,no_Piece,quantiteAcceptee)
+		values(@no_projet,2,30),(@no_projet,3,30)
+		select * from tbl_Projet where @no_projet = no_Projet
+		select * from tbl_quantiteAccepteePourProjet where @no_projet = no_Projet
+		go*/
+
+		/* ne marchera pas
+		exec SupprimerUnProjet 4*/
 
 		update vueListerQuantiteAccepteePourProjet 
 		set quantiteAcceptee =  50
@@ -312,16 +327,16 @@ values ('1','1')*/
 
 		/*marche*/
 		insert into tbl_Impute(no_Employe, no_Piece, no_Projet, date, quantite_Retire)
-		values (1, 1, 2, getDate(), 1), (1, 1, 2, GETDATE(), 30), (1, 2, 3, GETDATE(), 38), (1, 2, 3, GETDATE(), 1)
+		values (1, 1, 2, getDate(), 1), (1, 1, 2, GETDATE(), 20), (1, 2, 3, GETDATE(), 15), (1, 2, 3, GETDATE(), 1)
 		go
 		delete from tbl_Impute where no_Piece = 1 and no_Projet = 2
 		delete from tbl_Impute where no_Piece = 2 and no_Projet = 2
 		go
 
 		/*marche pas*/
-		insert into tbl_Impute(no_Employe, no_Piece, no_Projet, date, quantite_Retire)
+		/*insert into tbl_Impute(no_Employe, no_Piece, no_Projet, date, quantite_Retire)
 		values (1, 1, 2, getDate(), 11), (1, 1, 2, GETDATE(), 30), (1, 2, 3, GETDATE(), 15), (1, 2, 3, GETDATE(), 100)
-		go
+		go*/
 		
 		alter table tbl_Projet
 		add concurrenceTimeStamp TimeStamp not null
