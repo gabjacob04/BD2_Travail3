@@ -28,6 +28,7 @@ namespace BD2_Travail3
             cmbListeProjets.DropDownStyle = ComboBoxStyle.DropDownList;
             setDataSourceComboBox();
             dgvPieces.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            cmbListeProjets.SelectedItem = null;
         }
 
         private void setDataSourceComboBox()
@@ -48,6 +49,9 @@ namespace BD2_Travail3
         {
             try
             {
+                if (cmbListeProjets.SelectedItem is null)
+                    throw new Exception("Erreur : Aucun projet de sélectionné");
+
                 managerProjetPiece.SupprimerUnProjet((int)cmbListeProjets.SelectedValue);
                 setDataSourceComboBox();
                 dgvPieces.DataSource = null;
