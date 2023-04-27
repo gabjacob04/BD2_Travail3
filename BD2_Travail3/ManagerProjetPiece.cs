@@ -57,6 +57,10 @@ namespace BD2_Travail3
                     context.SupprimerUnProjet(no_projet);
                 }
             }
+            catch (System.Data.Entity.Core.EntityCommandExecutionException ex)
+            {
+                throw new Exception(ex.InnerException.Message);
+            }
             catch (Exception)
             {
                 throw;

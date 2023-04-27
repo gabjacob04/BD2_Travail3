@@ -244,7 +244,7 @@ values ('1','1')*/
 
 		create view vueListerQuantiteAccepteePourProjet
 		as
-		select tbl_quantiteAccepteePourProjet.no_Piece, no_Projet, tbl_Inventaire.description_Piece, quantiteAcceptee from tbl_quantiteAccepteePourProjet
+		select tbl_quantiteAccepteePourProjet.no_Piece, no_Projet, no_Piece_Entreprise, tbl_Inventaire.description_Piece, quantiteAcceptee from tbl_quantiteAccepteePourProjet
 				inner join tbl_Inventaire on tbl_quantiteAccepteePourProjet.no_Piece = tbl_Inventaire.no_Piece
 		go
 
@@ -258,15 +258,16 @@ values ('1','1')*/
 		set quantiteAcceptee = @quantiteAcceptee
 		where no_Piece = @no_Piece and no_Projet = @no_Projet
 		go
+
 		
-		use AL_GJ_Travail
+
 		create procedure SupprimerUnProjet
 		@no_projet int
 		as
 		SET NOCOUNT ON;
 		begin try
 			begin transaction
- 	 			delete from tbl_Impute where no_Projet = @no_projet
+ 	 			/*delete from tbl_Impute where no_Projet = @no_projet*/
 				delete from tbl_quantiteAccepteePourProjet where no_Projet = @no_projet
 				delete  from tbl_Projet where no_Projet = @no_projet
 	 		commit transaction
@@ -275,10 +276,25 @@ values ('1','1')*/
 		if @@trancount > 0
 			begin
 				rollback transaction;
-				throw 51000,'problème durant lexécution, la destruction est annulée',1; /* no erreur > 50 000 et < 2 147 483 647 , state entre 0 et 255 (sévérité)*/
+				throw 51000,'problème durant l''exécution, le projet sélectionné possèdes des imputations, la destruction a été annulée',1; /* no erreur > 50 000 et < 2 147 483 647 , state entre 0 et 255 (sévérité)*/
 			end
 		end catch
 		go
+		/*cree un projet
+		declare @no_projet int
+		insert into tbl_Projet(nom_projet,description_projet)
+		values('test' , 'un petit test') 
+		set @no_projet = SCOPE_IDENTITY()
+		insert into tbl_quantiteAccepteePourProjet(no_Projet,no_Piece,quantiteAcceptee)
+		values(@no_projet,2,30),(@no_projet,3,30)
+		select * from tbl_Projet where @no_projet = no_Projet
+		select * from tbl_quantiteAccepteePourProjet where @no_projet = no_Projet
+		go*/
+
+		/*  marche
+		exec SupprimerUnProjet 5*/
+		/* ne marchera pas
+		exec SupprimerUnProjet 4*/
 
 		update vueListerQuantiteAccepteePourProjet 
 		set quantiteAcceptee =  50
@@ -313,16 +329,16 @@ values ('1','1')*/
 
 		/*marche*/
 		insert into tbl_Impute(no_Employe, no_Piece, no_Projet, date, quantite_Retire)
-		values (1, 1, 2, getDate(), 1), (1, 1, 2, GETDATE(), 30), (1, 2, 3, GETDATE(), 38), (1, 2, 3, GETDATE(), 1)
+		values (1, 1, 2, getDate(), 1), (1, 1, 2, GETDATE(), 20), (1, 2, 3, GETDATE(), 15), (1, 2, 3, GETDATE(), 1)
 		go
 		delete from tbl_Impute where no_Piece = 1 and no_Projet = 2
 		delete from tbl_Impute where no_Piece = 2 and no_Projet = 2
 		go
 
 		/*marche pas*/
-		insert into tbl_Impute(no_Employe, no_Piece, no_Projet, date, quantite_Retire)
+		/*insert into tbl_Impute(no_Employe, no_Piece, no_Projet, date, quantite_Retire)
 		values (1, 1, 2, getDate(), 11), (1, 1, 2, GETDATE(), 30), (1, 2, 3, GETDATE(), 15), (1, 2, 3, GETDATE(), 100)
-		go
+		go*/
 		
 		alter table tbl_Projet
 		add concurrenceTimeStamp TimeStamp not null

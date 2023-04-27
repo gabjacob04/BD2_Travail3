@@ -18,5 +18,6 @@ namespace BD2_Travail3
         public int no_Projet { get; set; }
         public string description_Piece { get; set; }
         public Nullable<int> quantiteAcceptee { get; set; }
+        public string no_Piece_Entreprise { get; set; }
     }
 }

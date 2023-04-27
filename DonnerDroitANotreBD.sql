@@ -1,0 +1,19 @@
+USE AL_GJ_Travail
+GO
+
+CREATE USER [1] FOR LOGIN [corporatif\2134071] WITH DEFAULT_SCHEMA=[dbo]
+go
+CREATE USER [2] FOR LOGIN [corporatif\2137323] WITH DEFAULT_SCHEMA=[dbo]
+GO
+ALTER ROLE [db_owner] ADD MEMBER [1]
+go
+ALTER ROLE [db_owner] ADD MEMBER [2]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [2]
+go
+ALTER ROLE [db_datareader] ADD MEMBER [1]
+GO
+ALTER ROLE [db_datawriter] ADD MEMBER [1]
+go
+ALTER ROLE [db_datawriter] ADD MEMBER [2]
+GO

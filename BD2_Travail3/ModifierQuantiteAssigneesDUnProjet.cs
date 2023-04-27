@@ -28,6 +28,7 @@ namespace BD2_Travail3
             cmbListeProjets.DropDownStyle = ComboBoxStyle.DropDownList;
             setDataSourceComboBox();
             dgvPieces.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            cmbListeProjets.SelectedItem = null;
         }
 
         private void setDataSourceComboBox()
@@ -48,6 +49,9 @@ namespace BD2_Travail3
         {
             try
             {
+                if (cmbListeProjets.SelectedItem is null)
+                    throw new Exception("Erreur : Aucun projet de sélectionné");
+
                 managerProjetPiece.SupprimerUnProjet((int)cmbListeProjets.SelectedValue);
                 setDataSourceComboBox();
                 dgvPieces.DataSource = null;
@@ -80,8 +84,10 @@ namespace BD2_Travail3
             try
             {
                 dgvPieces.DataSource = managerProjetPiece.ListerQuantiteAccepteePourProjet((int)cmbListeProjets.SelectedValue, ref context);
+                dgvPieces.Columns["no_Piece_Entreprise"].DisplayIndex = 1;
+                dgvPieces.Columns["no_Piece_Entreprise"].ReadOnly = true;
                 dgvPieces.Columns["no_Projet"].Visible = false;
-                dgvPieces.Columns["no_Piece"].ReadOnly = true;
+                dgvPieces.Columns["no_Piece"].Visible = false;
                 dgvPieces.Columns["description_Piece"].ReadOnly = true;
             }
             catch (Exception)
