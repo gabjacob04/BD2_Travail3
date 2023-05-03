@@ -23,6 +23,18 @@ namespace BD2_Travail3
             this.valeurUser = valeurUser;
             this.valeurDatabase = valeurDatabase;
             this.context = context;
+            mettreTextBoxEnReadOnly();
+        }
+
+        private void mettreTextBoxEnReadOnly()
+        {
+            txtDatabaseDescription.ReadOnly = true;
+            txtDatabaseNomProjet.ReadOnly = true;
+            txtOriginalDescription.ReadOnly = true;
+            txtOriginalNomProjet.ReadOnly = true;  
+            txtOriginalDescription.ReadOnly = true;
+            txtUserDescription.ReadOnly = true;
+            txtUserNomProjet.ReadOnly = true;
         }
 
         private void GererErreurDeConcurrence_Load(object sender, EventArgs e)
