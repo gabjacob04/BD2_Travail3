@@ -308,7 +308,6 @@ values ('1','1')*/
 		for insert,update
 		as
 		SET NOCOUNT ON
-		/*if (update(no_competiteur) or update(no_epreuve))*/
 		begin
 		if exists (	select * from inserted
 					inner join tbl_quantiteAccepteePourProjet on inserted.no_Projet = tbl_quantiteAccepteePourProjet.no_Projet
@@ -328,6 +327,8 @@ values ('1','1')*/
 		go
 
 		/*marche*/
+		set dateformat ymd; 
+		go
 		insert into tbl_Impute(no_Employe, no_Piece, no_Projet, date, quantite_Retire)
 		values (1, 1, 2, getDate(), 1), (1, 1, 2, GETDATE(), 20), (1, 2, 3, GETDATE(), 15), (1, 2, 3, GETDATE(), 1)
 		go
